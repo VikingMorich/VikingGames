@@ -1,0 +1,8 @@
+.shop-items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2vw;
+  background-color: var(--warm-brown);
+  padding: 10px 1.5vw;
+}

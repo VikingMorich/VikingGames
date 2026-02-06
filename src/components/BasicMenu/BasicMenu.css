@@ -1,0 +1,15 @@
+.basic-menu {
+  width: 100%;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  background-color: #856734;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 10;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}

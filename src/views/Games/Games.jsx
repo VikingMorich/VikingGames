@@ -1,11 +1,13 @@
 import "./Games.css";
-import { useGlobalDB } from "../../hooks/useGlobalDB";
-import { Login } from "../Login/Login";
+import { BasicMenu } from "../../components/BasicMenu/BasicMenu";
 
 export const Games = () => {
-  const { user } = useGlobalDB();
-
-  console.log("Games view - user:", user);
-
-  return <>{!user ? <Login /> : <div className="games-view">GAMES</div>}</>;
+  return (
+    <>
+      <BasicMenu />
+      <div className="section-view">
+        <h1 className="section-title">Games</h1>
+      </div>
+    </>
+  );
 };

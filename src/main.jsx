@@ -1,11 +1,16 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
-import { Login } from "./views/Login/Login.jsx";
 import { Home } from "./views/Home/Home.jsx";
 import { Games } from "./views/Games/Games.jsx";
+import { User } from "./views/User/User.jsx";
+import { Memory } from "./views/Memory/Memory.jsx";
+import { Login } from "./views/Login/Login.jsx";
+import { Shop } from "./views/Shop/Shop.jsx";
+import { Scores } from "./views/Scores/Scores.jsx";
+import { Valhalla } from "./views/Valhalla/Valhalla.jsx";
 import { Page404 } from "./views/Page404/Page404.jsx";
-import "./index.css";
+import "./common.css";
 
 const router = createBrowserRouter([
   {
@@ -13,12 +18,32 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path: "/games",
+    element: <Games />,
+  },
+  {
+    path: "/user",
+    element: <User />,
+  },
+  {
+    path: "/shop",
+    element: <Shop />,
+  },
+  {
+    path: "/scores",
+    element: <Scores />,
+  },
+  {
     path: "/login",
     element: <Login />,
   },
   {
-    path: "/games",
-    element: <Games />,
+    path: "/memory",
+    element: <Memory />,
+  },
+  {
+    path: "/valhalla",
+    element: <Valhalla />,
   },
   {
     path: "*",

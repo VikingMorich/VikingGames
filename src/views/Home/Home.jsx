@@ -1,8 +1,12 @@
 import "./Home.css";
 
 export const Home = () => {
-  const goToMainPage = () => {
+  const goToLoginPage = () => {
     window.location.assign("/login");
+  };
+
+  const goToGamePage = () => {
+    window.location.assign("/games");
   };
 
   return (
@@ -16,8 +20,11 @@ export const Home = () => {
           alt="Viking Games Logo"
           className="logo-viking-games"
         />
-        <div className="home-button" onClick={goToMainPage}>
+        <div className="home-button" onClick={goToLoginPage}>
           Login
+        </div>
+        <div className="home-button" onClick={goToGamePage}>
+          Espectador
         </div>
       </div>
     </div>

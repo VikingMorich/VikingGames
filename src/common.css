@@ -1,0 +1,29 @@
+@import "./colors.css";
+
+/* Universal box-sizing fix */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.section-view {
+  padding: 0 3vw;
+  margin-bottom: 15px;
+  .section-title {
+    text-align: center;
+  }
+}
