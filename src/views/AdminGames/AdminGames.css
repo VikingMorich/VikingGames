@@ -1,0 +1,31 @@
+.admin-games-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.admin-games-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #56330d;
+  width: 90%;
+}
+
+.admin-games-buttons {
+  display: flex;
+  gap: 40px;
+  .btn-play {
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: #0068c3;
+    color: white;
+    cursor: pointer;
+  }
+  .btn-save {
+    background-color: #82b190;
+    cursor: pointer;
+    padding: 0 30px;
+    border: 1px solid black;
+  }
+}

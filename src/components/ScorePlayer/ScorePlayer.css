@@ -1,7 +1,7 @@
 /* Tres columnas por fila */
 .score-player {
-  flex: 1 1 calc((100% - 32px) / 3); /* restamos 2 gaps (16px) */
-  min-width: calc((100% - 32px) / 3);
+  flex: 1 1 calc((100% - 24px) / 3); /* restamos 2 gaps (16px) */
+  min-width: calc((100% - 24px) / 3);
   box-sizing: border-box;
 }
 
@@ -31,6 +31,7 @@
   justify-content: center;
   background: #f1f5f9;
   border: 1px solid black;
+  position: relative;
 }
 
 .score-player__image {
@@ -40,12 +41,23 @@
   display: block;
 }
 
+.score-player__image-eliminated {
+  display: none;
+  width: 45px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Texto / cuerpo */
 .score-player__body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   min-width: 0;
 }
 
@@ -61,24 +73,26 @@
 
 .score-player__price {
   font-weight: 700;
-  color: #92400e; /* accent */
   font-size: 13px;
 }
 
 .score-player__score {
   display: flex;
+  align-items: center;
   gap: 8px;
-  font-size: 13px;
-  color: #475569;
+  font-size: 12px;
+  color: #92400e; /* accent */
 }
 
 .score-player__score-value {
   font-weight: 700;
-  color: #0f172a;
+  font-size: 18px;
 }
 
 /* Estado eliminado */
 .player-eliminated {
   opacity: 0.7;
-  filter: grayscale(70%);
+  .score-player__image-eliminated {
+    display: block;
+  }
 }

@@ -2,6 +2,7 @@ import "./User.css";
 import { BasicMenu } from "../../components/BasicMenu/BasicMenu";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { Modal } from "../../components/Modal/Modal";
+import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 
 export const User = () => {
@@ -21,7 +22,7 @@ export const User = () => {
         <>
           <BasicMenu />
           <div className="section-view">
-            <h1 className="section-title">Zona d'usuari</h1>
+            <h1 className="section-title">El teu espai</h1>
             <div className="user-info">
               <img
                 src={"/Players/" + dbUserId + ".png"}
@@ -38,7 +39,13 @@ export const User = () => {
                 <strong>Score:</strong> {dbUser?.score || 0}
               </p>
               <p>
-                <strong>MoricheCoins:</strong> {dbUser?.coins || 0} 🪙
+                <strong>MoricheCoins:</strong>{" "}
+                {dbUser?.coins
+                  ? dbUser.coins
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+                  : "0"}{" "}
+                🪙
               </p>
               <button
                 className="btn transfer-button"
@@ -57,6 +64,7 @@ export const User = () => {
             </button>
           </div>
           <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+          <ToastContainer />
         </>
       ) : null}
     </>

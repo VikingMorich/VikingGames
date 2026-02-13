@@ -13,11 +13,18 @@ export const ScorePlayer = ({ playerId, player }) => {
           alt={username}
           className="score-player__image"
         />
+        <img
+          src={`/Players/eliminated.png`}
+          alt="Eliminated"
+          className="score-player__image-eliminated"
+        />
       </div>
 
       <div className="score-player__body">
         <h3 className="score-player__title">{username}</h3>
-        <span className="score-player__price">{coins} 🪙</span>
+        <span className="score-player__price">
+          {coins.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} 🪙
+        </span>
         <div className="score-player__score">
           <span className="score-player__score-label">Score:</span>
           <span className="score-player__score-value">{score}</span>

@@ -46,7 +46,6 @@ export function useGlobalDB() {
     if (u) {
       if (!user) {
         setUser(u);
-        console.log("Usuario activo:", u);
       }
     } else {
       console.log("Nadie ha iniciado sesión");
@@ -57,6 +56,7 @@ export function useGlobalDB() {
     signOut(auth)
       .then(() => {
         setUser(null);
+        window.location.href = "/";
         // Sign-out successful.
       })
       .catch((error) => {

@@ -29,7 +29,7 @@ export const Scores = () => {
     <>
       <BasicMenu />
       <div className="section-view">
-        <h1 className="section-title">Scores</h1>
+        <h1 className="section-title">Puntuacions</h1>
         <div className="scores-container">
           {vikingGamesdb
             ? usersEntries.map(([id, player]) => (

@@ -9,6 +9,8 @@ import { Login } from "./views/Login/Login.jsx";
 import { Shop } from "./views/Shop/Shop.jsx";
 import { Scores } from "./views/Scores/Scores.jsx";
 import { Valhalla } from "./views/Valhalla/Valhalla.jsx";
+import { AdminGames } from "./views/AdminGames/AdminGames.jsx";
+import { AdminShop } from "./views/AdminShop/AdminShop.jsx";
 import { Page404 } from "./views/Page404/Page404.jsx";
 import "./common.css";
 
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
   {
     path: "/valhalla",
     element: <Valhalla />,
+  },
+  {
+    path: "/admingames",
+    element: <AdminGames />,
+  },
+  {
+    path: "/adminshop",
+    element: <AdminShop />,
   },
   {
     path: "*",

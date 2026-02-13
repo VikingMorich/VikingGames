@@ -27,3 +27,16 @@ body {
     text-align: center;
   }
 }
+
+* {
+  font-family: "Balgruf";
+}
+
+@font-face {
+  font-family: "Balgruf";
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local("Balgruf"),
+    url("./fonts/Balgruf.woff") format("woff");
+}

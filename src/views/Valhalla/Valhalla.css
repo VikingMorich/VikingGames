@@ -1,40 +1,5 @@
-.user-info {
+.valhalla-players-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  .user-avatar {
-    width: 40vw;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    border: 2px solid black;
-  }
-  p {
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
-  .transfer-button {
-    margin-top: 15px;
-    background-color: var(--primary-color);
-    color: var(--dark-brown);
-    font-weight: bold;
-    padding: 0.5rem 1.5rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: min-content;
-  }
-}
-
-.logout-button {
-  background-color: var(--dark-brown);
-  color: white;
-  position: fixed;
-  bottom: calc(20px + env(safe-area-inset-bottom, 0));
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9;
+  gap: 6px;
 }

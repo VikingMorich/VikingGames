@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
+import { userTransferCoins } from "../../functions/gameFunctions";
+import { toast } from "react-toastify";
 import "./ModalTransfer.css";
 
 export const ModalTransfer = () => {
@@ -12,8 +14,26 @@ export const ModalTransfer = () => {
   const dbUserId = dbEntry?.[0]; // "001"
   const dbUser = dbEntry?.[1];
 
+  const dbOtherUsers = Object.entries(vikingGamesdb?.Users || {}).filter(
+    ([id, u]) => u.email !== user?.email,
+  );
+  //console.log("dbOtherUsers", dbOtherUsers);
+
   const maxCoins = Number(dbUser?.coins ?? 0);
   const [amount, setAmount] = useState(0);
+  const [selectedTarget, setSelectedTarget] = useState("null");
+
+  const handleTransfer = () => {
+    const targetUserId = selectedTarget;
+    if (targetUserId !== "null" && amount > 0 && amount <= maxCoins) {
+      userTransferCoins(dbUserId, targetUserId, amount);
+    } else {
+      toast.error("Import o destinatari no vàlids.", {
+        autoClose: 1500,
+        theme: "colored",
+      });
+    }
+  };
 
   // Si cambia el usuario o sus coins, ajusta el amount si hace falta
   useEffect(() => {
@@ -25,11 +45,26 @@ export const ModalTransfer = () => {
       <h2>Transferència</h2>
       <div>
         <p>Origen:</p>
-        <p>{dbUser?.coins} 🪙</p>
+        <p>
+          {dbUser?.coins
+            ? dbUser.coins.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            : "0"}{" "}
+          🪙
+        </p>
 
         <p>Compte destí:</p>
-        <select>
-          <option>Selecciona un usuari</option>
+        <select
+          value={selectedTarget}
+          onChange={(e) => setSelectedTarget(e.target.value)}
+        >
+          <option value="null" disabled>
+            Selecciona un usuari
+          </option>
+          {dbOtherUsers.map(([id, u]) => (
+            <option key={id} value={id}>
+              {u.username}
+            </option>
+          ))}
         </select>
 
         <p>Import:</p>
@@ -80,7 +115,7 @@ export const ModalTransfer = () => {
       </div>
       <button
         className="btn btn-send-transfer"
-        onClick={() => {}}
+        onClick={() => handleTransfer()}
         type="button"
       >
         Enviar

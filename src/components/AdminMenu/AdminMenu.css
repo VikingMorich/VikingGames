@@ -1,4 +1,4 @@
-.basic-menu {
+.admin-menu {
   width: 100%;
   height: 60px;
   position: sticky;
@@ -12,9 +12,4 @@
     color: white;
     text-decoration: none;
   }
-}
-
-.menu-selected {
-  text-decoration: underline !important;
-  color: #85ff00 !important;
 }

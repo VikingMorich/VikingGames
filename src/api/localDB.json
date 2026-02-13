@@ -1,0 +1,74 @@
+{
+  "Shop": {
+    "001": {
+      "img": "blind-box.png",
+      "name": "Blind Box",
+      "price": 600,
+      "stock": 30
+    },
+    "002": {
+      "img": "kinder-bueno.png",
+      "name": "Kinder Bueno",
+      "price": 200,
+      "stock": 40
+    },
+    "003": {
+      "img": "hidromiel.jpg",
+      "name": "Hidromel",
+      "price": 800,
+      "stock": 3
+    },
+    "004": {
+      "img": "pegatina.png",
+      "name": "Pegatina VG",
+      "price": 400,
+      "stock": 15
+    },
+    "005": {
+      "img": "ramune.png",
+      "name": "Ramune",
+      "price": 500,
+      "stock": 15
+    }
+  },
+  "Users": {
+    "001": {
+      "coins": 1000,
+      "eliminated": false,
+      "email": "enricmoriche91@hotmail.com",
+      "score": 6,
+      "username": "Viking"
+    },
+    "002": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "monica@gmail.com",
+      "score": 30,
+      "username": "Mònica"
+    },
+    "003": {
+      "coins": 300000,
+      "eliminated": false,
+      "email": "mjod@lamesguapa.com",
+      "score": 100,
+      "username": "Mjod"
+    },
+    "004": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "therru@gmail.com",
+      "score": 20,
+      "username": "Therru"
+    },
+    "005": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "suika@gmail.com",
+      "score": 2,
+      "username": "Suika"
+    }
+  },
+  "Games": {
+    "currentPage": "welcome"
+  }
+}

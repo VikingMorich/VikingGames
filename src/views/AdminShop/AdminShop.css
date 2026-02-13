@@ -1,0 +1,43 @@
+.rdt_TableCell,
+.rdt_TableCol {
+  border: 1px solid white;
+  border-collapse: collapse;
+  border-top: none;
+  border-bottom: none;
+}
+
+.rdt_TableCell:not(:last-child),
+.rdt_TableCol:not(:last-child) {
+  border-right: none;
+}
+
+.rdt_TableCol {
+  font-weight: 600;
+  width: 100%;
+}
+
+.rdt_Pagination {
+  margin-top: 5px;
+}
+
+.table-buttons-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  gap: 6px;
+  width: 100%;
+}
+
+.table-button {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4e472f;
+  border: 1px solid #938962;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+}
