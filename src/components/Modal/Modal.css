@@ -11,8 +11,7 @@
 
 .c-modal {
   background-color: burlywood;
-  width: 86vw;
-  height: 86vh;
+  width: 75vw;
   position: fixed;
   left: 50%;
   top: 50%;

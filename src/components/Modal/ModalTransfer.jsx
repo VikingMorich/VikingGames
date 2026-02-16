@@ -43,34 +43,35 @@ export const ModalTransfer = () => {
   return (
     <div className="c-modal-content">
       <h2>Transferència</h2>
-      <div>
-        <p>Origen:</p>
-        <p>
-          {dbUser?.coins
-            ? dbUser.coins.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-            : "0"}{" "}
-          🪙
-        </p>
-
-        <p>Compte destí:</p>
-        <select
-          value={selectedTarget}
-          onChange={(e) => setSelectedTarget(e.target.value)}
-        >
-          <option value="null" disabled>
-            Selecciona un usuari
-          </option>
-          {dbOtherUsers.map(([id, u]) => (
-            <option key={id} value={id}>
-              {u.username}
+      <div className="transfer-form">
+        <div className="transfer-cat">
+          <p>Origen:</p>
+          <p>
+            {dbUser?.coins
+              ? dbUser.coins.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+              : "0"}{" "}
+            🪙
+          </p>
+        </div>
+        <div className="transfer-cat">
+          <p>Compte destí:</p>
+          <select
+            value={selectedTarget}
+            onChange={(e) => setSelectedTarget(e.target.value)}
+          >
+            <option value="null" disabled>
+              Selecciona un usuari
             </option>
-          ))}
-        </select>
-
-        <p>Import:</p>
-
+            {dbOtherUsers.map(([id, u]) => (
+              <option key={id} value={id}>
+                {u.username}
+              </option>
+            ))}
+          </select>
+        </div>
         {/* Slider (touch-friendly) */}
-        <div style={{ padding: "8px 0" }}>
+        <div className="transfer-cat">
+          <p>Import:</p>
           <input
             type="range"
             min={0}

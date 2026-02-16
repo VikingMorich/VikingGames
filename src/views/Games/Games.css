@@ -13,6 +13,11 @@
   margin-block-end: 0px;
 }
 
+.games-text-description {
+  text-align: center;
+  white-space: pre-line;
+}
+
 .loader-container {
   display: flex;
   justify-content: center;

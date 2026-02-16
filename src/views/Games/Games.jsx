@@ -2,32 +2,34 @@ import "./Games.css";
 import { BasicMenu } from "../../components/BasicMenu/BasicMenu";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { historyStages } from "../../api/gameHistory";
+import { TextPage } from "./TextPage";
+import { ExamPage } from "./ExamPage";
 
 export const Games = () => {
   const { vikingGamesdb } = useGlobalDB();
   const currentStage = vikingGamesdb?.Games?.currentPage || "loading";
 
-  return (
-    <>
-      <BasicMenu />
-      <div className="section-view">
-        {historyStages[currentStage]?.type === "text" ? (
-          <div className="games-text-wrapper">
-            {" "}
-            <h1 className="games-text-title">
-              {historyStages[currentStage].title}
-            </h1>{" "}
-            <p className="games-text-description">
-              {" "}
-              {historyStages[currentStage].description}{" "}
-            </p>{" "}
-          </div>
-        ) : (
+  const renderPage = () => {
+    switch (historyStages[currentStage]?.type) {
+      case "text":
+        return <TextPage />;
+      case "exam":
+        return <ExamPage />;
+      // case "memory":
+      //   return <MemoryPage />;
+      default:
+        return (
           <div className="loader-container">
             <img src="/icons/loader.png" alt="Loading..." className="loader" />
           </div>
-        )}
-      </div>
+        );
+    }
+  };
+
+  return (
+    <>
+      <BasicMenu />
+      <div className="section-view">{renderPage()}</div>
     </>
   );
 };

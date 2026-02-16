@@ -111,7 +111,7 @@ export const AdminShop = () => {
 
     return Object.entries(purchases)
       .reverse()
-      .map(([id, p]) => {
+      .map(([id, p], index) => {
         const userObj = users?.[p.userId] ?? null;
         const itemObj = shop?.[p.itemId] ?? null;
         const dateIso = p?.purchaseDate ?? null;
@@ -127,6 +127,7 @@ export const AdminShop = () => {
           purchaseDate: dateIso,
           purchaseDateFormatted,
           delivered: Boolean(p.delivered),
+          rowIndex: index,
         };
       });
   }, [vikingGamesdb]);
@@ -134,14 +135,14 @@ export const AdminShop = () => {
   // Pintar filas condicionadas (ej. entregadas en verde)
   const conditionalRowStyles = [
     {
-      when: (row) => row._rowIndex % 2 === 0, // even (0,2,4...)
+      when: (row) => row.rowIndex % 2 === 0, // even (0,2,4...)
       style: {
         backgroundColor: "#665b31",
         color: "#f5e9d3",
       },
     },
     {
-      when: (row) => row._rowIndex % 2 === 1, // odd (1,3,5...)
+      when: (row) => row.rowIndex % 2 === 1, // odd (1,3,5...)
       style: {
         backgroundColor: "#7c6e3b",
         color: "#f5e9d3",

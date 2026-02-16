@@ -11,6 +11,7 @@ import { Scores } from "./views/Scores/Scores.jsx";
 import { Valhalla } from "./views/Valhalla/Valhalla.jsx";
 import { AdminGames } from "./views/AdminGames/AdminGames.jsx";
 import { AdminShop } from "./views/AdminShop/AdminShop.jsx";
+import { Countdown } from "./views/Countdown/CountDown.jsx";
 import { Page404 } from "./views/Page404/Page404.jsx";
 import "./common.css";
 
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/countdown",
+    element: <Countdown />,
   },
   {
     path: "/games",
