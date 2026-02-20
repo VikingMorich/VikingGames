@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { Home } from "./views/Home/Home.jsx";
 import { Games } from "./views/Games/Games.jsx";
 import { User } from "./views/User/User.jsx";
-import { Memory } from "./views/Memory/Memory.jsx";
 import { Login } from "./views/Login/Login.jsx";
 import { Shop } from "./views/Shop/Shop.jsx";
 import { Scores } from "./views/Scores/Scores.jsx";
@@ -43,10 +42,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/memory",
-    element: <Memory />,
   },
   {
     path: "/valhalla",

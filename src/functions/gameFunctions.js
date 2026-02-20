@@ -1,4 +1,10 @@
-import { getDatabase, ref, runTransaction, push } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  runTransaction,
+  push,
+  update,
+} from "firebase/database";
 import { app } from "../firebase/config.js";
 
 export const userTransferCoins = async (originUserId, targetUserId, amount) => {
@@ -140,5 +146,29 @@ export const userShopPurchase = async (userId, itemId, itemPrice) => {
       item: { id: itemId, stock: updatedItems[itemId].stock },
       purchase: null,
     };
+  }
+};
+
+export const updateStageScore = async (userId, score) => {
+  try {
+    const db = getDatabase(app);
+    const nodeRef = ref(db, `Users/${userId}`);
+    await update(nodeRef, { stageScore: score });
+    return true;
+  } catch (error) {
+    console.error("updateStageScore error:", error);
+    throw error;
+  }
+};
+
+export const updateUserName = async (userId, newUserName) => {
+  try {
+    const db = getDatabase(app);
+    const nodeRef = ref(db, `Users/${userId}`);
+    await update(nodeRef, { username: newUserName });
+    return true;
+  } catch (error) {
+    console.error("updateUserName error:", error);
+    throw error;
   }
 };

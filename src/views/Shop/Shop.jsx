@@ -5,12 +5,18 @@ import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { ToastContainer } from "react-toastify";
 
 export const Shop = () => {
-  const { vikingGamesdb, user } = useGlobalDB();
+  const { vikingGamesdb } = useGlobalDB();
+  const isHappyHour = vikingGamesdb?.Games?.happyHour;
 
   return (
     <>
       <BasicMenu />
       <div className="section-view">
+        {isHappyHour && (
+          <div className="happy-hour-sticky">
+            🍺 Happy Hour - Descomptes aplicats🍺
+          </div>
+        )}
         <h1 className="section-title">Catàleg botiga</h1>
         <div className="shop-items-container">
           {vikingGamesdb

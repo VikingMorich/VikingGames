@@ -1,0 +1,36 @@
+.archivement-wrapper {
+  width: 100%;
+  border: 1px solid #0d0e0f;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: #c4a47b;
+
+  &.archivement-used {
+    background-color: #90877e;
+    color: #48443f;
+  }
+
+  .archivement__title {
+    text-align: center;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+  }
+  .archivement__body {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .archivement__image {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+    .archivement__description {
+      font-size: 14px;
+    }
+    .archivement__reward {
+      border-top: 1px solid #0d0e0f;
+      margin-top: 5px;
+      padding-top: 5px;
+    }
+  }
+}

@@ -4,7 +4,6 @@ import { useGlobalDB } from "../../hooks/useGlobalDB";
 export const BasicMenu = () => {
   const { user } = useGlobalDB();
   const location = window.location;
-  console.log("Current path:", location.pathname);
 
   return (
     <div className="basic-menu">

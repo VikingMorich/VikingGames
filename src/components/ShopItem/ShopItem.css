@@ -55,6 +55,7 @@
   display: flex;
   gap: 12px;
   align-items: center;
+  justify-content: space-between;
   font-size: 14px;
   color: #475569;
   margin-bottom: 12px;
@@ -132,4 +133,16 @@
 
 .shop-item__buy--disabled {
   background-color: grey;
+}
+
+.shop-item__price--happy {
+  display: flex;
+  flex-direction: column;
+  .shop-item__price--happy-old {
+    color: #ad0808;
+    text-decoration: line-through;
+  }
+  .shop-item__price--happy-new {
+    color: #046942;
+  }
 }

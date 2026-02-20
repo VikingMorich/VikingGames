@@ -4,6 +4,7 @@ import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { historyStages } from "../../api/gameHistory";
 import { TextPage } from "./TextPage";
 import { ExamPage } from "./ExamPage";
+import { MemoryPage } from "./MemoryPage";
 
 export const Games = () => {
   const { vikingGamesdb } = useGlobalDB();
@@ -15,8 +16,8 @@ export const Games = () => {
         return <TextPage />;
       case "exam":
         return <ExamPage />;
-      // case "memory":
-      //   return <MemoryPage />;
+      case "memory":
+        return <MemoryPage />;
       default:
         return (
           <div className="loader-container">

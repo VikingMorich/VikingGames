@@ -1,0 +1,78 @@
+/* Tres columnas por fila */
+.score-game {
+  flex: 1 1 calc((100% - 24px) / 3); /* restamos 2 gaps (16px) */
+  min-width: calc((100% - 24px) / 3);
+  box-sizing: border-box;
+}
+
+/* Estilos del propio marcador */
+.score-game {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #fff, #fbfbfb);
+  border: 1px solid black;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Imagen */
+.score-game__media {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border: 1px solid black;
+  position: relative;
+}
+
+.score-game__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Texto / cuerpo */
+.score-game__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2px;
+  min-width: 0;
+}
+
+.score-game__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score-game__price {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.score-game__score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #92400e; /* accent */
+}
+
+.score-game__score-value {
+  font-weight: 700;
+  font-size: 18px;
+}

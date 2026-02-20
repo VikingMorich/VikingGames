@@ -1,8 +1,9 @@
 import "./Modal.css";
 //import { useGlobalDB } from "../hooks/useGlobalDB";
 import { ModalTransfer } from "./ModalTransfer";
+import { ModalArchivements } from "./ModalArchivements";
 
-export const Modal = ({ modalOpen, setModalOpen }) => {
+export const Modal = ({ modalOpen, setModalOpen, type }) => {
   return (
     <article
       className={`c-modal-background ${modalOpen ? "modal--open" : ""}`}
@@ -15,7 +16,8 @@ export const Modal = ({ modalOpen, setModalOpen }) => {
           src="/icons/cross-icon.svg"
           onClick={() => setModalOpen(false)}
         />
-        <ModalTransfer />
+        {type === "transfer" && <ModalTransfer />}
+        {type === "archivements" && <ModalArchivements />}
       </div>
     </article>
   );

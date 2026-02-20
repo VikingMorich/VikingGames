@@ -18,6 +18,67 @@
   white-space: pre-line;
 }
 
+.exam-divider {
+  border-bottom: 1px solid var(--warm-brown);
+  width: 90%;
+  margin-bottom: 16px;
+}
+
+.exam-content {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.exam-timer {
+  position: fixed;
+  background-color: black;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 0 0 5px 5px;
+  transform: translateX(-50%);
+  left: 50%;
+  z-index: 3;
+  top: 60px;
+
+  &.timer-red {
+    background-color: #d90202;
+  }
+}
+
+.exam-question-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  .img-exam {
+    width: 300px;
+  }
+  .question-exam {
+    font-weight: 600;
+  }
+  .options-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.exam-button {
+  background-color: #68c46b;
+  border: 1px solid black !important;
+}
+
+.game-scoreboard {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background-color: var(--warm-brown);
+  padding: 10px;
+}
+
 .loader-container {
   display: flex;
   justify-content: center;

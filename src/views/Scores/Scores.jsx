@@ -2,9 +2,12 @@ import "./Scores.css";
 import { BasicMenu } from "../../components/BasicMenu/BasicMenu";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { ScorePlayer } from "../../components/ScorePlayer/ScorePlayer";
+import { Modal } from "../../components/Modal/Modal";
+import { useState } from "react";
 
 export const Scores = () => {
   const { vikingGamesdb } = useGlobalDB();
+  const [modalOpen, setModalOpen] = useState(false);
 
   // seguridad: convertir a array vacío si no hay Users
   const usersEntries =
@@ -24,7 +27,6 @@ export const Scores = () => {
     return aEl ? 1 : -1;
   });
 
-  console.log("Sorted usersEntries:", usersEntries);
   return (
     <>
       <BasicMenu />
@@ -38,6 +40,19 @@ export const Scores = () => {
             : null}
         </div>
       </div>
+      {/* Modal archivements */}
+      <div className="icon-archivements" onClick={() => setModalOpen(true)}>
+        <img
+          className="icon-archivements-img"
+          src="/icons/archivements.png"
+          alt="Archivements Icon"
+        />
+      </div>
+      <Modal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        type="archivements"
+      />
     </>
   );
 };

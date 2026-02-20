@@ -1,8 +1,16 @@
 import "./ScorePlayer.css";
 //import { useGlobalDB } from "../hooks/useGlobalDB";
+import { useGlobalDB } from "../../hooks/useGlobalDB";
 
 export const ScorePlayer = ({ playerId, player }) => {
-  const { username, score = 0, eliminated, coins = 0 } = player;
+  const { username, score = 0, eliminated, coins = 0, archivements } = player;
+
+  const { user, vikingGamesdb } = useGlobalDB();
+  const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
+    ([id, u]) => u.email === user?.email,
+  );
+  const dbUserId = dbEntry?.[0]; // "001"
+  const dbUser = dbEntry?.[1];
   return (
     <article
       className={`score-player ${eliminated ? "player-eliminated" : ""}`}
@@ -18,6 +26,17 @@ export const ScorePlayer = ({ playerId, player }) => {
           alt="Eliminated"
           className="score-player__image-eliminated"
         />
+        <div className="user-avatar-overlay">
+          {archivements &&
+            archivements.map((arch) => (
+              <img
+                key={`archivement-${arch}`}
+                src={`/icons/${vikingGamesdb?.Archivements[arch]?.img}`}
+                alt={`${vikingGamesdb?.Archivements[arch]?.title}`}
+                className="user-avatar-achievement"
+              />
+            ))}
+        </div>
       </div>
 
       <div className="score-player__body">

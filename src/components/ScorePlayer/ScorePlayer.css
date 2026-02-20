@@ -21,24 +21,48 @@
 
 /* Imagen */
 .score-player__media {
-  flex: 0 0 64px;
+  position: relative;
+  .user-avatar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    > img {
+      width: 30px;
+      height: 30px;
+    }
+    > img:first-child {
+      position: absolute;
+      bottom: -8px;
+      right: -8px;
+    }
+    > img:nth-child(2) {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+    }
+    > img:nth-child(3) {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+    }
+    > img:nth-child(4) {
+      position: absolute;
+      bottom: -8px;
+      left: -8px;
+    }
+  }
+}
+
+.score-player__image {
+  object-fit: cover;
+  display: block;
   width: 64px;
   height: 64px;
   border-radius: 50%;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f1f5f9;
   border: 1px solid black;
-  position: relative;
-}
-
-.score-player__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .score-player__image-eliminated {

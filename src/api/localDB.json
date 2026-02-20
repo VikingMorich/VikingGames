@@ -4,6 +4,7 @@
       "img": "blind-box.png",
       "name": "Blind Box",
       "price": 600,
+      "happyHour": 500,
       "stock": 30
     },
     "002": {
@@ -16,6 +17,7 @@
       "img": "hidromiel.jpg",
       "name": "Hidromel",
       "price": 800,
+      "happyHour": 650,
       "stock": 3
     },
     "004": {
@@ -66,6 +68,34 @@
       "email": "suika@gmail.com",
       "score": 2,
       "username": "Suika"
+    }
+  },
+  "Archivements": {
+    "001": {
+      "title": "Fotògraf",
+      "img": "camera-archivement.png",
+      "description": "Premi a la foto amb mes 👍🏼 dins del grup de whatsapp quan arribi un determinat moment del joc.",
+      "coins": 5000
+    },
+    "002": {
+      "title": "Borracho",
+      "img": "beer-archivement.png",
+      "description": "Premi al participant amb mes birres ingerides en un determinat moment del joc.",
+      "coins": 2500,
+      "score": 5
+    },
+    "003": {
+      "title": "Bingo master",
+      "img": "bingo-archivement.png",
+      "description": "Concursant que aconsegueixi fer bingo (i el canti) abans que els altres.",
+      "coins": 3000,
+      "score": 10
+    },
+    "004": {
+      "title": "Caçador de secrets",
+      "img": "easter-archivement.png",
+      "description": "Primer participant en trobar l'Easter egg ocult dins del web.",
+      "coins": 5000
     }
   },
   "Games": {

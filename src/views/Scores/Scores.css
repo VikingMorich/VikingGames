@@ -5,4 +5,23 @@
   gap: 5px;
   background-color: var(--warm-brown);
   padding: 10px;
+  border-radius: 5px;
+}
+
+.icon-archivements {
+  position: fixed;
+  bottom: 40px;
+  background-color: #756d21;
+  border-radius: 50%;
+  cursor: pointer;
+  right: 40px;
+  display: flex;
+  padding: 4px;
+  border: 2px solid var(--dark-brown);
+  aspect-ratio: 1 / 1;
+
+  .icon-archivements-img {
+    width: 30px;
+    object-fit: cover;
+  }
 }

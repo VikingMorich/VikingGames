@@ -29,3 +29,90 @@
     border: 1px solid black;
   }
 }
+
+.btn-happy-hour {
+  &.btn-happy-hour-inactive {
+    background-color: white;
+    color: black;
+  }
+  &.btn-happy-hour-active {
+    background-color: black;
+    color: white;
+  }
+}
+
+.btn-reload-db {
+  margin-top: 30px;
+  background-color: #f0ad4e;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-games__score-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  .admin-games__score-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    .admin-player__field {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+  }
+  .admin-group-save {
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    display: none;
+    height: 30px;
+    &.admin-group-save--active {
+      display: block;
+    }
+  }
+}
+
+.admin-games__multiselector {
+  display: none;
+}
+.admin-games__multiselector--open {
+  display: block;
+  border: 1px solid #27231e;
+  padding: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  transform: translateY(-12px);
+  background-color: #dbdbd6;
+}
+
+.admin-games__multiselector-selected {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid #27231e;
+  background-color: #dbdbd6;
+  padding: 4px 10px;
+  width: 100%;
+  min-height: 32px;
+  border-radius: 5px;
+  gap: 6px;
+  .admin-games__multiselector-player-selected {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    border: 1px solid #3b352e;
+    background-color: #adbcc9;
+    padding: 3px 6px;
+    border-radius: 20px;
+  }
+}
+
+.admin-games__multiselector-player {
+  padding: 3px 6px;
+}
