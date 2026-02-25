@@ -2,6 +2,7 @@ import "./Modal.css";
 //import { useGlobalDB } from "../hooks/useGlobalDB";
 import { ModalTransfer } from "./ModalTransfer";
 import { ModalArchivements } from "./ModalArchivements";
+import { ModalBingo } from "./ModalBingo";
 
 export const Modal = ({ modalOpen, setModalOpen, type }) => {
   return (
@@ -18,6 +19,7 @@ export const Modal = ({ modalOpen, setModalOpen, type }) => {
         />
         {type === "transfer" && <ModalTransfer />}
         {type === "archivements" && <ModalArchivements />}
+        {type === "bingo" && <ModalBingo />}
       </div>
     </article>
   );

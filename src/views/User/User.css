@@ -1,6 +1,7 @@
 .user-info {
   display: flex;
   flex-direction: column;
+  position: relative;
   align-items: center;
   gap: 10px;
   margin-bottom: 80px;
@@ -91,4 +92,24 @@
   border: 1px solid #27231e;
   border-radius: 4px;
   padding: 3px 5px;
+}
+
+.modal-lottery-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #001c49;
+  .lottery-icon {
+    width: 30px;
+    height: 30px;
+  }
 }

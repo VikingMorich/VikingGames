@@ -9,6 +9,7 @@ import { updateUserName } from "../../functions/gameFunctions";
 export const User = () => {
   const { user, vikingGamesdb, logoutAdmin } = useGlobalDB();
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalBingoOpen, setModalBingoOpen] = useState(false);
   // busca la entrada [id, userObj] cuyo email coincide
   const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
     ([id, u]) => u.email === user?.email,
@@ -50,6 +51,17 @@ export const User = () => {
                     ))}
                 </div>
               </div>
+              <button
+                className="modal-lottery-button"
+                onClick={() => setModalBingoOpen(true)}
+                type="button"
+              >
+                <img
+                  src="/icons/lottery.png"
+                  alt="Lottery"
+                  className="lottery-icon"
+                />
+              </button>
 
               {/* Boton para transformar el username en un input editable amb boto per guardar els canvis si el valor es diferent a l'original */}
               <p>
@@ -119,6 +131,11 @@ export const User = () => {
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}
             type="transfer"
+          />
+          <Modal
+            modalOpen={modalBingoOpen}
+            setModalOpen={setModalBingoOpen}
+            type="bingo"
           />
           <ToastContainer />
         </>

@@ -13,11 +13,12 @@ export const historyStages = {
   },
   examRules: {
     title: "Explicació examen",
-    description: "Enjoy the game!",
+    description:
+      "A continuació es mostraran les preguntes d'un examen. Cada pregunta tindrà diverses opcions, però només hi ha una resposta correcta. Disposareu de 10 minuts per respondre. El jugador que respongui correctament a més preguntes serà el guanyador d'aquesta prova. Les resposten incorrectes no penalitzen, però recorda validar les respostes abans de que s'acabi el temps o obtindreu 0 punts...",
     type: "text",
   },
   examLvl1: {
-    title: "Prova d'intel·ligència",
+    title: "Examen",
     description:
       "Marca la resposta correcta a les seguents preguntes. ⚠️ Recorda validar les respostes abans de que s'acabi el temps!",
     questions: [
@@ -51,7 +52,8 @@ export const historyStages = {
   },
   memoryRules: {
     title: "Explicació memory",
-    description: "Enjoy the game!",
+    description:
+      "A continuació es mostrara una imatge durant 20 segons. Passat aquest temps, la imatge desapareixerà i disposareu de 1 minut per replicar el dibuix de la imatge. El jugador que acerti més coordenades serà el guanyador d'aquesta prova. Les resposten incorrectes penalitzen restant 1 punt sent 0 la minima puntuació possible. Recorda validar la resposta abans de que s'acabi el temps o obtindràs 0 punts...",
     type: "text",
   },
   memory: {
@@ -88,6 +90,17 @@ export const historyStages = {
     type: "memory",
     duration: 80000, // 1 minut i 20 segons
     delayImage: 20000, // 20 segons
+  },
+  skillRules: {
+    title: "Explicació prova d'habilitat",
+    description:
+      "Tens 1 minut per superar 10 nivells de dificultat, quants podràs passar? Passar un nivell augmenta la velocitat, pero fallar et fa retrocedir. Passat el temps veurem les puntuacions globals i augmentarem els marcadors.",
+    type: "text",
+  },
+  skill: {
+    title: "Prova d'habilitat",
+    type: "skill",
+    duration: 60000, // 1 minut
   },
   gameOver: {
     title: "Game Over",
