@@ -16,11 +16,14 @@ export const historyStages = {
     description:
       "A continuació es mostraran les preguntes d'un examen. Cada pregunta tindrà diverses opcions, però només hi ha una resposta correcta. Disposareu de 10 minuts per respondre. El jugador que respongui correctament a més preguntes serà el guanyador d'aquesta prova. Les resposten incorrectes no penalitzen, però recorda validar les respostes abans de que s'acabi el temps o obtindreu 0 punts...",
     type: "text",
+    reward:
+      "La puntuació obtinguda a l'examen es sumara al marcador global de cada jugador. A més, els 3 jugadors amb millor nota a l'examen rebràn un bonus de 500 MoricheCoins.",
   },
   examLvl1: {
     title: "Examen",
     description:
       "Marca la resposta correcta a les seguents preguntes. ⚠️ Recorda validar les respostes abans de que s'acabi el temps!",
+    rewardResume: "500🪙 als 3 millors (Score auto)",
     questions: [
       {
         question: "Si AxA = 2x2x3x3, quan val A?",
@@ -94,13 +97,28 @@ export const historyStages = {
   skillRules: {
     title: "Explicació prova d'habilitat",
     description:
-      "Tens 1 minut per superar 10 nivells de dificultat, quants podràs passar? Passar un nivell augmenta la velocitat, pero fallar et fa retrocedir. Passat el temps veurem les puntuacions globals i augmentarem els marcadors.",
-    type: "text",
+      "Tens 1 minut per superar 10 nivells de dificultat, quants podràs passar? \nL'objectiu es aturar la barra dins d'un color considerat com a accert. Passar un nivell augmenta la velocitat i fallar et fa retrocedir. L'esquema de colors es el següent:",
+    reward:
+      "La puntuació obtinguda es sumara al marcador global de cada jugador. A més, el jugador amb millor puntuació rebràn una aventatge secreta.",
+    type: "text-colors",
   },
   skill: {
     title: "Prova d'habilitat",
     type: "skill",
+    rewardResume: "Aventatge secreta al millor (Score auto)",
     duration: 60000, // 1 minut
+  },
+  votation: {
+    title: "Votació",
+    description:
+      "Escull el teu jugador favorit. Clica sobre seu i apreta el boto per votar abans de que s'acabi el temps.",
+    type: "votation",
+    duration: 60000, // 1 minut
+  },
+  winner: {
+    title: "Guanyador",
+    description: "Felicitats! Has guanyat!",
+    type: "winner",
   },
   gameOver: {
     title: "Game Over",

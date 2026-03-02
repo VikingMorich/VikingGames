@@ -1,0 +1,25 @@
+.c-modal-content-economy {
+  display: flex;
+  width: 90vw;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-height: 90vh;
+  overflow: auto;
+  h2 {
+    margin-block-start: 20px;
+    margin-block-end: 0;
+  }
+  .rdt_TableCell,
+  .rdt_TableCol {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-top: none;
+    border-bottom: none;
+  }
+  .rdt_Table {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+  }
+}

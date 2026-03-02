@@ -4,7 +4,7 @@ import { userTransferCoins } from "../../functions/gameFunctions";
 import { toast } from "react-toastify";
 import "./ModalTransfer.css";
 
-export const ModalTransfer = () => {
+export const ModalTransfer = ({ closeFunc }) => {
   const { user, vikingGamesdb } = useGlobalDB();
 
   // busca la entrada [id, userObj] cuyo email coincide
@@ -27,6 +27,13 @@ export const ModalTransfer = () => {
     const targetUserId = selectedTarget;
     if (targetUserId !== "null" && amount > 0 && amount <= maxCoins) {
       userTransferCoins(dbUserId, targetUserId, amount);
+      toast.success("Transferència enviada!", {
+        autoClose: 1500,
+        theme: "colored",
+      });
+      setAmount(0);
+      setSelectedTarget("null");
+      closeFunc(); // Cerrar el modal después de la transferencia
     } else {
       toast.error("Import o destinatari no vàlids.", {
         autoClose: 1500,

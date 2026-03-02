@@ -7,13 +7,23 @@
   flex-direction: column;
   gap: 5px;
   align-items: center;
+
+  .divider {
+    width: 95%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 1px;
+    border-bottom: 1px solid var(--warm-brown);
+  }
 }
 
 .games-text-title {
   margin-block-end: 0px;
+  text-align: center;
 }
 
-.games-text-description {
+.games-text-description,
+.games-text-reward {
   text-align: center;
   white-space: pre-line;
 }
@@ -77,6 +87,18 @@
   gap: 3px;
   background-color: var(--warm-brown);
   padding: 10px;
+  > .score-game:first-child {
+    background: none !important;
+    background-color: #d6c077 !important;
+  }
+  > .score-game:nth-child(2) {
+    background: none !important;
+    background-color: #cccccc !important;
+  }
+  > .score-game:nth-child(3) {
+    background: none !important;
+    background-color: #eab37c !important;
+  }
 }
 
 .loader-container {
@@ -97,5 +119,46 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.color-scheme {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  .color-scheme__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    .color-scheme__label-icon {
+      font-size: 24px;
+    }
+
+    .color-scheme__color {
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      border: 1px solid black;
+    }
+
+    .color-scheme__color--epicwin {
+      background-color: #ffec9f;
+    }
+
+    .color-scheme__color--win {
+      background-color: #0e8208ff;
+    }
+
+    .color-scheme__color--fail {
+      background-color: #ff0000;
+    }
+
+    .color-scheme__color--epicfail {
+      background-color: #a70000ff;
+    }
   }
 }

@@ -15,6 +15,14 @@ export const TextPage = () => {
         <p className="games-text-description">
           {historyStages[currentStage]?.description}
         </p>
+        {historyStages[currentStage]?.reward && (
+          <>
+            <div className="divider" />
+            <p className="games-text-reward">
+              <u>Recompensa:</u> {historyStages[currentStage].reward}
+            </p>
+          </>
+        )}
       </div>
     </>
   );

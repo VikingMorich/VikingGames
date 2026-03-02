@@ -3,6 +3,14 @@
   flex-direction: column;
   gap: 12px;
   align-items: center;
+
+  .admin-reward-resume {
+    text-align: center;
+  }
+  .btn-generate-bingo {
+    background-color: #7d56b3;
+    color: white;
+  }
 }
 
 .admin-games-divider {
@@ -115,4 +123,67 @@
 
 .admin-games__multiselector-player {
   padding: 3px 6px;
+}
+
+.admin-rewards-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.admin-multiselector-container,
+.admin-clasificate-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 5px;
+  gap: 10px;
+  width: 100%;
+  background-color: #a8afaa;
+  border: 1px solid #27231e;
+  border-radius: 5px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  .admin-tab {
+    padding: 6px 12px;
+    border-radius: 5px 5px 0 0;
+    background-color: #dbdbd6;
+    border: 1px solid #27231e;
+
+    border-bottom: none;
+    cursor: pointer;
+    &.admin-tab-active {
+      background-color: #a8afaa;
+      transform: translateY(1.5px);
+    }
+  }
+}
+
+.admin-games__clasificate-selected {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #27231e;
+  background-color: #dbdbd6;
+  padding: 4px 10px;
+  width: 100%;
+  min-height: 32px;
+  border-radius: 5px;
+  gap: 6px;
+  .admin-games__clasificate-player-selected {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid #3b352e;
+    background-color: #adbcc9;
+    padding: 3px 6px;
+    border-radius: 20px;
+  }
 }

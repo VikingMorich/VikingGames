@@ -113,8 +113,9 @@
 
 /* Estado eliminado */
 .admin-player-eliminated {
-  opacity: 0.7;
   filter: grayscale(70%);
+  background: none;
+  background-color: #ff9e9e;
 }
 
 .admin-player__actions {

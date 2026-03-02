@@ -5,6 +5,7 @@
   gap: 2vw;
   background-color: var(--warm-brown);
   padding: 10px 1.5vw;
+  border-radius: 8px;
 }
 
 .happy-hour-sticky {

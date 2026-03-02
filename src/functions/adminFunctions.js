@@ -36,41 +36,85 @@ export const updateUserScores = async (
     const currentArchivements = (await get(child(archivRef, "/"))).val() || [];
     const oldUserInfo = (await get(child(nodeRef, "/"))).val() || [];
 
-    const addedArchivements = playerArchivements?.filter(
-      (id) => !oldUserInfo?.archivements?.includes(id),
-    );
+    const addedArchivements =
+      playerArchivements?.filter(
+        (id) => !oldUserInfo?.archivements?.includes(id),
+      ) || [];
 
-    const removedArchivements = oldUserInfo?.archivements?.filter(
-      (id) => !playerArchivements.includes(id),
-    );
+    const removedArchivements =
+      oldUserInfo?.archivements?.filter(
+        (id) => !playerArchivements.includes(id),
+      ) || [];
     if (addedArchivements.length > 0) {
       // Si se han añadido nuevos logros, sumar las coins y score correspondientes
       addedArchivements.forEach((aArchId) => {
-        currentCoins =
-          parseInt(currentCoins) +
-          parseInt(currentArchivements[aArchId]?.coins || 0);
-        currentScore =
-          parseInt(currentScore) +
-          parseInt(currentArchivements[aArchId]?.score || 0);
-      });
-    } else if (removedArchivements.length > 0) {
-      // Si se han eliminado logros, restar las coins y score correspondientes
-      removedArchivements.forEach((rArchId) => {
-        currentCoins =
-          parseInt(currentCoins) -
-          parseInt(currentArchivements[rArchId]?.coins || 0);
-        currentScore =
-          parseInt(currentScore) -
-          parseInt(currentArchivements[rArchId]?.score || 0);
+        const coinsToAdd = parseInt(currentArchivements[aArchId]?.coins || 0);
+        const scoreToAdd = parseInt(currentArchivements[aArchId]?.score || 0);
+        currentCoins += coinsToAdd;
+        currentScore += scoreToAdd;
+
+        oldUserInfo.CoinsHistory = [
+          ...(oldUserInfo.CoinsHistory || []),
+          {
+            date: new Date().toISOString(),
+            concept: `Fita dels VikingGames aconseguida (${currentArchivements[aArchId]?.title})`,
+            amount: coinsToAdd,
+            total: currentCoins,
+            type: "add",
+          },
+        ];
       });
     }
 
-    // Actualizar coins y score segun los archivements añadidos o eliminados
+    if (removedArchivements.length > 0) {
+      // Si se han eliminado logros, restar las coins y score correspondientes
+      removedArchivements.forEach((rArchId) => {
+        const coinsToRemove = parseInt(
+          currentArchivements[rArchId]?.coins || 0,
+        );
+        const scoreToRemove = parseInt(
+          currentArchivements[rArchId]?.score || 0,
+        );
+        currentCoins -= coinsToRemove;
+        currentScore -= scoreToRemove;
+
+        oldUserInfo.CoinsHistory = [
+          ...(oldUserInfo.CoinsHistory || []),
+          {
+            date: new Date().toISOString(),
+            concept: `Fita dels VikingGames retirada (${currentArchivements[rArchId]?.title})`,
+            amount: -coinsToRemove,
+            total: currentCoins,
+            type: "remove",
+          },
+        ];
+      });
+    }
+
+    if (
+      addedArchivements.length === 0 &&
+      removedArchivements.length === 0 &&
+      currentCoins - (oldUserInfo.coins || 0) !== 0
+    ) {
+      oldUserInfo.CoinsHistory = [
+        ...(oldUserInfo.CoinsHistory || []),
+        {
+          date: new Date().toISOString(),
+          concept: "Ajustaments VikingGames",
+          amount: currentCoins - (oldUserInfo.coins || 0),
+          total: currentCoins,
+          type: "correction",
+        },
+      ];
+    }
+
     await update(nodeRef, {
       coins: currentCoins,
       score: currentScore,
       archivements: playerArchivements || null,
+      CoinsHistory: oldUserInfo.CoinsHistory,
     });
+
     if (addedArchivements.length > 0) {
       addedArchivements.forEach((arch) => {
         if (!currentArchivements[arch].used) {
@@ -161,7 +205,14 @@ export const updateScoreWithStageScore = async () => {
         await update(userRef, {
           score: currentScore + stageScore,
           stageScore: null, // Remove stageScore key
+          vote: null, // Remove vote key
         });
+      }
+      //si existe la rama VotationScores, eliminarla para resetear los resultados de la votación
+      const votationScoresRef = ref(db, `VotationScores`);
+      const votationSnapshot = await get(child(votationScoresRef, "/"));
+      if (votationSnapshot.exists()) {
+        await set(votationScoresRef, null);
       }
     }
   } catch (error) {
@@ -187,14 +238,124 @@ export const updateArrayPlayerScores = async (arrayPlayers, coins, score) => {
   const db = getDatabase(app);
   try {
     const updates = {};
-    //Actualiza las coins y score de cada jugador del array con los valores pasados por parametro + los que tenian antes.
-    arrayPlayers.forEach((player) => {
-      updates[`Users/${player.id}/coins`] = (player.coins || 0) + coins;
-      updates[`Users/${player.id}/score`] = (player.score || 0) + score;
-    });
+    // Actualiza las coins y score de cada jugador del array con los valores pasados por parámetro + los que tenían antes.
+    for (const player of arrayPlayers) {
+      const userRef = ref(db, `Users/${player.id}`);
+      const userSnapshot = await get(userRef);
+      const userData = userSnapshot.exists() ? userSnapshot.val() : {};
+
+      const updatedCoins = (userData.coins || 0) + coins;
+      const updatedScore = (userData.score || 0) + score;
+      const existingHistory = Array.isArray(userData.CoinsHistory)
+        ? [...userData.CoinsHistory]
+        : []; // Asegurar que el historial existente sea un array
+
+      existingHistory.push({
+        date: new Date().toISOString(),
+        concept: "Premi grupal dels VikingGames",
+        amount: coins,
+        total: updatedCoins,
+        type: "add",
+      });
+
+      updates[`Users/${player.id}/coins`] = updatedCoins;
+      updates[`Users/${player.id}/score`] = updatedScore;
+      updates[`Users/${player.id}/CoinsHistory`] = existingHistory;
+    }
     await update(ref(db), updates);
   } catch (error) {
     console.error("updateArrayPlayerScores error:", error);
+    throw error;
+  }
+};
+
+export const updateArrayPlayerClasificate = async (
+  arrayPlayers,
+  coins,
+  score,
+) => {
+  const db = getDatabase(app);
+  try {
+    const updates = {};
+    // Actualiza las coins y score de cada jugador del array con los valores pasados por parámetro + los que tenían antes.
+    for (const [index, player] of arrayPlayers.entries()) {
+      const userRef = ref(db, `Users/${player.id}`);
+      const userSnapshot = await get(userRef);
+      const userData = userSnapshot.exists() ? userSnapshot.val() : {};
+
+      const updatedCoins = (userData.coins || 0) + coins * (index + 1);
+      const updatedScore = (userData.score || 0) + score * (index + 1);
+      const existingHistory = Array.isArray(userData.CoinsHistory)
+        ? [...userData.CoinsHistory]
+        : []; // Asegurar que el historial existente sea un array
+
+      existingHistory.push({
+        date: new Date().toISOString(),
+        concept: "Premi classificatori dels VikingGames",
+        amount: coins * (index + 1),
+        total: updatedCoins,
+        type: "add",
+      });
+
+      updates[`Users/${player.id}/coins`] = updatedCoins;
+      updates[`Users/${player.id}/score`] = updatedScore;
+      updates[`Users/${player.id}/CoinsHistory`] = existingHistory;
+    }
+    await update(ref(db), updates);
+  } catch (error) {
+    console.error("updateArrayPlayerClasificate error:", error);
+    throw error;
+  }
+};
+
+export const calculateVotationResults = async () => {
+  const db = getDatabase(app);
+  const usersRef = ref(db, `Users`);
+  try {
+    const snapshot = await get(child(usersRef, "/"));
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      const voteCounts = {};
+      // Contar votos
+      for (const userId in users) {
+        const user = users[userId];
+        if (user.vote) {
+          voteCounts[user.vote] = (voteCounts[user.vote] || 0) + 1;
+        }
+      }
+      // Guardar resultados en VotationScores
+      const votationScoresRef = ref(db, `VotationScores`);
+      await set(votationScoresRef, voteCounts);
+      return voteCounts;
+    }
+  } catch (error) {
+    console.error("calculateVotationResults error:", error);
+    throw error;
+  }
+};
+
+export const generateBingoCards = async () => {
+  const db = getDatabase(app);
+  try {
+    const usersRef = ref(db, `Users`);
+    const snapshot = await get(child(usersRef, "/"));
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      const userIds = Object.keys(users);
+      const bingoCards = [];
+      // actualizar el Users[userId] añadiendo una seccion Bingo. (Generar 1 cartas de bingo [Array de IDs] con 9 IDs aleatorios no incluyendo el id del propio jugador)
+      for (const userId of userIds) {
+        const otherUserIds = userIds.filter((id) => id !== userId);
+        const shuffledIds = otherUserIds.sort(() => 0.5 - Math.random());
+        const selectedIds = shuffledIds.slice(0, 9);
+        bingoCards.push({ userId, card: selectedIds });
+        const userRef = ref(db, `Users/${userId}`);
+        await update(userRef, { Bingo: selectedIds });
+      }
+      return bingoCards;
+    }
+  } catch (error) {
+    console.error("generateBingoCards error:", error);
     throw error;
   }
 };

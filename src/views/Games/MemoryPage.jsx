@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./MemoryPage.css";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { historyStages } from "../../api/gameHistory";
@@ -12,7 +12,7 @@ export const MemoryPage = () => {
   const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const [selected, setSelected] = useState(new Set());
-  const [timeLeft, setTimeLeft] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [showImage, setShowImage] = useState(true);
   const [redTimer, setRedTimer] = useState(false);
 

@@ -38,36 +38,155 @@
       "coins": 1000,
       "eliminated": false,
       "email": "enricmoriche91@hotmail.com",
-      "score": 6,
+      "score": 0,
       "username": "Viking"
     },
     "002": {
       "coins": 0,
       "eliminated": false,
-      "email": "monica@gmail.com",
-      "score": 30,
+      "email": "monica@vikinggames.com",
+      "score": 0,
       "username": "Mònica"
     },
     "003": {
-      "coins": 300000,
+      "coins": 0,
       "eliminated": false,
-      "email": "mjod@lamesguapa.com",
-      "score": 100,
-      "username": "Mjod"
+      "email": "david@vikinggames.com",
+      "score": 0,
+      "username": "Sherlock"
     },
     "004": {
       "coins": 0,
       "eliminated": false,
-      "email": "therru@gmail.com",
-      "score": 20,
-      "username": "Therru"
+      "email": "mireia@vikinggames.com",
+      "score": 0,
+      "username": "Daikat"
     },
     "005": {
       "coins": 0,
       "eliminated": false,
-      "email": "suika@gmail.com",
-      "score": 2,
-      "username": "Suika"
+      "email": "ivan@vikinggames.com",
+      "score": 0,
+      "username": "Khildhür"
+    },
+    "006": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "carol@vikinggames.com",
+      "score": 0,
+      "username": "Alana"
+    },
+    "007": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "quim@vikinggames.com",
+      "score": 0,
+      "username": "Quim Solo"
+    },
+    "008": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "denis@vikinggames.com",
+      "score": 0,
+      "username": "Denisito"
+    },
+    "009": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "cusi@vikinggames.com",
+      "score": 0,
+      "username": "Cusi"
+    },
+    "010": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "mogel@vikinggames.com",
+      "score": 0,
+      "username": "Mogel"
+    },
+    "011": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "ballesta@vikinggames.com",
+      "score": 0,
+      "username": "Ivan"
+    },
+    "012": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "casvil@vikinggames.com",
+      "score": 0,
+      "username": "Casvil"
+    },
+    "013": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "vika@vikinggames.com",
+      "score": 0,
+      "username": "Vika"
+    },
+    "014": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "xavi@vikinggames.com",
+      "score": 0,
+      "username": "Xavi IV"
+    },
+    "015": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "paty@vikinggames.com",
+      "score": 0,
+      "username": "Paty"
+    },
+    "016": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "sara@vikinggames.com",
+      "score": 0,
+      "username": "Sara"
+    },
+    "017": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "queralt@vikinggames.com",
+      "score": 0,
+      "username": "Q"
+    },
+    "018": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "pablo@vikinggames.com",
+      "score": 0,
+      "username": "Pablosky"
+    },
+    "019": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "anna@vikinggames.com",
+      "score": 0,
+      "username": "Anna"
+    },
+    "020": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "joan@vikinggames.com",
+      "score": 0,
+      "username": "Joan"
+    },
+    "021": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "cusina@vikinggames.com",
+      "score": 0,
+      "username": "Karma"
+    },
+    "022": {
+      "coins": 0,
+      "eliminated": false,
+      "email": "carlota@vikinggames.com",
+      "score": 0,
+      "username": "Carlota"
     }
   },
   "Archivements": {

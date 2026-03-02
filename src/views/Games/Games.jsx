@@ -3,9 +3,12 @@ import { BasicMenu } from "../../components/BasicMenu/BasicMenu";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { historyStages } from "../../api/gameHistory";
 import { TextPage } from "./TextPage";
+import { TextColorsPage } from "./TextColorsPage";
 import { ExamPage } from "./ExamPage";
 import { MemoryPage } from "./MemoryPage";
 import { SkillPage } from "./SkillPage";
+import { VotationPage } from "./VotationPage";
+import { WinnerPage } from "./WinnerPage";
 
 export const Games = () => {
   const { vikingGamesdb } = useGlobalDB();
@@ -15,12 +18,18 @@ export const Games = () => {
     switch (historyStages[currentStage]?.type) {
       case "text":
         return <TextPage />;
+      case "text-colors":
+        return <TextColorsPage />;
       case "exam":
         return <ExamPage />;
       case "memory":
         return <MemoryPage />;
       case "skill":
         return <SkillPage />;
+      case "votation":
+        return <VotationPage />;
+      case "winner":
+        return <WinnerPage />;
       default:
         return (
           <div className="loader-container">

@@ -10,14 +10,22 @@ export const User = () => {
   const { user, vikingGamesdb, logoutAdmin } = useGlobalDB();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalBingoOpen, setModalBingoOpen] = useState(false);
+  const [modalEconomyOpen, setModalEconomyOpen] = useState(false);
+  const [dbUser, setDbUser] = useState(null);
   // busca la entrada [id, userObj] cuyo email coincide
   const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
     ([id, u]) => u.email === user?.email,
   );
   const dbUserId = dbEntry?.[0]; // "001"
-  const dbUser = dbEntry?.[1];
 
   const [newUserName, setNewUserName] = useState(dbUser?.username || "");
+
+  useEffect(() => {
+    const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
+      ([id, u]) => u.email === user?.email,
+    );
+    setDbUser(dbEntry?.[1]);
+  }, [vikingGamesdb, user]);
 
   useEffect(() => {
     if (dbUser?.username) {
@@ -51,17 +59,19 @@ export const User = () => {
                     ))}
                 </div>
               </div>
-              <button
-                className="modal-lottery-button"
-                onClick={() => setModalBingoOpen(true)}
-                type="button"
-              >
-                <img
-                  src="/icons/lottery.png"
-                  alt="Lottery"
-                  className="lottery-icon"
-                />
-              </button>
+              {dbUser?.Bingo && (
+                <button
+                  className="modal-lottery-button"
+                  onClick={() => setModalBingoOpen(true)}
+                  type="button"
+                >
+                  <img
+                    src="/icons/lottery.png"
+                    alt="Lottery"
+                    className="lottery-icon"
+                  />
+                </button>
+              )}
 
               {/* Boton para transformar el username en un input editable amb boto per guardar els canvis si el valor es diferent a l'original */}
               <p>
@@ -102,15 +112,28 @@ export const User = () => {
               <p>
                 <strong>Score:</strong> {dbUser?.score || 0}
               </p>
-              <p>
-                <strong>MoricheCoins:</strong>{" "}
-                {dbUser?.coins
-                  ? dbUser.coins
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-                  : "0"}{" "}
-                🪙
-              </p>
+              <div className="economy-wrapper">
+                <button
+                  className="modal-economy-button"
+                  onClick={() => setModalEconomyOpen(true)}
+                  type="button"
+                >
+                  <img
+                    src="/icons/economy.png"
+                    alt="economy"
+                    className="economy-icon"
+                  />
+                </button>
+                <span>
+                  <strong>MoricheCoins:</strong>{" "}
+                  {dbUser?.coins
+                    ? dbUser.coins
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+                    : "0"}{" "}
+                  🪙
+                </span>
+              </div>
               <button
                 className="btn transfer-button"
                 onClick={() => setModalOpen(true)}
@@ -136,6 +159,11 @@ export const User = () => {
             modalOpen={modalBingoOpen}
             setModalOpen={setModalBingoOpen}
             type="bingo"
+          />
+          <Modal
+            modalOpen={modalEconomyOpen}
+            setModalOpen={setModalEconomyOpen}
+            type="economy"
           />
           <ToastContainer />
         </>

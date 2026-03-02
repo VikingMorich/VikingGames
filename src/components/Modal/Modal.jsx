@@ -3,6 +3,7 @@ import "./Modal.css";
 import { ModalTransfer } from "./ModalTransfer";
 import { ModalArchivements } from "./ModalArchivements";
 import { ModalBingo } from "./ModalBingo";
+import { ModalEconomy } from "./ModalEconomy";
 
 export const Modal = ({ modalOpen, setModalOpen, type }) => {
   return (
@@ -17,9 +18,12 @@ export const Modal = ({ modalOpen, setModalOpen, type }) => {
           src="/icons/cross-icon.svg"
           onClick={() => setModalOpen(false)}
         />
-        {type === "transfer" && <ModalTransfer />}
+        {type === "transfer" && (
+          <ModalTransfer closeFunc={() => setModalOpen(false)} />
+        )}
         {type === "archivements" && <ModalArchivements />}
         {type === "bingo" && <ModalBingo />}
+        {type === "economy" && <ModalEconomy />}
       </div>
     </article>
   );

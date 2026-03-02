@@ -1,0 +1,38 @@
+.winner-wrapper {
+  width: 100vw;
+  height: 100dvh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("/winner.png");
+  background-size: cover;
+  background-position: center;
+  .winner-container {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    left: 50%;
+    top: 40%;
+    .winner-text-title {
+      text-align: center;
+      width: 100%;
+      font-size: 36px;
+      margin-top: 25%;
+      text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    }
+
+    .winner-avatar {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      border: 3px solid black;
+      object-fit: cover;
+    }
+  }
+}

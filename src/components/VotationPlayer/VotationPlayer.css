@@ -1,0 +1,45 @@
+/* Tres columnas por fila */
+.votation-player {
+  flex: 1 1 calc((100% - 24px) / 3); /* restamos 2 gaps (16px) */
+  min-width: calc((100% - 24px) / 3);
+  box-sizing: border-box;
+  /* Estilos del propio marcador */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #fff, #fbfbfb);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  min-height: 72px;
+}
+
+.votation-player__image {
+  object-fit: cover;
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+/* Texto / cuerpo */
+.votation-player__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.votation-player__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

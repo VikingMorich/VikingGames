@@ -4,6 +4,7 @@ import {
   runTransaction,
   push,
   update,
+  get,
 } from "firebase/database";
 import { app } from "../firebase/config.js";
 
@@ -34,8 +35,38 @@ export const userTransferCoins = async (originUserId, targetUserId, amount) => {
       if (originCoins < amt) return; // abort if insufficient funds
 
       // apply changes
-      users[originUserId] = { ...origin, coins: originCoins - amt };
-      users[targetUserId] = { ...target, coins: targetCoins + amt };
+      const updatedOriginCoins = originCoins - amt;
+      const updatedTargetCoins = targetCoins + amt;
+
+      users[originUserId] = {
+        ...origin,
+        coins: updatedOriginCoins,
+        CoinsHistory: [
+          ...(origin.CoinsHistory || []),
+          {
+            date: new Date().toISOString(),
+            concept: `Transferencia enviada a ${users[targetUserId].username || targetUserId}`,
+            amount: -amt,
+            total: updatedOriginCoins,
+            type: "remove",
+          },
+        ],
+      };
+
+      users[targetUserId] = {
+        ...target,
+        coins: updatedTargetCoins,
+        CoinsHistory: [
+          ...(target.CoinsHistory || []),
+          {
+            date: new Date().toISOString(),
+            concept: `Transferencia rebuda de ${users[originUserId].username || originUserId}`,
+            amount: amt,
+            total: updatedTargetCoins,
+            type: "add",
+          },
+        ],
+      };
 
       return users;
     },
@@ -68,6 +99,14 @@ export const userShopPurchase = async (userId, itemId, itemPrice) => {
   const usersRef = ref(db, "Users");
   const itemsRef = ref(db, "Shop");
 
+  // Obtener los datos de los ítems
+  const itemsSnapshot = await get(itemsRef);
+  const items = itemsSnapshot.val();
+
+  if (!items || !items[itemId]) {
+    throw new Error("El item no existe en la tienda.");
+  }
+
   // Run a transaction on the Users node to update the user's coins
   const txResult = await runTransaction(
     usersRef,
@@ -80,7 +119,21 @@ export const userShopPurchase = async (userId, itemId, itemPrice) => {
       if (userCoins < price) return; // abort if insufficient funds
 
       // apply changes
-      users[userId] = { ...user, coins: userCoins - price };
+      const updatedCoins = userCoins - price;
+      users[userId] = {
+        ...user,
+        coins: updatedCoins,
+        CoinsHistory: [
+          ...(user.CoinsHistory || []),
+          {
+            date: new Date().toISOString(),
+            concept: `Compra de ${items[itemId].name} a la botiga`,
+            amount: -price,
+            total: updatedCoins,
+            type: "remove",
+          },
+        ],
+      };
       return users;
     },
     { applyLocally: false },
@@ -169,6 +222,74 @@ export const updateUserName = async (userId, newUserName) => {
     return true;
   } catch (error) {
     console.error("updateUserName error:", error);
+    throw error;
+  }
+};
+
+export const setPlayerLevelScore = async (userId, level) => {
+  try {
+    const db = getDatabase(app);
+    const nodeRef = ref(db, `Users/${userId}`);
+    await update(nodeRef, { stageScore: level });
+    return true;
+  } catch (error) {
+    console.error("setPlayerLevel error:", error);
+    throw error;
+  }
+};
+
+export const setPlayerVote = async (userId, vote) => {
+  try {
+    const db = getDatabase(app);
+    const nodeRef = ref(db, `Users/${userId}`);
+    await update(nodeRef, { vote });
+    return true;
+  } catch (error) {
+    console.error("setPlayerVote error:", error);
+    throw error;
+  }
+};
+
+export const claimBingo = async (userId) => {
+  try {
+    const db = getDatabase(app);
+
+    // Update the achievement to mark it as used
+    const nodeRef = ref(db, `Archivements/003`);
+    await update(nodeRef, { used: true });
+
+    // Retrieve user and achievement data
+    const userRef = ref(db, `Users/${userId}`);
+    const userSnapshot = await get(userRef);
+    const oldUserInfo = userSnapshot.val();
+
+    const archivementsRef = ref(db, `Archivements`);
+    const archivementsSnapshot = await get(archivementsRef);
+    const currentArchivements = archivementsSnapshot.val();
+
+    const aArchId = "003"; // Achievement ID for Bingo
+    const coinsToAdd = parseInt(currentArchivements[aArchId]?.coins || 0);
+    const currentCoins = (oldUserInfo.coins || 0) + coinsToAdd;
+
+    // Update user data with new coins and achievement
+    await update(userRef, {
+      coins: currentCoins,
+      archivements: [...(oldUserInfo.archivements || []), aArchId],
+      CoinsHistory: [
+        ...(oldUserInfo.CoinsHistory || []),
+        {
+          date: new Date().toISOString(),
+          concept: `Fita dels VikingGames aconseguida (${currentArchivements[aArchId]?.title})`,
+          amount: coinsToAdd,
+          total: currentCoins,
+          type: "add",
+        },
+      ],
+    });
+
+    return true;
+  } catch (error) {
+    console.error("claimBingo error:", error);
     throw error;
   }
 };

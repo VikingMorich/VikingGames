@@ -1,0 +1,44 @@
+.skill-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .skill-page-level {
+    margin-block-start: 0;
+    .skill-page-level-number {
+      font-size: 40px;
+    }
+  }
+
+  .skill-page-game-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+
+    .skill-page-progress-bar {
+      border-radius: 5px;
+      border: 1px solid #000000;
+    }
+
+    .stop-button {
+      background-color: #d3a000;
+      padding: 40px;
+      color: black;
+      border: 1px solid #84591d;
+      border-radius: 15px;
+    }
+  }
+
+  .last-click-result-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .last-click-result {
+      font-size: 40px;
+    }
+  }
+}

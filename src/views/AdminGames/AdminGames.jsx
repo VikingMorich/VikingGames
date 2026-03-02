@@ -6,6 +6,8 @@ import {
   updateNextGameStage,
   toggleHappyHour,
   updateArrayPlayerScores,
+  updateArrayPlayerClasificate,
+  generateBingoCards,
 } from "../../functions/adminFunctions";
 import { historyStages } from "../../api/gameHistory";
 import { useState, useEffect, useMemo } from "react";
@@ -19,10 +21,14 @@ export const AdminGames = () => {
   const [score, setScore] = useState(0);
   const [openMultiselector, setOpenMultiselector] = useState(false);
   const [multiselectorPlayers, setMultiselectorPlayers] = useState([]);
+  const [activeTab, setActiveTab] = useState("multiselector");
 
   const infoPlayers = useMemo(
     () =>
       Object.entries(vikingGamesdb?.Users || {})
+        .filter(
+          ([, player]) => !player.eliminated, // Filtrar jugadores eliminados
+        )
         .map(([id, player]) => ({
           id,
           username: player.username,
@@ -62,7 +68,7 @@ export const AdminGames = () => {
   const handleLoadLocal = async () => {
     if (
       !window.confirm(
-        "¿Estás seguro de que deseas recargar la base de datos? Esta acción sobrescribirá los datos actuales.",
+        "Segur que vols recarregar la DB local? Aquesta acció pot sobrescriure les dades actuals i no es podrà desfer.",
       )
     ) {
       return;
@@ -76,9 +82,37 @@ export const AdminGames = () => {
     }
   };
 
+  const handleBingoCardsGeneration = async () => {
+    if (
+      !window.confirm(
+        "Segur que vols generar noves tarjetes de Bingo? Aquesta acció pot sobrescriure les tarjetes actuals i no es podrà desfer.",
+      )
+    ) {
+      return;
+    }
+
+    try {
+      await generateBingoCards();
+      console.log("DB actualizada");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const handleUpdatePlayerScores = async (players, coins, score) => {
     try {
       await updateArrayPlayerScores(players, coins, score);
+      setCoins(0);
+      setScore(0);
+      setMultiselectorPlayers([]);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleUpdatePlayerClasificate = async (players, coins, score) => {
+    try {
+      await updateArrayPlayerClasificate(players, coins, score);
       setCoins(0);
       setScore(0);
       setMultiselectorPlayers([]);
@@ -145,95 +179,339 @@ export const AdminGames = () => {
                   Save
                 </button>
               </div>
+              {historyStages[currentStage]?.rewardResume && (
+                <p className="admin-reward-resume">
+                  <u>Recompensa:</u> {historyStages[currentStage]?.rewardResume}
+                </p>
+              )}
               <div className="admin-games-divider" />
-              {/** Quiero hacer un multiselector de los players disponibles para afectar a un grupo de jugadores i añadirles coins i score. Tambien con un boton para guardar los cambios. */}
-              <button
-                className="btn btn-multiselector"
-                onClick={() => setOpenMultiselector((prev) => !prev)}
-                type="button"
-              >
-                Multiselector Players
-              </button>
-              <div
-                className={
-                  "admin-games__multiselector" +
-                  (openMultiselector ? " admin-games__multiselector--open" : "")
-                }
-              >
-                {infoPlayers.map((player) => (
-                  <div
-                    key={player.id}
-                    className="admin-games__multiselector-player"
-                    onClick={() => {
-                      toggleMultiselectedPlayer(player);
-                    }}
+              <div className="admin-rewards-block">
+                <div className="admin-tabs">
+                  <button
+                    className={`admin-tab ${activeTab === "multiselector" ? "admin-tab-active" : ""}`}
+                    onClick={() => setActiveTab("multiselector")}
+                    type="button"
                   >
-                    <span>
-                      {player.id} - {player.username}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="admin-games__multiselector-selected">
-                {multiselectorPlayers?.map((player) => (
-                  <div
-                    key={player.id}
-                    className="admin-games__multiselector-player-selected"
+                    Multiselector
+                  </button>
+                  <button
+                    className={`admin-tab ${activeTab === "clasificate" ? "admin-tab-active" : ""}`}
+                    onClick={() => setActiveTab("clasificate")}
+                    type="button"
                   >
-                    <span>{player.username}</span>
-                    <img
-                      className="c-modal--cross"
-                      alt="cross-icon"
-                      src="/icons/cross-icon.svg"
-                      onClick={() => toggleMultiselectedPlayer(player)}
-                    />
-                  </div>
-                ))}
-              </div>
-              {/* Input editable para coins */}
-              <div className="admin-games__score-wrapper">
-                <div className="admin-games__score-container">
-                  <label className="admin-player__field">
-                    <span>🪙 Coins:</span>
-                    <input
-                      className="admin-player__input"
-                      type="number"
-                      min={0}
-                      value={coins}
-                      onChange={(e) =>
-                        setCoins(Math.max(0, Number(e.target.value || 0)))
-                      }
-                    />
-                  </label>
-                  <label className="admin-player__field">
-                    <span>🎖️ Score:</span>
-                    <input
-                      className="admin-player__input"
-                      type="number"
-                      min={0}
-                      value={score}
-                      onChange={(e) =>
-                        setScore(Math.max(0, Number(e.target.value || 0)))
-                      }
-                    />
-                  </label>
+                    Cua classificatoria
+                  </button>
+                  <button
+                    className={`admin-tab ${activeTab === "single" ? "admin-tab-active" : ""}`}
+                    onClick={() => setActiveTab("single")}
+                    type="button"
+                  >
+                    Individual
+                  </button>
                 </div>
-                <button
-                  className={
-                    "admin-group-save " +
-                    ((coins !== 0 || score !== 0) &&
-                    multiselectorPlayers.length > 0
-                      ? "admin-group-save--active"
-                      : "")
-                  }
-                  onClick={() =>
-                    handleUpdatePlayerScores(multiselectorPlayers, coins, score)
-                  }
-                  type="button"
-                >
-                  💾
-                </button>
+                {activeTab === "multiselector" && (
+                  <div className="admin-multiselector-container">
+                    <button
+                      className="btn btn-multiselector"
+                      onClick={() => setOpenMultiselector((prev) => !prev)}
+                      type="button"
+                    >
+                      Multiselector Players
+                    </button>
+                    <div
+                      className={
+                        "admin-games__multiselector" +
+                        (openMultiselector
+                          ? " admin-games__multiselector--open"
+                          : "")
+                      }
+                    >
+                      {infoPlayers.map((player) => (
+                        <div
+                          key={player.id}
+                          className="admin-games__multiselector-player"
+                          onClick={() => {
+                            toggleMultiselectedPlayer(player);
+                          }}
+                        >
+                          <span>
+                            {player.id} - {player.username}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="admin-games__multiselector-selected">
+                      {multiselectorPlayers?.map((player) => (
+                        <div
+                          key={player.id}
+                          className="admin-games__multiselector-player-selected"
+                        >
+                          <span>{player.username}</span>
+                          <img
+                            className="c-modal--cross"
+                            alt="cross-icon"
+                            src="/icons/cross-icon.svg"
+                            onClick={() => toggleMultiselectedPlayer(player)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    {/* Input editable para coins */}
+                    <div className="admin-games__score-wrapper">
+                      <div className="admin-games__score-container">
+                        <label className="admin-player__field">
+                          <span>🪙 Coins:</span>
+                          <input
+                            className="admin-player__input"
+                            type="number"
+                            min={0}
+                            value={coins}
+                            onChange={(e) =>
+                              setCoins(Math.max(0, Number(e.target.value || 0)))
+                            }
+                          />
+                        </label>
+                        <label className="admin-player__field">
+                          <span>🎖️ Score:</span>
+                          <input
+                            className="admin-player__input"
+                            type="number"
+                            min={0}
+                            value={score}
+                            onChange={(e) =>
+                              setScore(Math.max(0, Number(e.target.value || 0)))
+                            }
+                          />
+                        </label>
+                      </div>
+                      <button
+                        className={
+                          "admin-group-save " +
+                          ((coins !== 0 || score !== 0) &&
+                          multiselectorPlayers.length > 0
+                            ? "admin-group-save--active"
+                            : "")
+                        }
+                        onClick={() =>
+                          handleUpdatePlayerScores(
+                            multiselectorPlayers,
+                            coins,
+                            score,
+                          )
+                        }
+                        type="button"
+                      >
+                        💾
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {activeTab === "clasificate" && (
+                  <div className="admin-clasificate-container">
+                    <button
+                      className="btn btn-multiselector"
+                      onClick={() => setOpenMultiselector((prev) => !prev)}
+                      type="button"
+                    >
+                      Cua de Jugadors
+                    </button>
+                    <div
+                      className={
+                        "admin-games__multiselector" +
+                        (openMultiselector
+                          ? " admin-games__multiselector--open"
+                          : "")
+                      }
+                    >
+                      {infoPlayers.map((player) => (
+                        <div
+                          key={player.id}
+                          className="admin-games__multiselector-player"
+                          onClick={() => {
+                            toggleMultiselectedPlayer(player);
+                          }}
+                        >
+                          <span>
+                            {player.id} - {player.username}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="admin-games__clasificate-selected">
+                      {multiselectorPlayers
+                        ?.slice()
+                        .reverse()
+                        .map((player, index) => (
+                          <div
+                            key={player.id}
+                            className="admin-games__clasificate-player-selected"
+                          >
+                            <span>
+                              {index + 1} - {player.username}
+                            </span>
+                            <img
+                              className="c-modal--cross"
+                              alt="cross-icon"
+                              src="/icons/cross-icon.svg"
+                              onClick={() => toggleMultiselectedPlayer(player)}
+                            />
+                          </div>
+                        ))}
+                    </div>
+                    {/* Input editable para coins */}
+                    <div className="admin-games__score-wrapper">
+                      <div className="admin-games__score-container">
+                        <label className="admin-player__field">
+                          <span>🪙 Coins:</span>
+                          <input
+                            className="admin-player__input"
+                            type="number"
+                            min={0}
+                            value={coins}
+                            onChange={(e) =>
+                              setCoins(Math.max(0, Number(e.target.value || 0)))
+                            }
+                          />
+                        </label>
+                        <label className="admin-player__field">
+                          <span>🎖️ Score:</span>
+                          <input
+                            className="admin-player__input"
+                            type="number"
+                            min={0}
+                            value={score}
+                            onChange={(e) =>
+                              setScore(Math.max(0, Number(e.target.value || 0)))
+                            }
+                          />
+                        </label>
+                      </div>
+                      <button
+                        className={
+                          "admin-group-save " +
+                          ((coins !== 0 || score !== 0) &&
+                          multiselectorPlayers.length > 0
+                            ? "admin-group-save--active"
+                            : "")
+                        }
+                        onClick={() =>
+                          handleUpdatePlayerClasificate(
+                            multiselectorPlayers,
+                            coins,
+                            score,
+                          )
+                        }
+                        type="button"
+                      >
+                        💾
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {activeTab === "single" && (
+                  <div className="admin-clasificate-container">
+                    <button
+                      className="btn btn-multiselector"
+                      onClick={() => setOpenMultiselector((prev) => !prev)}
+                      type="button"
+                    >
+                      Seleccionar jugador
+                    </button>
+                    <div
+                      className={
+                        "admin-games__multiselector" +
+                        (openMultiselector
+                          ? " admin-games__multiselector--open"
+                          : "")
+                      }
+                    >
+                      {infoPlayers.map((player) => (
+                        <div
+                          key={player.id}
+                          className="admin-games__multiselector-player"
+                          onClick={() => {
+                            toggleMultiselectedPlayer(player);
+                          }}
+                        >
+                          <span>
+                            {player.id} - {player.username}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="admin-games__clasificate-selected">
+                      {multiselectorPlayers
+                        ?.slice()
+                        .reverse()
+                        .map((player, index) => (
+                          <div
+                            key={player.id}
+                            className="admin-games__clasificate-player-selected"
+                          >
+                            <span>
+                              {index + 1} - {player.username}
+                            </span>
+                            <img
+                              className="c-modal--cross"
+                              alt="cross-icon"
+                              src="/icons/cross-icon.svg"
+                              onClick={() => toggleMultiselectedPlayer(player)}
+                            />
+                          </div>
+                        ))}
+                    </div>
+                    {/* Input editable para coins */}
+                    <div className="admin-games__score-wrapper">
+                      <div className="admin-games__score-container">
+                        <label className="admin-player__field">
+                          <span>🪙 Coins:</span>
+                          <input
+                            className="admin-player__input"
+                            type="number"
+                            min={0}
+                            value={coins}
+                            onChange={(e) =>
+                              setCoins(Math.max(0, Number(e.target.value || 0)))
+                            }
+                          />
+                        </label>
+                        <label className="admin-player__field">
+                          <span>🎖️ Score:</span>
+                          <input
+                            className="admin-player__input"
+                            type="number"
+                            min={0}
+                            value={score}
+                            onChange={(e) =>
+                              setScore(Math.max(0, Number(e.target.value || 0)))
+                            }
+                          />
+                        </label>
+                      </div>
+                      <button
+                        className={
+                          "admin-group-save " +
+                          ((coins !== 0 || score !== 0) &&
+                          multiselectorPlayers.length > 0
+                            ? "admin-group-save--active"
+                            : "")
+                        }
+                        onClick={() =>
+                          handleUpdatePlayerClasificate(
+                            multiselectorPlayers,
+                            coins,
+                            score,
+                          )
+                        }
+                        type="button"
+                      >
+                        💾
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
+
               <div className="admin-games-divider" />
               <button
                 className={`btn btn-happy-hour ${happyHour ? "btn-happy-hour-active" : "btn-happy-hour-inactive"}`}
@@ -243,6 +521,14 @@ export const AdminGames = () => {
                 {happyHour
                   ? "🍺 Deactivate Happy Hour 🍺"
                   : "🍺 Activate Happy Hour 🍺"}
+              </button>
+              <div className="admin-games-divider" />
+              <button
+                className={`btn btn-generate-bingo`}
+                onClick={handleBingoCardsGeneration}
+                type="button"
+              >
+                🎟️ Generate Bingo Cards
               </button>
               <div className="admin-games-divider" />
               <button
