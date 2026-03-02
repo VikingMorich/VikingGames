@@ -11,9 +11,6 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   min-height: 72px;
 
-  .admin-player__achievements {
-    display: none;
-  }
   .admin-player__achievements--open {
     display: block;
     position: absolute;
@@ -113,9 +110,11 @@
 
 /* Estado eliminado */
 .admin-player-eliminated {
-  filter: grayscale(70%);
   background: none;
-  background-color: #ff9e9e;
+  background-color: #b69898;
+  .admin-player__image {
+    filter: grayscale(90%);
+  }
 }
 
 .admin-player__actions {

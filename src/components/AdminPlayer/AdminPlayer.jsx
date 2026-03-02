@@ -110,26 +110,28 @@ export const AdminPlayer = ({ playerId, player }) => {
               ))}
           </div>
         </div>
-        <div
-          className={`admin-player__achievements ${openArchivements ? "admin-player__achievements--open" : ""}`}
-          data-id={playerId}
-        >
-          {Object.entries(vikingGamesdb?.Archivements || {}).map(
-            ([id, ach]) => (
-              <div
-                key={id}
-                className={`admin-player__achievement ${playerArchivements?.includes(id) ? "admin-player__achievement--assigned" : ""}`}
-              >
-                <span
-                  className="admin-player__achievement-title"
-                  onClick={() => toggleArchivement(id)}
+        {openArchivements && (
+          <div
+            className={`admin-player__achievements--open`}
+            data-id={playerId}
+          >
+            {Object.entries(vikingGamesdb?.Archivements || {}).map(
+              ([id, ach]) => (
+                <div
+                  key={id}
+                  className={`admin-player__achievement ${playerArchivements?.includes(id) ? "admin-player__achievement--assigned" : ""}`}
                 >
-                  {ach.title}
-                </span>
-              </div>
-            ),
-          )}
-        </div>
+                  <span
+                    className="admin-player__achievement-title"
+                    onClick={() => toggleArchivement(id)}
+                  >
+                    {ach.title}
+                  </span>
+                </div>
+              ),
+            )}
+          </div>
+        )}
       </div>
 
       <div className="admin-player__body">
