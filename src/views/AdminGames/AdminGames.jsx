@@ -7,6 +7,7 @@ import {
   toggleHappyHour,
   updateArrayPlayerScores,
   updateArrayPlayerClasificate,
+  updateSinglePlayerScore,
   generateBingoCards,
 } from "../../functions/adminFunctions";
 import { historyStages } from "../../api/gameHistory";
@@ -21,6 +22,7 @@ export const AdminGames = () => {
   const [score, setScore] = useState(0);
   const [openMultiselector, setOpenMultiselector] = useState(false);
   const [multiselectorPlayers, setMultiselectorPlayers] = useState([]);
+  const [singleselectorPlayer, setSingleselectorPlayer] = useState(null);
   const [activeTab, setActiveTab] = useState("multiselector");
 
   const infoPlayers = useMemo(
@@ -29,6 +31,22 @@ export const AdminGames = () => {
         .filter(
           ([, player]) => !player.eliminated, // Filtrar jugadores eliminados
         )
+        .map(([id, player]) => ({
+          id,
+          username: player.username,
+          coins: player.coins,
+          score: player.score,
+        }))
+        .filter(
+          (player) =>
+            !multiselectorPlayers.some((selected) => selected.id === player.id),
+        ),
+    [vikingGamesdb, multiselectorPlayers],
+  );
+
+  const infoAllPlayers = useMemo(
+    () =>
+      Object.entries(vikingGamesdb?.Users || {})
         .map(([id, player]) => ({
           id,
           username: player.username,
@@ -116,6 +134,17 @@ export const AdminGames = () => {
       setCoins(0);
       setScore(0);
       setMultiselectorPlayers([]);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleUpdateSinglePlayerScore = async (player, coins, score) => {
+    try {
+      await updateSinglePlayerScore(player, coins, score);
+      setCoins(0);
+      setScore(0);
+      setSingleselectorPlayer(null);
     } catch (e) {
       console.error(e);
     }
@@ -409,7 +438,7 @@ export const AdminGames = () => {
                   </div>
                 )}
                 {activeTab === "single" && (
-                  <div className="admin-clasificate-container">
+                  <div className="admin-single-reward-container">
                     <button
                       className="btn btn-multiselector"
                       onClick={() => setOpenMultiselector((prev) => !prev)}
@@ -425,12 +454,13 @@ export const AdminGames = () => {
                           : "")
                       }
                     >
-                      {infoPlayers.map((player) => (
+                      {infoAllPlayers.map((player) => (
                         <div
                           key={player.id}
                           className="admin-games__multiselector-player"
                           onClick={() => {
-                            toggleMultiselectedPlayer(player);
+                            setSingleselectorPlayer(player);
+                            setOpenMultiselector((prev) => !prev);
                           }}
                         >
                           <span>
@@ -439,26 +469,31 @@ export const AdminGames = () => {
                         </div>
                       ))}
                     </div>
-                    <div className="admin-games__clasificate-selected">
-                      {multiselectorPlayers
-                        ?.slice()
-                        .reverse()
-                        .map((player, index) => (
-                          <div
-                            key={player.id}
-                            className="admin-games__clasificate-player-selected"
-                          >
+                    <div className="admin-games__single-reward-selected">
+                      {singleselectorPlayer && (
+                        <div
+                          key={singleselectorPlayer.id}
+                          className="admin-games__single-reward-player-selected"
+                        >
+                          <img
+                            src={`/Players/${singleselectorPlayer.id}.png`}
+                            alt={singleselectorPlayer.username}
+                            className="admin-games__single-reward-avatar"
+                          />
+                          <div className="admin-games__single-reward-info">
                             <span>
-                              {index + 1} - {player.username}
+                              {singleselectorPlayer.id} -{" "}
+                              {singleselectorPlayer.username}
                             </span>
                             <img
                               className="c-modal--cross"
                               alt="cross-icon"
                               src="/icons/cross-icon.svg"
-                              onClick={() => toggleMultiselectedPlayer(player)}
+                              onClick={() => setSingleselectorPlayer(null)}
                             />
                           </div>
-                        ))}
+                        </div>
+                      )}
                     </div>
                     {/* Input editable para coins */}
                     <div className="admin-games__score-wrapper">
@@ -491,14 +526,13 @@ export const AdminGames = () => {
                       <button
                         className={
                           "admin-group-save " +
-                          ((coins !== 0 || score !== 0) &&
-                          multiselectorPlayers.length > 0
+                          ((coins !== 0 || score !== 0) && singleselectorPlayer
                             ? "admin-group-save--active"
                             : "")
                         }
                         onClick={() =>
-                          handleUpdatePlayerClasificate(
-                            multiselectorPlayers,
+                          handleUpdateSinglePlayerScore(
+                            singleselectorPlayer,
                             coins,
                             score,
                           )

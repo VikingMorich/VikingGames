@@ -308,6 +308,38 @@ export const updateArrayPlayerClasificate = async (
   }
 };
 
+export const updateSinglePlayerScore = async (player, coins, score) => {
+  const db = getDatabase(app);
+  try {
+    const userRef = ref(db, `Users/${player.id}`);
+    const userSnapshot = await get(userRef);
+    const userData = userSnapshot.exists() ? userSnapshot.val() : {};
+
+    const updatedCoins = (userData.coins || 0) + coins;
+    const updatedScore = (userData.score || 0) + score;
+    const existingHistory = Array.isArray(userData.CoinsHistory)
+      ? [...userData.CoinsHistory]
+      : []; // Asegurar que el historial existente sea un array
+
+    existingHistory.push({
+      date: new Date().toISOString(),
+      concept: "Premi individual dels VikingGames",
+      amount: coins,
+      total: updatedCoins,
+      type: "add",
+    });
+
+    await update(userRef, {
+      coins: updatedCoins,
+      score: updatedScore,
+      CoinsHistory: existingHistory,
+    });
+  } catch (error) {
+    console.error("updateSinglePlayerScore error:", error);
+    throw error;
+  }
+};
+
 export const calculateVotationResults = async () => {
   const db = getDatabase(app);
   const usersRef = ref(db, `Users`);

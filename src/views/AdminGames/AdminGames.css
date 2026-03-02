@@ -133,6 +133,7 @@
 }
 
 .admin-multiselector-container,
+.admin-single-reward-container,
 .admin-clasificate-container {
   display: flex;
   flex-direction: column;
@@ -163,7 +164,8 @@
   }
 }
 
-.admin-games__clasificate-selected {
+.admin-games__clasificate-selected,
+.admin-games__single-reward-selected {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -176,7 +178,8 @@
   min-height: 32px;
   border-radius: 5px;
   gap: 6px;
-  .admin-games__clasificate-player-selected {
+  .admin-games__clasificate-player-selected,
+  .admin-games__single-reward-player-selected {
     display: flex;
     gap: 6px;
     align-items: center;
@@ -185,5 +188,22 @@
     background-color: #adbcc9;
     padding: 3px 6px;
     border-radius: 20px;
+  }
+}
+
+.admin-games__single-reward-player-selected {
+  display: flex;
+  gap: 10px;
+  .admin-games__single-reward-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid black;
+    object-fit: cover;
+  }
+  .admin-games__single-reward-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
 }
