@@ -96,8 +96,8 @@
 
 .modal-lottery-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 10px;
   border-radius: 50%;
   width: 45px;
   height: 45px;
@@ -109,6 +109,26 @@
   background-color: #ffffff;
   border: 1px solid #001c49;
   .lottery-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.modal-roulette-button {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #001c49;
+  .roulette-icon {
     width: 30px;
     height: 30px;
   }

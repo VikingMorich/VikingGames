@@ -10,6 +10,7 @@ export const User = () => {
   const { user, vikingGamesdb, logoutAdmin } = useGlobalDB();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalBingoOpen, setModalBingoOpen] = useState(false);
+  const [modalRouletteOpen, setModalRouletteOpen] = useState(false);
   const [modalEconomyOpen, setModalEconomyOpen] = useState(false);
   const [dbUser, setDbUser] = useState(null);
   // busca la entrada [id, userObj] cuyo email coincide
@@ -59,6 +60,17 @@ export const User = () => {
                     ))}
                 </div>
               </div>
+              <button
+                className="modal-roulette-button"
+                onClick={() => setModalRouletteOpen(true)}
+                type="button"
+              >
+                <img
+                  src="/icons/roulette.png"
+                  alt="Roulette"
+                  className="roulette-icon"
+                />
+              </button>
               {dbUser?.Bingo && (
                 <button
                   className="modal-lottery-button"
@@ -159,6 +171,11 @@ export const User = () => {
             modalOpen={modalBingoOpen}
             setModalOpen={setModalBingoOpen}
             type="bingo"
+          />
+          <Modal
+            modalOpen={modalRouletteOpen}
+            setModalOpen={setModalRouletteOpen}
+            type="roulette"
           />
           <Modal
             modalOpen={modalEconomyOpen}

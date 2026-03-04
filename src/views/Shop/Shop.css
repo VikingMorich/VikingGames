@@ -20,3 +20,16 @@
   z-index: 3;
   top: 60px;
 }
+
+.shop-message-inactive {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  background-color: var(--warm-brown);
+  padding: 10px 1.5vw;
+  border-radius: 8px;
+  color: white;
+  align-items: center;
+  text-align: center;
+  min-height: 200px;
+}

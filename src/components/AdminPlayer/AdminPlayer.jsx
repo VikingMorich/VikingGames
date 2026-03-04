@@ -67,7 +67,7 @@ export const AdminPlayer = ({ playerId, player }) => {
       if (
         openArchivements &&
         !event.target.closest(
-          `.admin-player__achievements[data-id="${openArchivements}"]`,
+          `.admin-player__achievements--open[data-id="${openArchivements}"]`,
         ) &&
         !event.target.closest(
           `.admin-player__image-container[data-id="${openArchivements}"]`,
@@ -77,12 +77,18 @@ export const AdminPlayer = ({ playerId, player }) => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside, true);
+    document.addEventListener("touchstart", handleClickOutside, true);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("touchstart", handleClickOutside, true);
     };
   }, [openArchivements]);
+
+  const handleModalClick = (event) => {
+    event.stopPropagation();
+  };
 
   return (
     <article
@@ -114,6 +120,7 @@ export const AdminPlayer = ({ playerId, player }) => {
           <div
             className={`admin-player__achievements--open`}
             data-id={playerId}
+            onClick={handleModalClick}
           >
             {Object.entries(vikingGamesdb?.Archivements || {}).map(
               ([id, ach]) => (

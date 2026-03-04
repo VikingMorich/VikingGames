@@ -9,6 +9,7 @@ import {
   updateArrayPlayerClasificate,
   updateSinglePlayerScore,
   generateBingoCards,
+  toggleActivateShop,
 } from "../../functions/adminFunctions";
 import { historyStages } from "../../api/gameHistory";
 import { useState, useEffect, useMemo } from "react";
@@ -24,6 +25,9 @@ export const AdminGames = () => {
   const [multiselectorPlayers, setMultiselectorPlayers] = useState([]);
   const [singleselectorPlayer, setSingleselectorPlayer] = useState(null);
   const [activeTab, setActiveTab] = useState("multiselector");
+  const [activateShop, setActivateShop] = useState(
+    vikingGamesdb?.Games?.activateShop || false,
+  );
 
   const infoPlayers = useMemo(
     () =>
@@ -72,6 +76,10 @@ export const AdminGames = () => {
   useEffect(() => {
     setSelectedStage(currentStage);
   }, [currentStage]);
+
+  useEffect(() => {
+    setActivateShop(vikingGamesdb?.Games?.activateShop || false);
+  }, [vikingGamesdb?.Games?.activateShop]);
 
   const toggleMultiselectedPlayer = (playerId) => {
     setMultiselectorPlayers((prev) => {
@@ -556,6 +564,22 @@ export const AdminGames = () => {
                   ? "🍺 Deactivate Happy Hour 🍺"
                   : "🍺 Activate Happy Hour 🍺"}
               </button>
+              <div className="admin-games-shop-state">
+                <label className="switch">
+                  <input
+                    className="switch-checkbox"
+                    type="checkbox"
+                    checked={activateShop}
+                    onChange={() => toggleActivateShop(activateShop)}
+                  />
+                  <span className="slider round"></span>
+                </label>
+                <span>
+                  {activateShop
+                    ? "Tienda Activada 🛒"
+                    : "Tienda Desactivada 🚫"}
+                </span>
+              </div>
               <div className="admin-games-divider" />
               <button
                 className={`btn btn-generate-bingo`}

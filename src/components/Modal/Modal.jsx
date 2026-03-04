@@ -4,6 +4,7 @@ import { ModalTransfer } from "./ModalTransfer";
 import { ModalArchivements } from "./ModalArchivements";
 import { ModalBingo } from "./ModalBingo";
 import { ModalEconomy } from "./ModalEconomy";
+import { ModalRoulette } from "./ModalRoulette";
 
 export const Modal = ({ modalOpen, setModalOpen, type }) => {
   return (
@@ -24,6 +25,7 @@ export const Modal = ({ modalOpen, setModalOpen, type }) => {
         {type === "archivements" && <ModalArchivements />}
         {type === "bingo" && <ModalBingo />}
         {type === "economy" && <ModalEconomy />}
+        {type === "roulette" && <ModalRoulette />}
       </div>
     </article>
   );

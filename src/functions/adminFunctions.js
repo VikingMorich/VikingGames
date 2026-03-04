@@ -391,3 +391,15 @@ export const generateBingoCards = async () => {
     throw error;
   }
 };
+
+export const toggleActivateShop = async (currentState) => {
+  const db = getDatabase(app);
+  const nodeRef = ref(db, `Games`);
+  if (currentState) {
+    // If activateShop is currently true, remove it from the database
+    await update(nodeRef, { activateShop: null });
+  } else {
+    // If activateShop is currently false or undefined, set it to true
+    await update(nodeRef, { activateShop: true });
+  }
+};
