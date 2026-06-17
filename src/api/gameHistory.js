@@ -292,14 +292,14 @@ export const historyStages = {
   choose: {
     title: "🔀 Elecció camí",
     description:
-      "El destí us posa davant de dos camins. Teniu 3 minuts per deliberar i escollir-ne un. Un cop presa la decisió, no hi haurà marxa enrere. Trieu amb saviesa... o amb valentia.",
+      "El destí us posa davant de dos camins. Teniu 4 minuts per deliberar i escollir-ne un. Un cop presa la decisió, no hi haurà marxa enrere. Trieu amb saviesa... o amb valentia.",
     type: "choose",
-    duration: 180000, // 3 minuts
+    duration: 240000, // 4 minuts
   },
   cardCasttle: {
     title: "🏰 Castell de cartes",
     description:
-      "<h4>🏁 Objectiu</h4><p>Construir un castell de cartes de <b>dos pisos</b> i aconseguir que es mantingui dret el més ràpid possible.</p><h4>📌 Normes</h4><ul><li>Cada participant disposarà de 7 cartes per completar la construcció.</li><li>Quan soni el xiulet, la prova començarà.</li><li>Els jugadors hauran de construir un castell de dos pisos utilitzant únicament les cartes proporcionades.</li><li>El castell només es considerarà complet quan es mantingui estable sense ajuda del jugador.</li></ul><h4>❌ Eliminacions</h4><p>Els últims 2 jugadors a completar correctament el castell quedaran eliminats de la prova.</p>",
+      "<h3>Camí de la Torre</h3><h4>🏁 Objectiu</h4><p>Construir un castell de cartes de <b>dos pisos</b> i aconseguir que es mantingui dret el més ràpid possible.</p><h4>📌 Normes</h4><ul><li>Cada participant disposarà de 7 cartes per completar la construcció.</li><li>Quan soni el xiulet, la prova començarà.</li><li>Els jugadors hauran de construir un castell de dos pisos utilitzant únicament les cartes proporcionades.</li><li>El castell només es considerarà complet quan es mantingui estable sense ajuda del jugador.</li></ul><h4>❌ Eliminacions</h4><p>Els últims 2 jugadors a completar correctament el castell quedaran eliminats de la prova.</p>",
     type: "text",
     reward: "TO DO",
     rewardResume: "TO DO",
@@ -307,7 +307,7 @@ export const historyStages = {
   limitDisc: {
     title: "🥌 Disc al Límit",
     description:
-      "<h4>🏁 Objectiu</h4><p>Llançar el disc tan a prop de la línia objectiu com sigui possible, sense sobrepassar-la.</p><h4>📌 Normes</h4><ul><li>Cada participant disposarà d'un llançament.</li><li>L'objectiu és deixar el disc el més a prop possible de la línia marcada.</li><li>Si un jugador sobrepassa la línia, quedarà en risc d'eliminació.</li><li>Un cop tots els participants hagin realitzat el seu llançament, es compararan les distàncies respecte a la línia objectiu.</li></ul><h4>❌ Eliminacions</h4><p>Els 2 jugadors que hagin deixat el disc més lluny de la línia objectiu quedaran eliminats de la prova.</p>",
+      "<h3>Camí de la Galaxia</h3><h4>🏁 Objectiu</h4><p>Llançar el disc tan a prop de la línia objectiu com sigui possible, sense sobrepassar-la.</p><h4>📌 Normes</h4><ul><li>Cada participant disposarà d'un llançament.</li><li>L'objectiu és deixar el disc el més a prop possible de la línia marcada.</li><li>Si un jugador sobrepassa la línia, quedarà en risc d'eliminació.</li><li>Un cop tots els participants hagin realitzat el seu llançament, es compararan les distàncies respecte a la línia objectiu.</li></ul><h4>❌ Eliminacions</h4><p>Els 2 jugadors que hagin deixat el disc més lluny de la línia objectiu quedaran eliminats de la prova.</p>",
     type: "text",
     reward: "TO DO",
     rewardResume: "TO DO",

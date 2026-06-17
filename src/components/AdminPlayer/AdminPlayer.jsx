@@ -13,6 +13,7 @@ export const AdminPlayer = ({ playerId, player }) => {
     eliminated,
     coins: initialCoins = 0,
     archivements,
+    pathChoice,
   } = player;
   const { vikingGamesdb } = useGlobalDB();
 
@@ -140,6 +141,16 @@ export const AdminPlayer = ({ playerId, player }) => {
           </div>
         )}
       </div>
+
+      {pathChoice && (
+        <div className="admin-player__info-path">
+          {pathChoice === "torre" ? (
+            <img src="/icons/path-torre.png" alt="Torre" />
+          ) : (
+            <img src="/icons/path-galaxia.png" alt="Galaxia" />
+          )}
+        </div>
+      )}
 
       <div className="admin-player__body">
         <h3 className="admin-player__title">

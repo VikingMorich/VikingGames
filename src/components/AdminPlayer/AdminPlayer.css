@@ -1,5 +1,6 @@
 /* Estilos del propio marcador */
 .admin-player {
+  position: relative;
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -139,5 +140,15 @@
     border-radius: 50%;
     aspect-ratio: 1 / 1;
     width: 38px;
+  }
+}
+
+.admin-player__info-path {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  img {
+    width: 24px;
+    height: 24px;
   }
 }

@@ -335,3 +335,15 @@ export const playRoulette = async (userId, prizeAmount, reward) => {
     throw error;
   }
 };
+
+export const setPlayerPathChoice = async (userId, pathChoice) => {
+  try {
+    const db = getDatabase(app);
+    const nodeRef = ref(db, `Users/${userId}`);
+    await update(nodeRef, { pathChoice: pathChoice });
+    return true;
+  } catch (error) {
+    console.error("setPlayerPathChoice error:", error);
+    throw error;
+  }
+};

@@ -1,20 +1,23 @@
-import "./Games.css";
+import "./ChoosePage.css";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { historyStages } from "../../api/gameHistory";
 import { useState, useEffect } from "react";
-import { updateStageScore } from "../../functions/gameFunctions";
-import { ScoreGame } from "../../components/ScoreGame/ScoreGame";
+import { setPlayerPathChoice } from "../../functions/gameFunctions";
 
 export const ChoosePage = () => {
   const { vikingGamesdb, user } = useGlobalDB();
   const currentStage = vikingGamesdb?.Games?.currentPage || "loading";
   const [timeLeft, setTimeLeft] = useState(10); // Time left in seconds
   const [redTimer, setRedTimer] = useState(true);
-  const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
-    ([id, u]) => u.email === user?.email,
-  );
-  const dbUserId = dbEntry?.[0];
-  const dbUser = dbEntry?.[1];
+  const [pathChoice, setPathChoice] = useState(true);
+  const [dbUser, setDbUser] = useState(null);
+
+  useEffect(() => {
+    const dbEntryEff = Object.entries(vikingGamesdb?.Users || {}).find(
+      ([id, u]) => u.email === user?.email,
+    );
+    setDbUser(dbEntryEff?.[0]);
+  }, [vikingGamesdb, user]);
 
   useEffect(() => {
     if (vikingGamesdb?.Games?.start) {
@@ -42,6 +45,25 @@ export const ChoosePage = () => {
           setRedTimer(false);
         }
         if (remainingTime <= 0) {
+          // Check if the score already exists before setting it
+          if (dbUser && !vikingGamesdb.Users?.[dbUser]?.pathChoice) {
+            // Random entre "torre" y "galaxia"
+            const randomPath = Math.random() < 0.5 ? "torre" : "galaxia";
+            setPathChoice(randomPath);
+            console.log("Setting player random path", randomPath);
+            if (!dbUser) {
+              console.error("Cannot set pathChoice: dbUser is undefined");
+            } else {
+              // Call and handle promise explicitly so failures are visible
+              setPlayerPathChoice(dbUser, randomPath)
+                .then((res) => console.log("setPlayerPathChoice success:", res))
+                .catch((err) =>
+                  console.error("setPlayerPathChoice error:", err),
+                );
+            }
+          } else {
+            console.log("Score already exists, not overwriting.");
+          }
           clearInterval(timer);
         }
       };
@@ -63,27 +85,81 @@ export const ChoosePage = () => {
       <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
         Tiempo restante: {formatTime(timeLeft)}
       </div>
-      {dbUser?.stageScore == null && timeLeft > 0 ? (
+      {vikingGamesdb?.Users?.[dbUser]?.pathChoice == null && timeLeft > 0 ? (
         <>
-          <div className="games-text-wrapper">
-            <h1 className="games-text-title">
+          <div className="games-choice-wrapper">
+            <h1 className="games-choice-title">
               {historyStages[currentStage]?.title}
             </h1>
-            <p className="games-text-description">
+            <p className="games-choice-description">
               {historyStages[currentStage]?.description}
             </p>
+            <div className="games-choice-choices">
+              <div
+                className={`games-choice-choice ${pathChoice === "torre" ? "games-choice-choice--selected" : ""}`}
+                onClick={() => {
+                  setPathChoice("torre");
+                }}
+              >
+                <img
+                  alt="torre"
+                  src="/icons/path-torre.png"
+                  className="games-choice-choice-image"
+                />
+                <span className="games-choice-choice-text">
+                  Camí de la Torre
+                </span>
+              </div>
+              <div
+                className={`games-choice-choice ${pathChoice === "galaxia" ? "games-choice-choice--selected" : ""}`}
+                onClick={() => {
+                  setPathChoice("galaxia");
+                }}
+              >
+                <img
+                  alt="galaxia"
+                  src="/icons/path-galaxia.png"
+                  className="games-choice-choice-image"
+                />
+                <span className="games-choice-choice-text">
+                  Camí de la Galaxia
+                </span>
+              </div>
+            </div>
             <button
               className="btn exam-button"
-              onClick={() => {}}
+              onClick={() => {
+                console.log("Setting player path choice:", dbUser, pathChoice);
+                setPlayerPathChoice(dbUser, pathChoice);
+              }}
               type="button"
             >
-              Enviar
+              Escollir
             </button>
           </div>
         </>
       ) : (
         <>
-          <h1>Camí escollit</h1>
+          <h1 className="your-path-title">Camí escollit</h1>
+          {vikingGamesdb?.Users?.[dbUser]?.pathChoice === "torre" ? (
+            <div className="your-path-choice">
+              <img
+                alt="torre"
+                src="/icons/path-torre.png"
+                className="your-path-choice-image"
+              />
+              <p className="your-path-choice-text">La Torre</p>
+            </div>
+          ) : (
+            <div className="your-path-choice">
+              <img
+                alt="galaxia"
+                src="/icons/path-galaxia.png"
+                className="your-path-choice-image"
+              />
+              <p className="your-path-choice-text">La Galaxia</p>
+            </div>
+          )}
         </>
       )}
     </>
