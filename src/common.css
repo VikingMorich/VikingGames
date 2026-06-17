@@ -40,3 +40,12 @@ body {
     local("Balgruf"),
     url("./fonts/Balgruf.woff") format("woff");
 }
+
+@font-face {
+  font-family: "SHERWOOD";
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local("SHERWOOD"),
+    url("./fonts/SHERWOOD.woff") format("woff");
+}

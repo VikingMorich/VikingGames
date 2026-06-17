@@ -1,0 +1,50 @@
+.games-stage-wrapper {
+  /* Center the whole wrapper in the viewport */
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+
+  .games-title-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .scroll-paper {
+      width: 100%;
+      max-width: 30em;
+    }
+
+    .stage-text-title-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      h1 {
+        text-align: center;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-family: "SHERWOOD";
+      }
+
+      .stage-text-title {
+        font-size: 3.5rem;
+      }
+
+      .stage-text-title-number {
+        font-size: 5rem;
+        &.special-repesca {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  .stage-text-description {
+    text-align: center;
+  }
+}

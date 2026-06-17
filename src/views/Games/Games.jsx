@@ -3,6 +3,7 @@ import { BasicMenu } from "../../components/BasicMenu/BasicMenu";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { historyStages } from "../../api/gameHistory";
 import { TextPage } from "./TextPage";
+import { StagePage } from "./StagePage";
 import { TextColorsPage } from "./TextColorsPage";
 import { ExamPage } from "./ExamPage";
 import { MemoryPage } from "./MemoryPage";
@@ -26,6 +27,8 @@ export const Games = () => {
     switch (historyStages[currentStage]?.type) {
       case "text":
         return <TextPage />;
+      case "stage":
+        return <StagePage />;
       case "text-colors":
         return <TextColorsPage />;
       case "exam":
