@@ -13,6 +13,10 @@ export const toggleUserElimination = async (
     const db = getDatabase(app);
     const nodeRef = ref(db, `Users/${userId}`);
     await update(nodeRef, { eliminated: newValue });
+    toast.success("Jugador eliminat", {
+      autoClose: 1000,
+      theme: "colored",
+    });
     return newValue;
   } catch (error) {
     console.error("toggleUserElimination error:", error);
@@ -135,6 +139,10 @@ export const updateUserScores = async (
           update(child(archivRef, `${archId}`), { used: null });
       });
     }
+    toast.success("Jugador actualizat", {
+      autoClose: 1000,
+      theme: "colored",
+    });
     return {
       coins: currentCoins,
       score: currentScore,

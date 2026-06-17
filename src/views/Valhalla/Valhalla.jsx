@@ -2,6 +2,7 @@ import "./Valhalla.css";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { AdminPlayer } from "../../components/AdminPlayer/AdminPlayer";
 import { AdminMenu } from "../../components/AdminMenu/AdminMenu";
+import { ToastContainer } from "react-toastify";
 
 export const Valhalla = () => {
   const { user, vikingGamesdb } = useGlobalDB();
@@ -32,6 +33,7 @@ export const Valhalla = () => {
       ) : (
         <>Usuari no autoritzat.</>
       )}
+      <ToastContainer />
     </>
   );
 };
