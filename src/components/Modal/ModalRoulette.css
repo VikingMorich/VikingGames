@@ -20,6 +20,16 @@
     gap: 16px;
     position: relative;
 
+    .roulette-border {
+      position: absolute;
+      width: 94%;
+      transform: translate(-50%, -50%);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      border: 5px dotted black;
+      animation: rotate 20s infinite linear;
+    }
+
     .spin-button {
       position: absolute;
       top: 50%;
@@ -29,12 +39,17 @@
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       animation: colorChange 1.5s infinite;
+      color: black;
+      font-weight: bold;
+      z-index: 3;
     }
   }
 
   p {
     margin-block-start: 0;
     margin-block-end: 0;
+    text-align: center;
+    font-weight: bold;
   }
 }
 
@@ -50,5 +65,14 @@
   }
   100% {
     background-color: #d4ff00;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

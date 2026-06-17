@@ -1,6 +1,6 @@
 .shop-item {
   display: flex;
-  gap: 16px;
+  gap: 2%;
   align-items: stretch;
   background: linear-gradient(180deg, #ffffff, #fbfbfb);
   border: 1px solid #e6e6e6;
@@ -10,12 +10,13 @@
   transition:
     transform 150ms ease,
     box-shadow 150ms ease;
-  flex: 1 1 calc((100% - 16px) / 2);
-  max-width: calc((100% - 16px) / 2);
+  flex: 48%;
+  max-width: 48%;
 }
 
 .shop-item__media {
   flex: 0 0 120px;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +28,7 @@
 
 .shop-item__image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -46,7 +47,6 @@
   font-size: 16px;
   font-weight: 700;
   color: #111827;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }

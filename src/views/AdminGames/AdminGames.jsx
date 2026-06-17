@@ -13,6 +13,7 @@ import {
 } from "../../functions/adminFunctions";
 import { historyStages } from "../../api/gameHistory";
 import { useState, useEffect, useMemo } from "react";
+import { ToastContainer } from "react-toastify";
 
 export const AdminGames = () => {
   const { user, vikingGamesdb } = useGlobalDB();
@@ -177,7 +178,8 @@ export const AdminGames = () => {
 
   return (
     <>
-      {user?.email === "enricmoriche91@hotmail.com" ? (
+      {user?.email === "enricmoriche91@hotmail.com" ||
+      user?.email === "oriolroigcanal@gmail.com" ? (
         <>
           <AdminMenu />
           <div className="section-view">
@@ -602,6 +604,7 @@ export const AdminGames = () => {
       ) : (
         <>Usuari no autoritzat.</>
       )}
+      <ToastContainer />
     </>
   );
 };

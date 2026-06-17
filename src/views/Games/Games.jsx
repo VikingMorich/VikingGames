@@ -8,11 +8,19 @@ import { ExamPage } from "./ExamPage";
 import { MemoryPage } from "./MemoryPage";
 import { SkillPage } from "./SkillPage";
 import { VotationPage } from "./VotationPage";
+import { ChoosePage } from "./ChoosePage";
 import { WinnerPage } from "./WinnerPage";
+import { useState, useEffect } from "react";
 
 export const Games = () => {
   const { vikingGamesdb } = useGlobalDB();
-  const currentStage = vikingGamesdb?.Games?.currentPage || "loading";
+  const [currentStage, setCurrentStage] = useState("loading");
+
+  useEffect(() => {
+    if (vikingGamesdb?.Games?.currentPage) {
+      setCurrentStage(vikingGamesdb.Games.currentPage);
+    }
+  }, [vikingGamesdb]);
 
   const renderPage = () => {
     switch (historyStages[currentStage]?.type) {
@@ -28,6 +36,8 @@ export const Games = () => {
         return <SkillPage />;
       case "votation":
         return <VotationPage />;
+      case "choose":
+        return <ChoosePage />;
       case "winner":
         return <WinnerPage />;
       default:

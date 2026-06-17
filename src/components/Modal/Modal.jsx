@@ -5,6 +5,7 @@ import { ModalArchivements } from "./ModalArchivements";
 import { ModalBingo } from "./ModalBingo";
 import { ModalEconomy } from "./ModalEconomy";
 import { ModalRoulette } from "./ModalRoulette";
+import { ModalRouletteRewards } from "./ModalRouletteRewards";
 
 export const Modal = ({ modalOpen, setModalOpen, type }) => {
   return (
@@ -26,6 +27,7 @@ export const Modal = ({ modalOpen, setModalOpen, type }) => {
         {type === "bingo" && <ModalBingo />}
         {type === "economy" && <ModalEconomy />}
         {type === "roulette" && <ModalRoulette />}
+        {type === "roulette-rewards" && <ModalRouletteRewards />}
       </div>
     </article>
   );

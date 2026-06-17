@@ -12,9 +12,14 @@ export const TextColorsPage = () => {
         <h1 className="games-text-title">
           {historyStages[currentStage]?.title}
         </h1>
-        <p className="games-text-description">
-          {historyStages[currentStage]?.description}
-        </p>
+        {historyStages[currentStage]?.description && (
+          <div
+            className="games-text-description"
+            dangerouslySetInnerHTML={{
+              __html: historyStages[currentStage].description,
+            }}
+          />
+        )}
         <div className="color-scheme">
           <div className="color-scheme__item">
             <div className="color-scheme__color color-scheme__color--epicwin" />

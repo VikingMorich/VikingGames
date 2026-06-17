@@ -6,12 +6,14 @@ import "./ModalEconomy.css";
 export const ModalEconomy = () => {
   const { vikingGamesdb, user } = useGlobalDB();
   const [dbUser, setDbUser] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
       ([id, u]) => u.email === user?.email,
     );
-    setDbUser(dbEntry?.[1]);
+    const userCoinsHistory = dbEntry?.[1]?.CoinsHistory || [];
+    setData(userCoinsHistory);
   }, [vikingGamesdb, user]);
 
   createTheme(
@@ -74,8 +76,6 @@ export const ModalEconomy = () => {
       },
     },
   ];
-
-  const data = dbUser?.CoinsHistory || []; // Obtener CoinsHistory como un array
 
   const formattedData = data
     .slice()

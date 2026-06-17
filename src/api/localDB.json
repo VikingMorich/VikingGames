@@ -14,11 +14,10 @@
       "stock": 40
     },
     "003": {
-      "img": "hidromiel.jpg",
-      "name": "Hidromel",
-      "price": 800,
-      "happyHour": 650,
-      "stock": 3
+      "img": "vidre.jpg",
+      "name": "Planta de vidre Nuria Torrente",
+      "price": 8000,
+      "stock": 1
     },
     "004": {
       "img": "pegatina.png",
@@ -31,6 +30,103 @@
       "name": "Ramune",
       "price": 500,
       "stock": 15
+    },
+    "006": {
+      "img": "hidromiel.png",
+      "name": "Hidromel",
+      "price": 800,
+      "happyHour": 650,
+      "stock": 3
+    },
+    "007": {
+      "img": "mochi.jpg",
+      "name": "Mochi kinder bueno",
+      "price": 500,
+      "stock": 15
+    },
+    "008": {
+      "img": "galetes.png",
+      "name": "Galetes crema cacahuet",
+      "price": 300,
+      "stock": 30
+    },
+    "009": {
+      "img": "wood-spoon.jpg",
+      "name": "Cullera de fusta",
+      "price": 1500,
+      "stock": 2
+    },
+    "010": {
+      "img": "wood-clamp.jpeg",
+      "name": "Pinça de fusta",
+      "price": 1100,
+      "stock": 7
+    },
+    "011": {
+      "img": "bag.png",
+      "name": "Bosses de roba",
+      "price": 1000,
+      "stock": 3
+    },
+    "012": {
+      "img": "dron.jpeg",
+      "name": "Dron",
+      "price": 7500,
+      "stock": 1
+    },
+    "013": {
+      "img": "espelma.png",
+      "name": "Espelma",
+      "price": 1500,
+      "stock": 3
+    },
+    "014": {
+      "img": "shirt.png",
+      "name": "Samarreta evento",
+      "price": 4000,
+      "stock": 3
+    },
+    "015": {
+      "img": "xocolata.png",
+      "name": "Preparat de xocolata",
+      "price": 2000,
+      "stock": 6
+    },
+    "016": {
+      "img": "dogreward.png",
+      "name": "Premis gos",
+      "price": 1000,
+      "stock": 8
+    },
+    "017": {
+      "img": "tableta.png",
+      "name": "Tableta grafica",
+      "price": 5800,
+      "stock": 1
+    },
+    "018": {
+      "img": "churu.png",
+      "name": "Churu gat",
+      "price": 800,
+      "stock": 15
+    },
+    "020": {
+      "img": "padel-racket.png",
+      "name": "Raqueta padel",
+      "price": 1800,
+      "stock": 1
+    },
+    "021": {
+      "img": "eggs.png",
+      "name": "Ous de pagès",
+      "price": 800,
+      "stock": 4
+    },
+    "022": {
+      "img": "advantage.png",
+      "name": "Aventatge per algun joc",
+      "price": 3000,
+      "stock": 1
     }
   },
   "Users": {
@@ -199,7 +295,7 @@
     "002": {
       "title": "Borracho",
       "img": "beer-archivement.png",
-      "description": "Premi al participant amb mes birres ingerides en un determinat moment del joc.",
+      "description": "Premi al participant amb mes cerveses begudes en un determinat moment del joc.",
       "coins": 2500,
       "score": 5
     },

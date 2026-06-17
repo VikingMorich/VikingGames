@@ -293,3 +293,45 @@ export const claimBingo = async (userId) => {
     throw error;
   }
 };
+
+export const playRoulette = async (userId, prizeAmount, reward) => {
+  try {
+    const db = getDatabase(app);
+    const userRef = ref(db, `Users/${userId}`);
+    const userSnapshot = await get(userRef);
+    const oldUserInfo = userSnapshot.val();
+
+    const playingCoins = (oldUserInfo.coins || 0) - prizeAmount;
+    const currentCoins = (oldUserInfo.coins || 0) - prizeAmount + reward;
+
+    let newCoinsHistory = [
+      ...(oldUserInfo.CoinsHistory || []),
+      {
+        date: new Date().toISOString(),
+        concept: `Tirada a la ruleta de la sort`,
+        amount: -prizeAmount,
+        total: playingCoins,
+        type: "remove",
+      },
+    ];
+    if (reward > 0) {
+      newCoinsHistory.push({
+        date: new Date().toISOString(),
+        concept: `Premi de la ruleta de la sort`,
+        amount: reward,
+        total: currentCoins,
+        type: "add",
+      });
+    }
+
+    await update(userRef, {
+      coins: currentCoins,
+      CoinsHistory: newCoinsHistory,
+    });
+
+    return { coins: currentCoins };
+  } catch (error) {
+    console.error("playRoulette error:", error);
+    throw error;
+  }
+};

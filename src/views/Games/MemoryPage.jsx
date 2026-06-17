@@ -8,8 +8,31 @@ import { ScoreGame } from "../../components/ScoreGame/ScoreGame";
 export const MemoryPage = () => {
   const { vikingGamesdb, user } = useGlobalDB();
   const currentStage = vikingGamesdb?.Games?.currentPage || "loading";
-  const letras = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
-  const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const gridVal = historyStages[currentStage]?.grid;
+
+  const computeGridSide = (g) => {
+    if (typeof g === "number") {
+      const sqrt = Math.sqrt(g);
+      if (Number.isInteger(sqrt) && sqrt >= 1) return sqrt; // g is total cells (perfect square)
+      if (Number.isInteger(g) && g >= 1) return g; // g is side length
+    }
+    return 3; // fallback to 3x3
+  };
+
+  const side = computeGridSide(gridVal);
+
+  const getLetterLabel = (index) => {
+    let label = "";
+    let i = index;
+    while (i >= 0) {
+      label = String.fromCharCode(65 + (i % 26)) + label;
+      i = Math.floor(i / 26) - 1;
+    }
+    return label;
+  };
+
+  const letras = Array.from({ length: side }, (_, i) => getLetterLabel(i));
+  const numeros = Array.from({ length: side }, (_, i) => i + 1);
 
   const [selected, setSelected] = useState(new Set());
   const [timeLeft, setTimeLeft] = useState(10);
@@ -93,13 +116,14 @@ export const MemoryPage = () => {
 
   const validateSelection = async () => {
     const seleccionados = Array.from(selected);
+    // console.log("Seleccionados:", seleccionados);
     const correctAnswers = historyStages[currentStage]?.answer || [];
     const correctCount = seleccionados.filter((id) =>
       correctAnswers.includes(id),
     ).length;
     const incorrectCount = seleccionados.length - correctCount;
     const totalScore = Math.max(0, correctCount - incorrectCount); // Ensure score is not negative
-    console.log(`Puntuació: ${totalScore}`);
+    // console.log(`Puntuació: ${totalScore}`);
     await updateStageScore(dbUserId, totalScore);
   };
 
@@ -131,9 +155,6 @@ export const MemoryPage = () => {
         ) : (
           <>
             <h1 className="memory-title">Memory</h1>
-            <p className="memory-text-description">
-              {historyStages[currentStage]?.description}
-            </p>
             <div className="tablero-container">
               <div className="tablero">
                 {letras.map((letra) => (
@@ -155,6 +176,9 @@ export const MemoryPage = () => {
                 ))}
               </div>
             </div>
+            <p className="memory-text-description">
+              {historyStages[currentStage]?.description}
+            </p>
             <div className="controls">
               <button
                 className="btn reset"

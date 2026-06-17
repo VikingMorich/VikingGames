@@ -112,7 +112,7 @@ export const VotationPage = () => {
     <>
       {timeLeft <= 0 ? (
         <div className="vote-results">
-          <h2>Resultados de la votación</h2>
+          <h2>Resultats de la votació</h2>
           <ResponsiveContainer width="85%" height={300}>
             <BarChart layout="vertical" data={generateVoteData()} barSize={30}>
               <CartesianGrid strokeDasharray="3 3" />

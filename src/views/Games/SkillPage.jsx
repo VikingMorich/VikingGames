@@ -43,40 +43,45 @@ export const SkillPage = () => {
     {
       success: [
         [15, 20],
-        [80, 90],
+        [23, 30],
+        [45, 65],
+        [75, 95],
       ],
     },
     {
       success: [
         [3, 10],
         [40, 43],
+        [57, 60],
+        [75, 93],
       ],
-      epicwin: [[0, 1]],
-      epicfail: [
-        [10, 15],
-        [43, 50],
-      ],
+      epicwin: [[0, 3]],
     },
     {
       success: [
+        [3, 10],
         [15, 20],
-        [80, 90],
-      ],
-      epicwin: [[2, 3]],
-      epicfail: [
-        [20, 25],
-        [90, 95],
-      ],
-    },
-    {
-      success: [
-        [3, 10],
         [40, 43],
+        [70, 85],
       ],
       epicwin: [[1, 2]],
       epicfail: [
         [10, 15],
-        [43, 50],
+        [85, 90],
+      ],
+    },
+    {
+      success: [
+        [15, 23],
+        [65, 72],
+        [80, 90],
+      ],
+      epicwin: [[2, 3]],
+      epicfail: [
+        [4, 7],
+        [30, 45],
+        [57, 65],
+        [90, 95],
       ],
     },
     {
@@ -84,21 +89,26 @@ export const SkillPage = () => {
         [15, 20],
         [80, 90],
       ],
-      epicwin: [[0, 1]],
+      epicwin: [
+        [0, 1],
+        [99, 100],
+      ],
       epicfail: [
         [20, 25],
         [90, 95],
       ],
     },
+    // lvl 6 to do (Equilibrar una mica pq amb la velocitat puja molt la dificultat)
     {
       success: [
         [3, 10],
-        [40, 43],
+        [39, 42],
+        [95, 100],
       ],
-      epicwin: [[2, 3]],
+      epicwin: [[42, 43]],
       epicfail: [
         [10, 15],
-        [43, 50],
+        [43, 80],
       ],
     },
     {

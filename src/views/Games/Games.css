@@ -15,11 +15,16 @@
     height: 1px;
     border-bottom: 1px solid var(--warm-brown);
   }
+
+  ul {
+    text-align: start;
+  }
 }
 
 .games-text-title {
   margin-block-end: 0px;
   text-align: center;
+  font-size: 1.5em;
 }
 
 .games-text-description,

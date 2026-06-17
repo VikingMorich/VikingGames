@@ -1,5 +1,6 @@
 import { getDatabase, ref, update, set, get, child } from "firebase/database";
 import { app } from "../firebase/config.js";
+import { toast } from "react-toastify";
 import gameHistory from "../api/localDB.json";
 
 export const toggleUserElimination = async (
@@ -182,6 +183,10 @@ export const updateNextGameStage = async (newStage) => {
   const start = new Date().toISOString();
   await updateScoreWithStageScore();
   await update(nodeRef, { currentPage: newStage, start });
+  toast.success("Stage updated", {
+    autoClose: 1000,
+    theme: "colored",
+  });
 };
 
 export const updateScoreWithStageScore = async () => {

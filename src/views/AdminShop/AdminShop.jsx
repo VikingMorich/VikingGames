@@ -159,7 +159,8 @@ export const AdminShop = () => {
 
   return (
     <>
-      {user?.email === "enricmoriche91@hotmail.com" ? (
+      {user?.email === "enricmoriche91@hotmail.com" ||
+      user?.email === "oriolroigcanal@gmail.com" ? (
         <>
           <AdminMenu />
           <div className="section-view">

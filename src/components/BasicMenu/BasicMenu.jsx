@@ -35,7 +35,8 @@ export const BasicMenu = () => {
       >
         Puntuacions
       </a>
-      {user?.email === "enricmoriche91@hotmail.com" && (
+      {(user?.email === "enricmoriche91@hotmail.com" ||
+        user?.email === "oriolroigcanal@gmail.com") && (
         <a href="/admingames">🔁</a>
       )}
     </div>
