@@ -269,11 +269,14 @@ export const claimBingo = async (userId) => {
 
     const aArchId = "003"; // Achievement ID for Bingo
     const coinsToAdd = parseInt(currentArchivements[aArchId]?.coins || 0);
+    const scoreToAdd = parseInt(currentArchivements[aArchId]?.score || 0);
     const currentCoins = (oldUserInfo.coins || 0) + coinsToAdd;
+    const currentScore = (oldUserInfo.score || 0) + scoreToAdd;
 
     // Update user data with new coins and achievement
     await update(userRef, {
       coins: currentCoins,
+      score: currentScore,
       archivements: [...(oldUserInfo.archivements || []), aArchId],
       CoinsHistory: [
         ...(oldUserInfo.CoinsHistory || []),
@@ -294,7 +297,7 @@ export const claimBingo = async (userId) => {
   }
 };
 
-export const playRoulette = async (userId, prizeAmount, reward) => {
+export const playRoulette = async (userId, prizeAmount, reward, clue) => {
   try {
     const db = getDatabase(app);
     const userRef = ref(db, `Users/${userId}`);
@@ -323,6 +326,15 @@ export const playRoulette = async (userId, prizeAmount, reward) => {
         type: "add",
       });
     }
+    if (clue) {
+      newCoinsHistory.push({
+        date: new Date().toISOString(),
+        concept: `Premi de la ruleta de la sort - Pista ${clue}`,
+        amount: reward,
+        total: currentCoins,
+        type: "add",
+      });
+    }
 
     await update(userRef, {
       coins: currentCoins,
@@ -344,6 +356,53 @@ export const setPlayerPathChoice = async (userId, pathChoice) => {
     return true;
   } catch (error) {
     console.error("setPlayerPathChoice error:", error);
+    throw error;
+  }
+};
+
+export const claimEasterEgg = async (userId) => {
+  try {
+    const db = getDatabase(app);
+
+    // Update the achievement to mark it as used
+    const nodeRef = ref(db, `Archivements/004`);
+    await update(nodeRef, { used: true });
+
+    // Retrieve user and achievement data
+    const userRef = ref(db, `Users/${userId}`);
+    const userSnapshot = await get(userRef);
+    const oldUserInfo = userSnapshot.val();
+
+    const archivementsRef = ref(db, `Archivements`);
+    const archivementsSnapshot = await get(archivementsRef);
+    const currentArchivements = archivementsSnapshot.val();
+
+    const aArchId = "004"; // Achievement ID for EasterEgg
+    const coinsToAdd = parseInt(currentArchivements[aArchId]?.coins || 0);
+    const scoreToAdd = parseInt(currentArchivements[aArchId]?.score || 0);
+    const currentCoins = (oldUserInfo.coins || 0) + coinsToAdd;
+    const currentScore = (oldUserInfo.score || 0) + scoreToAdd;
+
+    // Update user data with new coins and achievement
+    await update(userRef, {
+      coins: currentCoins,
+      score: currentScore,
+      archivements: [...(oldUserInfo.archivements || []), aArchId],
+      CoinsHistory: [
+        ...(oldUserInfo.CoinsHistory || []),
+        {
+          date: new Date().toISOString(),
+          concept: `Fita dels VikingGames aconseguida (${currentArchivements[aArchId]?.title})`,
+          amount: coinsToAdd,
+          total: currentCoins,
+          type: "add",
+        },
+      ],
+    });
+
+    return true;
+  } catch (error) {
+    console.error("claimEasterEgg error:", error);
     throw error;
   }
 };

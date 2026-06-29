@@ -8,7 +8,7 @@ export const historyStages = {
   roundDescription: {
     title: "Explicació fases",
     description:
-      "<p>Els jocs es dividiran en 4 fases. A continuació una breu explicació de les normes especials de cada fase i el seu numero de probes.</p><h3>Fase 0</h3><p>Un únic joc que no otorga punts als participants, pero tindrà MoricheCoins de recompensa.</p><h3>Fase 1</h3><p>En la primera fase es jugaran 7 probes, després de cada repte es repartiran punts als millors jugadors segons la proba. Un cop acabin totes les probes de la fase, s'eliminaran els X jugadors amb pitjor puntuació</p><h3>Fase 2</h3><p>En aquesta fase, s'eliminarà al jugador amb pitjor puntuació segons la classificació global després de cada proba.</p><h3>Fase 3</h3><p>L'ultima fase eliminarà el pitjor jugador despres de cada proba independentment de la seva puntuació global.</p><h4>Notes especials</h4><p>En algun moment del joc també hi haurà una fase de repesca en la que algun jugador eliminat podrà tornar a entrar al joc.</p>",
+      "<p>Els jocs es dividiran en 4 fases. A continuació una breu explicació de les normes especials de cada fase i el seu numero de probes.</p><h3>Fase 0</h3><p>Un únic joc que no otorga punts als participants, pero tindrà MoricheCoins de recompensa.</p><h3>Fase 1</h3><p>En la primera fase es jugaran 7 probes, després de cada repte es repartiran punts als millors jugadors segons la proba. Un cop acabin totes les probes de la fase, s'eliminaran els X jugadors amb pitjor puntuació. (Es classifiquen els 14 millors)</p><h3>Fase 2</h3><p>En aquesta fase, s'eliminarà al jugador amb pitjor puntuació segons la classificació global després de cada proba.</p><h3>Fase 3</h3><p>L'ultima fase eliminarà el pitjor jugador despres de cada proba independentment de la seva puntuació global.</p><h4>Notes especials</h4><p>En algun moment del joc també hi haurà una fase de repesca en la que algun jugador eliminat podrà tornar a entrar al joc.</p>",
     type: "text",
   },
   round0: {
@@ -29,7 +29,7 @@ export const historyStages = {
     title: "Fase 1",
     number: "1",
     description:
-      "7 proves on es repartiran punts. Els X pitjors al acabar la fase seran eliminats.",
+      "7 proves on es repartiran punts. Els X pitjors al acabar la fase seran eliminats. (Es classifiquen els 14 millors)",
     type: "stage",
   },
   tinderblox: {

@@ -3,34 +3,54 @@ import "./ModalRouletteRewards.css";
 export const ModalRouletteRewards = () => {
   //REPLICATED in ModalRoulette.jsx, keep them in sync
   const rewards = [
-    { number: 1, prize: 300 },
-    { number: 2, prize: 100 },
-    { number: 3, prize: 50 },
-    { number: 4, prize: 0 },
-    { number: 5, prize: 0 },
-    { number: 6, prize: 0 },
-    { number: 7, prize: 0 },
-    { number: 8, prize: 0 },
+    { number: 1, reward: "300 🪙", color: "#028900" },
+    { number: 2, reward: "-", color: "#fc0303" },
+    { number: 3, reward: "50 🪙", color: "#fecf00" },
+    { number: 4, reward: "Pista 1", color: "#78c1ecff" },
+    { number: 5, reward: "-", color: "#fc0303" },
+    { number: 6, reward: "200 🪙", color: "#028900" },
+    { number: 7, reward: "-", color: "#fc0303" },
+    { number: 8, reward: "Pista 2", color: "#78c1ecff" },
+    { number: 9, reward: "-", color: "#fc0303" },
+    { number: 10, reward: "100 🪙", color: "#b8f905" },
+    { number: 11, reward: "Pista 3", color: "#78c1ecff" },
+    { number: 12, reward: "-", color: "#fc0303" },
+    { number: 13, reward: "Pista 4", color: "#78c1ecff" },
+    { number: 14, reward: "250 🪙", color: "#028900" },
+    { number: 15, reward: "-", color: "#fc0303" },
+    { number: 16, reward: "??", color: "#a200ff" },
   ];
   return (
     <div className="c-modal-content-roulette-rewards">
       <h2>Taula de recompenses</h2>
-      <table className="rewards-table">
-        <thead>
-          <tr>
-            <th>Numero</th>
-            <th>Premi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rewards.map((reward) => (
-            <tr key={reward.number}>
-              <td>{reward.number}</td>
-              <td>{reward.prize} 🪙</td>
+      <div className="rewards-wrapper">
+        <table className="rewards-table">
+          <thead>
+            <tr>
+              <th>Numero</th>
+              <th>Premi</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rewards.map((reward) => (
+              <tr
+                key={reward.number}
+                style={{ backgroundColor: reward.color }}
+                className={
+                  reward.color === "#fc0303" ||
+                  reward.color === "#028900" ||
+                  reward.color === "#a200ff"
+                    ? "reward-white-text"
+                    : ""
+                }
+              >
+                <td>{reward.number}</td>
+                <td>{reward.reward}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

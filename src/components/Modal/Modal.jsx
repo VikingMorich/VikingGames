@@ -6,14 +6,19 @@ import { ModalBingo } from "./ModalBingo";
 import { ModalEconomy } from "./ModalEconomy";
 import { ModalRoulette } from "./ModalRoulette";
 import { ModalRouletteRewards } from "./ModalRouletteRewards";
+import { ModalRouletteClue } from "./ModalRouletteClue";
+import { ModalEasterEgg } from "./ModalEasterEgg";
 
-export const Modal = ({ modalOpen, setModalOpen, type }) => {
+export const Modal = ({ modalOpen, setModalOpen, type, extraParam }) => {
   return (
     <article
       className={`c-modal-background ${modalOpen ? "modal--open" : ""}`}
       onClick={() => setModalOpen(false)}
     >
-      <div className="c-modal" onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`c-modal ${type === "easter-egg" ? "bordered" : ""}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <img
           className="c-modal--cross"
           alt="menu-icon"
@@ -28,6 +33,10 @@ export const Modal = ({ modalOpen, setModalOpen, type }) => {
         {type === "economy" && <ModalEconomy />}
         {type === "roulette" && <ModalRoulette />}
         {type === "roulette-rewards" && <ModalRouletteRewards />}
+        {type === "roulette-clue" && (
+          <ModalRouletteClue clueNumber={extraParam} />
+        )}
+        {type === "easter-egg" && <ModalEasterEgg claimedBefore={extraParam} />}
       </div>
     </article>
   );

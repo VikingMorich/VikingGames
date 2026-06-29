@@ -20,7 +20,7 @@ export const WinnerPage = () => {
 
   return (
     <>
-      {winnerId && (
+      {winnerId ? (
         <div className="winner-wrapper">
           <div className="winner-container">
             <h1 className="winner-text-title">
@@ -33,6 +33,10 @@ export const WinnerPage = () => {
             />
           </div>
         </div>
+      ) : (
+        <>
+          <h2>I el guanyador és...</h2>
+        </>
       )}
     </>
   );

@@ -4,7 +4,7 @@ import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { Modal } from "../../components/Modal/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useEffect } from "react";
-import { updateUserName } from "../../functions/gameFunctions";
+import { updateUserName, claimEasterEgg } from "../../functions/gameFunctions";
 
 export const User = () => {
   const { user, vikingGamesdb, logoutAdmin } = useGlobalDB();
@@ -12,6 +12,7 @@ export const User = () => {
   const [modalBingoOpen, setModalBingoOpen] = useState(false);
   const [modalRouletteOpen, setModalRouletteOpen] = useState(false);
   const [modalEconomyOpen, setModalEconomyOpen] = useState(false);
+  const [modalEasterEggOpen, setModalEasterEggOpen] = useState(false);
   const [dbUser, setDbUser] = useState(null);
   // busca la entrada [id, userObj] cuyo email coincide
   const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
@@ -21,10 +22,20 @@ export const User = () => {
 
   const [newUserName, setNewUserName] = useState(dbUser?.username || "");
   const [currentStage, setCurrentStage] = useState("loading");
+  const [zoomOut, setZoomOut] = useState(false);
+  const [easterEggUsed, setEasterEggUsed] = useState(false);
+  const [isClaimedBefore, setIsClaimedBefore] = useState(false);
+
+  window.addEventListener("gesturestart", () => {
+    setZoomOut(true);
+  });
 
   useEffect(() => {
     if (vikingGamesdb?.Games?.currentPage) {
       setCurrentStage(vikingGamesdb.Games.currentPage);
+    }
+    if (vikingGamesdb?.Archivements["004"].used) {
+      setEasterEggUsed(vikingGamesdb?.Archivements["004"].used);
     }
   }, [vikingGamesdb]);
 
@@ -112,16 +123,34 @@ export const User = () => {
                         className="save-username-btn"
                         onClick={async () => {
                           if (newUserName.trim() !== "") {
-                            try {
-                              // Actualitza el nom d'usuari a la base de dades
-                              await updateUserName(dbUserId, newUserName);
-                              toast.success(
-                                "Nom d'usuari actualitzat amb èxit!",
-                              );
-                            } catch (error) {
-                              toast.error(
-                                "Error en actualitzar el nom d'usuari:" + error,
-                              );
+                            if (
+                              (newUserName === "asgard" ||
+                                newUserName === "Asgard") &&
+                              !easterEggUsed
+                            ) {
+                              setIsClaimedBefore(false);
+                              setModalEasterEggOpen(true);
+                              claimEasterEgg(dbUserId);
+                            } else if (
+                              (newUserName === "asgard" ||
+                                newUserName === "Asgard") &&
+                              easterEggUsed
+                            ) {
+                              setIsClaimedBefore(true);
+                              setModalEasterEggOpen(true);
+                            } else {
+                              try {
+                                // Actualitza el nom d'usuari a la base de dades
+                                await updateUserName(dbUserId, newUserName);
+                                toast.success(
+                                  "Nom d'usuari actualitzat amb èxit!",
+                                );
+                              } catch (error) {
+                                toast.error(
+                                  "Error en actualitzar el nom d'usuari:" +
+                                    error,
+                                );
+                              }
                             }
                           } else {
                             toast.error("El nom d'usuari no pot estar buit.");
@@ -176,7 +205,15 @@ export const User = () => {
                 >
                   Logout
                 </button>
+                <div className="easter-egg-container">
+                  <img
+                    className={`easter-egg ${zoomOut ? "zoomed-out" : ""}`}
+                    alt="Easter Egg"
+                    src="/qr-code.png"
+                  />
+                </div>
               </div>
+
               <Modal
                 modalOpen={modalOpen}
                 setModalOpen={setModalOpen}
@@ -196,6 +233,12 @@ export const User = () => {
                 modalOpen={modalEconomyOpen}
                 setModalOpen={setModalEconomyOpen}
                 type="economy"
+              />
+              <Modal
+                modalOpen={modalEasterEggOpen}
+                setModalOpen={setModalEasterEggOpen}
+                type="easter-egg"
+                extraParam={isClaimedBefore}
               />
               <ToastContainer />
             </>

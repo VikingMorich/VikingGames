@@ -8,6 +8,7 @@ import { Login } from "./views/Login/Login.jsx";
 import { Shop } from "./views/Shop/Shop.jsx";
 import { Scores } from "./views/Scores/Scores.jsx";
 import { Valhalla } from "./views/Valhalla/Valhalla.jsx";
+import { EasterEgg } from "./views/EasterEgg/EasterEgg.jsx";
 import { AdminGames } from "./views/AdminGames/AdminGames.jsx";
 import { AdminShop } from "./views/AdminShop/AdminShop.jsx";
 import { Countdown } from "./views/Countdown/CountDown.jsx";
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/adminshop",
     element: <AdminShop />,
+  },
+  {
+    path: "/easteregg",
+    element: <EasterEgg />,
   },
   {
     path: "*",

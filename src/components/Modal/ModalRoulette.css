@@ -22,7 +22,8 @@
 
     .roulette-border {
       position: absolute;
-      width: 94%;
+      width: auto;
+      height: 100%;
       transform: translate(-50%, -50%);
       aspect-ratio: 1 / 1;
       border-radius: 50%;
