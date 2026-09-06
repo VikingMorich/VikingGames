@@ -17,13 +17,19 @@ export const Scores = () => {
   }, [vikingGamesdb]);
 
   // seguridad: convertir a array vacío si no hay Users
-  const usersEntries =
+  let usersEntries =
     vikingGamesdb &&
     vikingGamesdb.Users &&
     typeof vikingGamesdb.Users === "object"
       ? Object.entries(vikingGamesdb.Users)
       : [];
 
+  //filtramos a los admin
+  usersEntries = usersEntries.filter(
+    ([i, user]) =>
+      user.email !== "enricmoriche91@hotmail.com" &&
+      user.email !== "oriolroigcanal@gmail.com",
+  );
   // ordenar: primero eliminated = false, luego eliminated = true; dentro de cada grupo por score desc
   usersEntries.sort(([, a], [, b]) => {
     const aEl = !!a.eliminated;

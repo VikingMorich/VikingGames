@@ -57,7 +57,7 @@ const router = createBrowserRouter([
     element: <AdminShop />,
   },
   {
-    path: "/easteregg",
+    path: "/matrix-2xfc8oo6xu",
     element: <EasterEgg />,
   },
   {

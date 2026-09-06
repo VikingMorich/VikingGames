@@ -38,9 +38,13 @@ export const VotationPage = () => {
       : [];
 
   // filtrar: solo los eliminated = false; dentro de cada grupo por stageScore desc
-  usersEntries = usersEntries.filter(
-    ([, u]) => !u.eliminated && u.email !== user?.email,
-  );
+  usersEntries = usersEntries
+    .filter(
+      ([, user]) =>
+        user.email !== "enricmoriche91@hotmail.com" &&
+        user.email !== "oriolroigcanal@gmail.com",
+    )
+    .filter(([, u]) => !u.eliminated && u.email !== user?.email);
 
   useEffect(() => {
     if (vikingGamesdb?.Games?.start) {

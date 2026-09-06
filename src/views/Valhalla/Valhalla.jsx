@@ -23,9 +23,15 @@ export const Valhalla = () => {
             <h1 className="section-title">Administrador</h1>
             <div className="valhalla-players-container">
               {vikingGamesdb
-                ? usersEntries.map(([id, player]) => (
-                    <AdminPlayer key={id} playerId={id} player={player} />
-                  ))
+                ? usersEntries
+                    .filter(
+                      ([, user]) =>
+                        user.email !== "enricmoriche91@hotmail.com" &&
+                        user.email !== "oriolroigcanal@gmail.com",
+                    )
+                    .map(([id, player]) => (
+                      <AdminPlayer key={id} playerId={id} player={player} />
+                    ))
                 : null}
             </div>
           </div>

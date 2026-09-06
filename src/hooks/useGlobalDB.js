@@ -18,15 +18,29 @@ export function useGlobalDB() {
     const db = getDatabase(app);
     const baseDbRef = ref(db, `/`);
     const unsubscribe = onValue(baseDbRef, (snapshot) => {
-      setVikingGamesdb(snapshot.val());
+      const nextData = snapshot.val();
+      setVikingGamesdb(nextData ? JSON.parse(JSON.stringify(nextData)) : null);
       setLoading(false);
     });
-    // Cleanup on unmount
+
     return () => {
       unsubscribe();
       off(baseDbRef);
     };
   }, []);
+
+  useEffect(() => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (u) => {
+      if (u) {
+        setUser(u);
+      } else {
+        setUser(null);
+        console.log("Nadie ha iniciado sesión");
+      }
+    });
+
+    return () => unsubscribeAuth();
+  }, [auth]);
 
   const loginAdmin = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password)
@@ -36,21 +50,9 @@ export function useGlobalDB() {
       })
       .catch((error) => {
         console.log("mal");
-        const errorCode = error.code;
-        const errorMessage = error.message;
         throw error;
       });
   };
-
-  onAuthStateChanged(auth, (u) => {
-    if (u) {
-      if (!user) {
-        setUser(u);
-      }
-    } else {
-      console.log("Nadie ha iniciado sesión");
-    }
-  });
 
   const logoutAdmin = () => {
     signOut(auth)

@@ -36,6 +36,11 @@ export const AdminGames = () => {
         .filter(
           ([, player]) => !player.eliminated, // Filtrar jugadores eliminados
         )
+        .filter(
+          ([, user]) =>
+            user.email !== "enricmoriche91@hotmail.com" &&
+            user.email !== "oriolroigcanal@gmail.com",
+        )
         .map(([id, player]) => ({
           id,
           username: player.username,
@@ -52,6 +57,11 @@ export const AdminGames = () => {
   const infoAllPlayers = useMemo(
     () =>
       Object.entries(vikingGamesdb?.Users || {})
+        .filter(
+          ([, user]) =>
+            user.email !== "enricmoriche91@hotmail.com" &&
+            user.email !== "oriolroigcanal@gmail.com",
+        )
         .map(([id, player]) => ({
           id,
           username: player.username,

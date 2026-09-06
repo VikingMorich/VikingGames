@@ -7,7 +7,7 @@ export const ModalRouletteClue = ({ clueNumber }) => {
       number: 1,
       title: "Pista 1",
       description:
-        "S'accedeix a l'Easter Egg a traves de la pestanya d'usuari.",
+        "Per aconseguir la contrassenya de l'Easter Egg s'han de fer un conjunt de moviments la pestanya d'usuari.",
     },
     {
       number: 2,

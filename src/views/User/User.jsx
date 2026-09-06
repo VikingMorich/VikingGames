@@ -13,12 +13,12 @@ export const User = () => {
   const [modalRouletteOpen, setModalRouletteOpen] = useState(false);
   const [modalEconomyOpen, setModalEconomyOpen] = useState(false);
   const [modalEasterEggOpen, setModalEasterEggOpen] = useState(false);
-  const [dbUser, setDbUser] = useState(null);
   // busca la entrada [id, userObj] cuyo email coincide
   const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
-    ([id, u]) => u.email === user?.email,
+    ([, u]) => u?.email === user?.email,
   );
-  const dbUserId = dbEntry?.[0]; // "001"
+  const dbUserId = dbEntry?.[0] ?? ""; //001
+  const dbUser = dbEntry?.[1] ?? null;
 
   const [newUserName, setNewUserName] = useState(dbUser?.username || "");
   const [currentStage, setCurrentStage] = useState("loading");
@@ -38,13 +38,6 @@ export const User = () => {
       setEasterEggUsed(vikingGamesdb?.Archivements["004"].used);
     }
   }, [vikingGamesdb]);
-
-  useEffect(() => {
-    const dbEntryEff = Object.entries(vikingGamesdb?.Users || {}).find(
-      ([id, u]) => u.email === user?.email,
-    );
-    setDbUser(dbEntryEff?.[1]);
-  }, [vikingGamesdb, user]);
 
   useEffect(() => {
     if (dbUser?.username) {

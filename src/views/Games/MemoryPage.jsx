@@ -52,7 +52,13 @@ export const MemoryPage = () => {
       ? Object.entries(vikingGamesdb.Users)
       : [];
 
-  usersEntries = usersEntries.filter(([, u]) => !u.eliminated);
+  usersEntries = usersEntries
+    .filter(
+      ([, user]) =>
+        user.email !== "enricmoriche91@hotmail.com" &&
+        user.email !== "oriolroigcanal@gmail.com",
+    )
+    .filter(([, u]) => !u.eliminated);
   usersEntries.sort(([, a], [, b]) => {
     return (b.stageScore || 0) - (a.stageScore || 0);
   });

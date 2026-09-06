@@ -4,7 +4,7 @@ import { Wheel } from "react-custom-roulette";
 import { Modal } from "./Modal";
 import "./ModalRoulette.css";
 import { toast } from "react-toastify";
-import { playRoulette } from "../../functions/gameFunctions";
+import { playRoulette, addScoreReward } from "../../functions/gameFunctions";
 
 const data = [
   { option: "1", style: { backgroundColor: "#028900" } },
@@ -82,34 +82,65 @@ export const ModalRoulette = () => {
   const handleSpinClick = async () => {
     if (!mustSpin) {
       const newPrizeNumber = Math.floor(Math.random() * data.length);
+      // const newPrizeNumber = 15;
+      console.log(newPrizeNumber);
       let reward = rewards[newPrizeNumber].prize || 0;
       let clue = rewards[newPrizeNumber].clue || null;
-      if (newPrizeNumber === 16) {
-        //TO DO - Random option - win score or coins or clue or nothing
-        const newRandomNumber = Math.floor(Math.random() * 4);
-        console.log("Random option selected:", newRandomNumber);
-        if (newRandomNumber === 0) {
-          reward = 500; // Win 500 coins
-        } else if (newRandomNumber === 1) {
-          reward = 0; // Win nothing
-        } else if (newRandomNumber === 2) {
-          clue = 5; // Win a secret clue
-        } else if (newRandomNumber === 3) {
-          // Win 1000 score points
-        }
-      }
       if (coins < 100) {
         toast.error(
           "No tens prou monedes per jugar! Guanya més monedes jugant als altres jocs.",
         );
         return;
       } else {
+        if (newPrizeNumber === 15) {
+          //Random option - win score or coins or clue or nothing
+          const newRandomNumber = Math.floor(Math.random() * 4);
+          console.log("Random option selected:", newRandomNumber);
+          if (newRandomNumber === 0) {
+            setTimeout(() => {
+              toast("Guanyes un premi de 1000🪙 🤑");
+            }, 3500);
+            reward = 1000; // Win 1000 coins
+          } else if (newRandomNumber === 1) {
+            reward = 0; // Win nothing
+            setTimeout(() => {
+              toast("No has guanyat res... 🫠");
+            }, 3500);
+          } else if (newRandomNumber === 2) {
+            clue = 5; // Win a secret clue
+            setTimeout(() => {
+              toast("Has guanyat la cinquena pista secreta 🕵🏻‍♂️");
+            }, 3500);
+          } else if (newRandomNumber === 3) {
+            // Win 25 score points
+            setTimeout(() => {
+              toast("Has sumat 25 punts a la teva puntuació 🚀");
+            }, 3500);
+            addScoreReward(dbUserId, 25);
+          }
+        }
         await playRoulette(dbUserId, 100, reward, clue);
         setPrizeNumber(newPrizeNumber);
         setMustSpin(true);
         if (clue) {
           setRewardClueNumber(clue);
-          setModalClueOpen(true);
+          if (newPrizeNumber !== 15) {
+            setTimeout(() => {
+              toast("Has guanyat una pista 🔬");
+            }, 3500);
+          }
+          setTimeout(() => {
+            setModalClueOpen(true);
+          }, 3800);
+        }
+        if (reward > 0 && newPrizeNumber !== 15) {
+          setTimeout(() => {
+            toast("Has guanyat " + reward + "🪙");
+          }, 3500);
+        } else if (!clue && reward === 0 && newPrizeNumber !== 15) {
+          setTimeout(() => {
+            toast("Mala sort, no has guanyat res... 🤕");
+          }, 3500);
         }
       }
     }

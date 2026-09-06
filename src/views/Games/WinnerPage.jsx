@@ -13,7 +13,13 @@ export const WinnerPage = () => {
       : [];
   let winnerId = null;
 
-  usersEntries = usersEntries.filter(([, u]) => !u.eliminated);
+  usersEntries = usersEntries
+    .filter(
+      ([, user]) =>
+        user.email !== "enricmoriche91@hotmail.com" &&
+        user.email !== "oriolroigcanal@gmail.com",
+    )
+    .filter(([, u]) => !u.eliminated);
   if (usersEntries.length === 1) {
     winnerId = usersEntries[0][0];
   }
@@ -35,7 +41,7 @@ export const WinnerPage = () => {
         </div>
       ) : (
         <>
-          <h2>I el guanyador és...</h2>
+          <h2>i el guanyador és...</h2>
         </>
       )}
     </>

@@ -5,16 +5,11 @@ import "./ModalEconomy.css";
 
 export const ModalEconomy = () => {
   const { vikingGamesdb, user } = useGlobalDB();
-  const [dbUser, setDbUser] = useState(null);
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
-      ([id, u]) => u.email === user?.email,
-    );
-    const userCoinsHistory = dbEntry?.[1]?.CoinsHistory || [];
-    setData(userCoinsHistory);
-  }, [vikingGamesdb, user]);
+  const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
+    ([, u]) => u?.email === user?.email,
+  );
+  const userCoinsHistory = dbEntry?.[1]?.CoinsHistory || [];
 
   createTheme(
     "customDataTable",
@@ -77,7 +72,7 @@ export const ModalEconomy = () => {
     },
   ];
 
-  const formattedData = data
+  const formattedData = userCoinsHistory
     .slice()
     .reverse()
     .map((entry) => ({

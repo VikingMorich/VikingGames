@@ -37,16 +37,18 @@ export const historyStages = {
     description:
       "<p>En aquesta prova, els participants hauran de posar a prova el seu pols, la seva precisió i paciència.</p><p>Utilitzant peces de gran format, els jugadors hauran d'anar construint una torre cada vegada més alta i inestable, augmentant la dificultat del repte.</p><h4>⚙️ Funcionament del joc</h4><p>Els participants jugaran per torns.</p><p>En cada torn, el jugador corresponent haurà d'agafar una peça i col·locar-la a la part superior de la torre, seguint les indicacions de l'organització.</p><p>Després de col·locar la peça, el torn passarà al següent jugador.</p><h4>🏁 Objectiu</h4><p>L'objectiu és colocar les peces a la torre sense fer-la caure.</p><h4>📌 Normes importants</h4><ul><li>Els jugadors hauran de respectar l'ordre dels torns establert per l'organització.</li><li>Només es podrà manipular la peça corresponent al torn del jugador.</li><li>Un cop la peça hagi estat col·locada correctament i el jugador hagi deixat d'estar en contacte amb la torre, el torn es considerarà finalitzat.</li><li>La torre haurà de mantenir-se dreta després de cada moviment.</li></ul><h4>❌ Eliminacions</h4><p>Qualsevol jugador que faci caure la torre quedarà eliminat d'aquesta prova.</p><p>La resta de participants continuaran jugant fins que només en quedi un.</p>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward:
+      "La puntuació aumenta 50 MoricheCoins i 1 punt per cada posició que pujis a la clasificación: últim 50, ..., primer la máxima puntuació.",
+    rewardResume: "50🪙 i 1 punt en cua invertida (ultims-primer)",
   },
   basket: {
     title: "🏀 Relleus de Basket",
     description:
       "<p>Els participants es dividiran en dos equips per competir en una cursa d'encistellades.</p><h4>🏁 Objectiu</h4><p>Ser el primer equip a aconseguir que tots els seus integrants encistellin des de la línia de tir lliure.</p><h4>📌 Normes</h4><ul><li>Quan soni el xiulet, començarà la prova.</li><li>Els jugadors hauran de seguir l'ordre establert dins del seu equip.</li><li>Tots els llançaments s'hauran de fer des de la línia de tir lliure.</li><li>Cada jugador disposarà d'intents il·limitats fins a encistellar.</li><li>Un cop un jugador encistelli, el següent membre del seu equip podrà començar a llançar.</li><li>Si el llançador falla, un company del seu equip podrà recuperar la pilota i retornar-la-hi perquè pugui continuar intentant-ho més ràpidament.</li><li>Guanyarà l'equip que aconsegueixi completar la prova abans que l'altre.</li></ul>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward:
+      "Cada jugador de l'equip guanyador rebrà 300 MoricheCoins i 7 punts.",
+    rewardResume: "300🪙 i 7 punts a equip guanyador",
   },
   balontir: {
     title: "🔪 Joc de matar",
@@ -54,8 +56,8 @@ export const historyStages = {
       "<p>Els participants es dividiran en dos equips, que es col·locaran en camps oposats.</p><h4>🏁 Objectiu</h4><p>Eliminar tots els jugadors de l'equip contrari.</p><h4>📌 Normes</h4><ul><li>Quan soni el xiulet, començarà la partida.</li><li>Cada equip ocuparà una meitat del terreny de joc.</li><li>Els jugadors hauran de llançar la pilota per intentar tocar els rivals.</li><li>Si un jugador és tocat per la pilota i aquesta cau a terra, quedarà eliminat i passarà a la zona dels eliminats, situada darrere del camp rival.</li><li>Si un jugador agafa la pilota al vol, el llançador quedarà eliminat.</li><li>Si la pilota toca a terra abans de tocar un jugador, no hi haurà eliminació.</li><li>Els jugadors eliminats podran tornar al joc si aconsegueixen eliminar un rival des de la zona d'eliminats.</li><li>Si un jugador trepitja una línia o surt del seu camp, quedarà eliminat.</li><li>No es permet llançar la pilota intencionadament al cap. Cal respectar els companys i jugar net.</li></ul><h4>❌ Eliminacions</h4><p>Els jugadors eliminats passaran a la zona posterior del camp contrari, des d'on encara podran intentar tornar al joc.</p><h4>🏆 Guanyador</h4><p>Guanyarà l'equip que aconsegueixi deixar sense jugadors actius l'equip rival.</p>",
     type: "text",
     reward:
-      "Cada jugador de l'equip guanyador rebrà 500 MoricheCoins i 10 punts.",
-    rewardResume: "500🪙 i 10 punts a equip guanyador",
+      "Cada jugador de l'equip guanyador rebrà 600 MoricheCoins i 10 punts.",
+    rewardResume: "600🪙 i 10 punts a equip guanyador",
   },
   votation1: {
     title: "📊 Votació penalització",
@@ -69,8 +71,9 @@ export const historyStages = {
     description:
       "<h4>🏁 Objectiu</h4><p>Trobar el màxim nombre de tiquets amagats pel recinte abans que s'acabi el temps.</p><h4>📌 Normes</h4><ul><li>Quan soni el xiulet, començarà la cerca.</li><li>Els participants disposaran de 20 minuts per trobar tants tiquets com puguin.</li><li>Cada tiquet trobat atorgarà punts per avançar en el joc.</li></ul><h4>🏆 Resultat</h4><p>Un cop finalitzat el temps, es farà el recompte de tots els tiquets i cada jugador obtindrà els punts corresponents.</p>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward:
+      "Els premis estan ocultes darrera de cada tiquet. Al final de la proba l'administrador repartira les recompenses.",
+    rewardResume: "Repartir manualment al final de la proba",
   },
   memoryRules: {
     title: "📖🧐 Explicació Memory",
@@ -151,22 +154,44 @@ export const historyStages = {
     reward:
       "La puntuació obtinguda a l'examen es sumara al marcador global de cada jugador. A més, els 3 jugadors amb millor nota a l'examen rebràn un bonus de 500 MoricheCoins.",
   },
-  examLvl1: {
-    title: "🧠 Examen IQ",
+  examFreak: {
+    title: "🧠 Tribial exam",
     description:
       "Marca la resposta correcta a les seguents preguntes. ⚠️ Recorda validar les respostes abans de que s'acabi el temps!",
     rewardResume: "500🪙 als 3 millors (Score auto)",
     questions: [
       {
-        question: "Si AxA = 2x2x3x3, quan val A?",
+        question: "Quin pokemon es aquest?",
+        image: "/exam/poke2.png",
         options: [
-          { id: "A", text: "2" },
-          { id: "B", text: "3" },
-          { id: "C", text: "6" },
-          { id: "D", text: "4" },
-          { id: "E", text: "9" },
+          { id: "A", text: "Misdreavus" },
+          { id: "B", text: "Swinub" },
+          { id: "C", text: "Phanpy" },
+          { id: "D", text: "Pupitar" },
         ],
         answer: "C",
+      },
+      {
+        question: "Quin es el nom d'aquesta carta de Hearthstone?",
+        image: "/exam/hearthstone.png",
+        options: [
+          { id: "A", text: "Kel'thuzad" },
+          { id: "B", text: "Leroy Jenkins" },
+          { id: "C", text: "Tirion Vadín" },
+          { id: "D", text: "Khadgar" },
+        ],
+        answer: "B",
+      },
+      {
+        question: "Quina pel·lícula d'Studio Ghibli és més antiga?",
+        image: "/exam/totoro.png",
+        options: [
+          { id: "A", text: "La princesa Mononoke" },
+          { id: "B", text: "Porco Rosso" },
+          { id: "C", text: "El viaje de Chihiro" },
+          { id: "D", text: "El castillo ambulante" },
+        ],
+        answer: "A",
       },
       {
         question:
@@ -181,64 +206,10 @@ export const historyStages = {
         ],
         answer: "B",
       },
-    ],
-    type: "exam",
-    duration: 600000, // 10 minuts
-  },
-  examFreak: {
-    title: "👾 Examen Friki ",
-    description:
-      "Marca la resposta correcta a les seguents preguntes. ⚠️ Recorda validar les respostes abans de que s'acabi el temps!",
-    rewardResume: "500🪙 als 3 millors (Score auto)",
-    questions: [
-      {
-        question: "Quin pokemon es aquest?",
-        image: "/exam/friki/poke1.png",
-        options: [
-          { id: "A", text: "Pansage" },
-          { id: "B", text: "Panpour" },
-          { id: "C", text: "Pansear" },
-          { id: "D", text: "Aipom" },
-        ],
-        answer: "A",
-      },
-      {
-        question: "Quin pokemon es aquest?",
-        image: "/exam/friki/poke2.png",
-        options: [
-          { id: "A", text: "Misdreavus" },
-          { id: "B", text: "Swinub" },
-          { id: "C", text: "Phanpy" },
-          { id: "D", text: "Pupitar" },
-        ],
-        answer: "C",
-      },
-      {
-        question: "Quin es el nom d'aquesta carta de Hearthstone?",
-        image: "/exam/friki/hearthstone.png",
-        options: [
-          { id: "A", text: "Kel'thuzad" },
-          { id: "B", text: "Leroy Jenkins" },
-          { id: "C", text: "Tirion Vadín" },
-          { id: "D", text: "Khadgar" },
-        ],
-        answer: "B",
-      },
-      {
-        question: "Quina pel·lícula d'Studio Ghibli és més antiga?",
-        image: "/exam/friki/totoro.png",
-        options: [
-          { id: "A", text: "La princesa Mononoke" },
-          { id: "B", text: "Porco Rosso" },
-          { id: "C", text: "El viaje de Chihiro" },
-          { id: "D", text: "El castillo ambulante" },
-        ],
-        answer: "A",
-      },
       {
         question:
           "Quin es el nom de l'esquirol que viu per les branques de l'arbre dels 9 mons de la mitologia nòrdica?",
-        image: "/exam/friki/yggdrasil.jpg",
+        image: "/exam/yggdrasil.jpg",
         options: [
           { id: "A", text: "Sleipnir" },
           { id: "B", text: "Huggin" },
@@ -250,7 +221,7 @@ export const historyStages = {
       {
         question:
           "Quin mètode d'array s'utilitza per obtenir un nou array que contingui únicament els elements que compleixen una condició específica?",
-        image: "/exam/friki/js.jpg",
+        image: "/exam/js.jpg",
         options: [
           { id: "A", text: ".map( )" },
           { id: "B", text: ".if( )" },
@@ -261,7 +232,7 @@ export const historyStages = {
       },
       {
         question: "A quina regió del Japó es troba la ciutat d'Osaka?",
-        image: "/exam/friki/japan.jpg",
+        image: "/exam/japan.jpg",
         options: [
           { id: "A", text: "Kantō" },
           { id: "B", text: "Chūbu" },
@@ -269,6 +240,157 @@ export const historyStages = {
           { id: "D", text: "Shikoku" },
         ],
         answer: "C",
+      },
+      {
+        question: "Quantes peces diferents hi han al tetris?",
+        image: "/exam/tetris.jpg",
+        options: [
+          { id: "A", text: "3" },
+          { id: "B", text: "4" },
+          { id: "C", text: "5" },
+          { id: "D", text: "6" },
+        ],
+        answer: "C",
+      },
+      {
+        question: "De quin grup es la cançó “All the small things”?",
+        image: "/exam/punk.jpg",
+        options: [
+          { id: "A", text: "Blink-182" },
+          { id: "B", text: "Sum 41" },
+          { id: "C", text: "The Offspring" },
+          { id: "D", text: "Simple Plan" },
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Quants colors de manà diferents hi ha en Magic: The Gathering?",
+        image: "/exam/magic.png",
+        options: [
+          { id: "A", text: "4" },
+          { id: "B", text: "5" },
+          { id: "C", text: "6" },
+          { id: "D", text: "7" },
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Quin d'aquests personatges de League of Legends no apareix en la serie Arcane?",
+        image: "/exam/arcane.jpg",
+        options: [
+          { id: "A", text: "Ekko" },
+          { id: "B", text: "Darius" },
+          { id: "C", text: "Caitlyn" },
+          { id: "D", text: "Warwick" },
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Com continua la famosa canço d'extremoduro. “Salir beber el rollo de siempre…”",
+        image: "/exam/extremoduro.jpg",
+        options: [
+          { id: "A", text: "Meterme mil rayas, hablar con la gente." },
+          { id: "B", text: "Tomarme unos litros, con ganas de verte." },
+          { id: "C", text: "Quedar con amigos, vivir el presente." },
+          { id: "D", text: "Pegarse unas ostias, volverse indecente." },
+        ],
+        answer: "A",
+      },
+      {
+        question: "Quina graduació te la cervesa desperados?",
+        image: "/exam/desperados.jpg",
+        options: [
+          { id: "A", text: "4.6%" },
+          { id: "B", text: "5.9%" },
+          { id: "C", text: "6.3%" },
+          { id: "D", text: "7.2%" },
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Segons l'horòscop xinès, quin animal representa a Enric Moriche?",
+        image: "/exam/chinese.jpg",
+        options: [
+          { id: "A", text: "Cavall" },
+          { id: "B", text: "Gos" },
+          { id: "C", text: "Tigre" },
+          { id: "D", text: "Cabra" },
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "Qui es el capità del Shohoku? (equip principal de la serie Slam Dunk)",
+        image: "/exam/slamdunk.jpg",
+        options: [
+          { id: "A", text: "Takenori Akagi" },
+          { id: "B", text: "Kaede Rukawa" },
+          { id: "C", text: "Hanamichi Sakuragi" },
+          { id: "D", text: "Ryota Miyagi" },
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "En la primera figura, el cub està format per 16 cubs grisos i 11 cubs blancs. L'Oriol mira el cub per on idica la flecha. Quina de les següents imatges pot ser la que hi veu?",
+        image: "/exam/iq.jpg",
+        options: [
+          { id: "A", text: "Imatge A" },
+          { id: "B", text: "Imatge B" },
+          { id: "C", text: "Imatge C" },
+          { id: "D", text: "Imatge D" },
+        ],
+        answer: "D",
+      },
+      {
+        question: "Quin d'aquests arbres te una fusta mes “dura”?",
+        image: "/exam/wood.jpg",
+        options: [
+          { id: "A", text: "Pi" },
+          { id: "B", text: "Cedre" },
+          { id: "C", text: "Noguera" },
+          { id: "D", text: "Castanyer" },
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Qui li regala a Frodo la espasa curta élfica i la cota de malla de mithril?",
+        image: "/exam/lotr.jpg",
+        options: [
+          { id: "A", text: "Gandalf" },
+          { id: "B", text: "Aragorn" },
+          { id: "C", text: "Elrond" },
+          { id: "D", text: "Bilbo Bolsón" },
+        ],
+        answer: "D",
+      },
+      {
+        question: "Quants bigotis te un gat de mitjana?",
+        image: "/exam/cat.jpg",
+        options: [
+          { id: "A", text: "16" },
+          { id: "B", text: "24" },
+          { id: "C", text: "32" },
+          { id: "D", text: "40" },
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Quin numero s'amaga en aquest estereograma? (ilusió óptica de profunditat que oculta una figura en tres dimensions)",
+        image: "/exam/stereogram.png",
+        options: [
+          { id: "A", text: "352" },
+          { id: "B", text: "804" },
+          { id: "C", text: "768" },
+          { id: "D", text: "563" },
+        ],
+        answer: "A",
       },
     ],
     type: "exam",
@@ -320,7 +442,7 @@ export const historyStages = {
     duration: 360000, // 6 minuts
   },
   stagetodo: {
-    title: "??",
+    title: "🌪️ BladeBlade??",
     description: "TO DO",
     type: "text",
     reward: "TO DO",

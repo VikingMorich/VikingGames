@@ -406,3 +406,30 @@ export const claimEasterEgg = async (userId) => {
     throw error;
   }
 };
+
+export const addScoreReward = async (userId, rewardScore) => {
+  try {
+    const db = getDatabase(app);
+
+    // Update the achievement to mark it as used
+    const nodeRef = ref(db, `Archivements/004`);
+    await update(nodeRef, { used: true });
+
+    // Retrieve user and achievement data
+    const userRef = ref(db, `Users/${userId}`);
+    const userSnapshot = await get(userRef);
+    const oldUserInfo = userSnapshot.val();
+
+    const currentScore = (oldUserInfo.score || 0) + rewardScore;
+
+    // Update user data with new coins and achievement
+    await update(userRef, {
+      score: currentScore,
+    });
+
+    return true;
+  } catch (error) {
+    console.error("claimEasterEgg error:", error);
+    throw error;
+  }
+};
