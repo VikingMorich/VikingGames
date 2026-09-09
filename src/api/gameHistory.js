@@ -38,7 +38,7 @@ export const historyStages = {
       "<p>En aquesta prova, els participants hauran de posar a prova el seu pols, la seva precisió i paciència.</p><p>Utilitzant peces de gran format, els jugadors hauran d'anar construint una torre cada vegada més alta i inestable, augmentant la dificultat del repte.</p><h4>⚙️ Funcionament del joc</h4><p>Els participants jugaran per torns.</p><p>En cada torn, el jugador corresponent haurà d'agafar una peça i col·locar-la a la part superior de la torre, seguint les indicacions de l'organització.</p><p>Després de col·locar la peça, el torn passarà al següent jugador.</p><h4>🏁 Objectiu</h4><p>L'objectiu és colocar les peces a la torre sense fer-la caure.</p><h4>📌 Normes importants</h4><ul><li>Els jugadors hauran de respectar l'ordre dels torns establert per l'organització.</li><li>Només es podrà manipular la peça corresponent al torn del jugador.</li><li>Un cop la peça hagi estat col·locada correctament i el jugador hagi deixat d'estar en contacte amb la torre, el torn es considerarà finalitzat.</li><li>La torre haurà de mantenir-se dreta després de cada moviment.</li></ul><h4>❌ Eliminacions</h4><p>Qualsevol jugador que faci caure la torre quedarà eliminat d'aquesta prova.</p><p>La resta de participants continuaran jugant fins que només en quedi un.</p>",
     type: "text",
     reward:
-      "La puntuació aumenta 50 MoricheCoins i 1 punt per cada posició que pujis a la clasificación: últim 50, ..., primer la máxima puntuació.",
+      "La puntuació aumenta 50 MoricheCoins i 1 punt per cada posició que pujis a la clasificación: últim 50, ..., primer máxim premi.",
     rewardResume: "50🪙 i 1 punt en cua invertida (ultims-primer)",
   },
   basket: {
@@ -80,8 +80,8 @@ export const historyStages = {
     description:
       "<p>En aquesta prova es disputaran dues rondes amb dificultats diferents.</p><h4>🏁 Objectiu</h4><p>Recordar la imatge mostrada i reproduir-la amb la màxima precisió possible.</p><h4>📌 Normes</h4><ul><li>A l'inici de cada ronda es mostrarà una imatge durant 20 segons.</li><li>Un cop transcorregut aquest temps, la imatge desapareixerà.</li><li>Els participants disposaran de 1 minut per replicar el dibuix de memòria.</li><li>Cada coordenada encertada sumarà 1 punt.</li><li>Les respostes incorrectes restaran 1 punt, però la puntuació mínima serà sempre de 0 punts.</li><li>És imprescindible validar la resposta abans que finalitzi el temps. En cas contrari, la puntuació de la ronda serà de 0 punts.</li></ul><h4>🏆 Resultat</h4><p>Cada punt obtingut en aquesta proba es sumarà al total de la classificació global.</p>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward: "Score automática per cada ronda.",
+    rewardResume: "Score auto (1punt + 100coins per acert)",
   },
   memory1: {
     title: "🧐 Memory Lvl 1",
@@ -93,7 +93,7 @@ export const historyStages = {
     grid: 6,
     duration: 80000, // 1 minut i 20 segons
     delayImage: 20000, // 20 segons
-    rewardResume: "Score auto",
+    rewardResume: "Score auto (1punt + 100coins per acert)",
   },
   memory2: {
     title: "🧐 Memory Lvl 2",
@@ -130,20 +130,21 @@ export const historyStages = {
     grid: 9,
     duration: 80000, // 1 minut i 20 segons
     delayImage: 20000, // 20 segons
-    rewardResume: "Score auto",
+    rewardResume: "(Score auto) {1punt + 100coins per acert}",
   },
   skillRules: {
     title: "📖🕹️ Explicació Prova d'Habilitat",
     description:
       "<p>Disposes d'1 minut per intentar superar els 10 nivells de dificultat. Quants nivells seràs capaç d'aconseguir?</p><h4>🏁 Objectiu</h4><p>Arribar al nivell 10 abans que s'acabi el temps.</p><h4>📌 Normes</h4><ul><li>Hauràs d'aturar la barra dins d'una de les zones de color considerades com a encert.</li><li>Cada vegada que superis un nivell, la velocitat de la barra augmentarà, fent el repte més difícil.</li><li>Si falles, retrocediràs segons la zona on s'aturi la barra.</li><li>Disposes d'1 minut per avançar tants nivells com puguis.</li></ul><h4>🎨 Resultat de cada intent</h4>",
     reward:
-      "La puntuació obtinguda es sumara al marcador global de cada jugador. A més, el jugador amb millor puntuació rebràn una aventatge secreta.",
+      "La puntuació obtinguda es sumara al marcador global de cada jugador. Cada nivell superat sumarà 1 punt i 300🪙. A més, el jugador amb millor puntuació rebràn una aventatge secreta.",
     type: "text-colors",
   },
   skill: {
     title: "🕹️ Prova d'Habilitat",
     type: "skill",
-    rewardResume: "Aventatge secreta al millor (Score auto)",
+    rewardResume:
+      "(Score auto) {1punt + 300coins per nivell} + Aventatge secreta al millor",
     duration: 60000, // 1 minut
   },
   examRules: {
@@ -152,13 +153,13 @@ export const historyStages = {
       "<p>Aquesta prova consta de dues fases.</p><h4>🏁 Objectiu</h4><p>Respondre correctament el màxim nombre de preguntes possible per aconseguir punts per a la classificació final.</p><h4>📌 Normes</h4><ul><li>A cada fase es mostrarà un examen amb diverses preguntes de resposta múltiple.</li><li>Cada pregunta tindrà diverses opcions, però només una serà correcta.</li><li>Els participants disposaran de 10 minuts per completar l'examen.</li><li>Cada resposta correcta sumarà 1 punt.</li><li>Les respostes incorrectes no penalitzen.</li><li>És imprescindible validar les respostes abans que finalitzi el temps. En cas contrari, la puntuació de la fase serà de 0 punts.</li></ul><h4>🏆 Resultat</h4><p>Tots els punts aconseguits en aquesta prova es sumaran a la classificació final del joc.</p>",
     type: "text",
     reward:
-      "La puntuació obtinguda a l'examen es sumara al marcador global de cada jugador. A més, els 3 jugadors amb millor nota a l'examen rebràn un bonus de 500 MoricheCoins.",
+      "La puntuació obtinguda a l'examen es sumara al marcador global de cada jugador. A més, els 3 jugadors amb millor nota a l'examen rebràn un bonus de 2000 MoricheCoins.",
   },
   examFreak: {
     title: "🧠 Tribial exam",
     description:
       "Marca la resposta correcta a les seguents preguntes. ⚠️ Recorda validar les respostes abans de que s'acabi el temps!",
-    rewardResume: "500🪙 als 3 millors (Score auto)",
+    rewardResume: "(Score auto) + COINS MANUAL 2000🪙 als 3 millors",
     questions: [
       {
         question: "Quin pokemon es aquest?",
@@ -381,6 +382,120 @@ export const historyStages = {
         answer: "B",
       },
       {
+        question: "Com es diu el estil de sushi de la foto?",
+        image: "/exam/sushi.jpg",
+        options: [
+          { id: "A", text: "Temaki" },
+          { id: "B", text: "Niguiri" },
+          { id: "C", text: "Hosomaki" },
+          { id: "D", text: "Uramaki" },
+        ],
+        answer: "D",
+      },
+      {
+        question:
+          "Quin any va neixer la famosa marca de motos Harley Davidson?",
+        image: "/exam/harley.png",
+        options: [
+          { id: "A", text: "1903" },
+          { id: "B", text: "1917" },
+          { id: "C", text: "1934" },
+          { id: "D", text: "1941" },
+        ],
+        answer: "A",
+      },
+      {
+        question:
+          "Quin d'aquests instruments es el mes gran i el que marca el ritme base de la Batukada",
+        image: "/exam/tkxt.jpg",
+        options: [
+          { id: "A", text: "Repenique" },
+          { id: "B", text: "Surdo" },
+          { id: "C", text: "Contrasurdo" },
+          { id: "D", text: "Cortador" },
+        ],
+        answer: "B",
+      },
+      {
+        question: "Quant mesura el tren?",
+        image: "/exam/tren.jpg",
+        options: [
+          { id: "A", text: "55m" },
+          { id: "B", text: "115m" },
+          { id: "C", text: "170m" },
+          { id: "D", text: "220m" },
+        ],
+        answer: "B",
+      },
+      {
+        question:
+          "Com s'anomena la tècnica que consisteix a fer fotografies durant un llarg període de temps i després unir-les per crear un vídeo accelerat?",
+        image: "/exam/timelapse.jpg",
+        options: [
+          { id: "A", text: "Stop-Motion" },
+          { id: "B", text: "Slow-Motion" },
+          { id: "C", text: "Time-Lapse" },
+          { id: "D", text: "Light Painting" },
+        ],
+        answer: "C",
+      },
+      {
+        question:
+          "Quins recursos necesites per aconseguir una carta de desenvolupament en el joc de taula Catan?",
+        image: "/exam/catan.png",
+        options: [
+          { id: "A", text: "Fusta-Palla-Xai" },
+          { id: "B", text: "Fusta-Fang-Palla" },
+          { id: "C", text: "Pedra-Xai-Fang" },
+          { id: "D", text: "Pedra-Palla-Xai" },
+        ],
+        answer: "D",
+      },
+      {
+        question: "Quin es el joc de la seguent imatge?",
+        image: "/exam/stardew.png",
+        options: [
+          { id: "A", text: "Fields of Mistria" },
+          { id: "B", text: "Stardew Valley" },
+          { id: "C", text: "Moonlighter" },
+          { id: "D", text: "Minecraft" },
+        ],
+        answer: "B",
+      },
+      {
+        question: "Quina es la linia de Rodalies que te parada a Cardedeu?",
+        image: "/exam/rodalies.jpg",
+        options: [
+          { id: "A", text: "R1" },
+          { id: "B", text: "R2" },
+          { id: "C", text: "R3" },
+          { id: "D", text: "R4" },
+        ],
+        answer: "B",
+      },
+      {
+        question: "Quants bytes té 1 terabyte (TB), en el sistema decimal?",
+        image: "/exam/tecno.jpeg",
+        options: [
+          { id: "A", text: "1.000.000" },
+          { id: "B", text: "1.000.000.000" },
+          { id: "C", text: "1.000.000.000.000" },
+          { id: "D", text: "1.000.000.000.000.000" },
+        ],
+        answer: "B",
+      },
+      {
+        question: "De quina llet s'elabora el formatge Caprice des Dieux??",
+        image: "/exam/cheese.png",
+        options: [
+          { id: "A", text: "De cabra" },
+          { id: "B", text: "D'ovella" },
+          { id: "C", text: "De vaca" },
+          { id: "D", text: "De búfala" },
+        ],
+        answer: "B",
+      },
+      {
         question:
           "Quin numero s'amaga en aquest estereograma? (ilusió óptica de profunditat que oculta una figura en tres dimensions)",
         image: "/exam/stereogram.png",
@@ -394,7 +509,7 @@ export const historyStages = {
       },
     ],
     type: "exam",
-    duration: 600000, // 10 minuts
+    duration: 1200000, // 20 minuts
   },
   round2: {
     title: "Fase 2",
@@ -408,8 +523,9 @@ export const historyStages = {
     description:
       "<h4>🏁 Objectiu</h4><p>Aconseguir la màxima puntuació possible amb els teus llançaments.</p><h4>📌 Normes</h4><ul><li>Cada participant disposarà de 5 llançaments.</li><li>La puntuació obtinguda en cada llançament es sumarà per obtenir la puntuació final.</li><li>Un cop tots els jugadors hagin completat els seus intents, es farà el recompte de punts.</li></ul>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward:
+      "La puntuació aumenta 300 MoricheCoins i 5 punts per cada posició que pujis a la clasificación: últim 300, ..., primer máxim premi.",
+    rewardResume: "300🪙 i 5 punts en cua invertida (ultims-primer)",
   },
   choose: {
     title: "🔀 Elecció camí",
@@ -423,30 +539,34 @@ export const historyStages = {
     description:
       "<h3>Camí de la Torre</h3><h4>🏁 Objectiu</h4><p>Construir un castell de cartes de <b>dos pisos</b> i aconseguir que es mantingui dret el més ràpid possible.</p><h4>📌 Normes</h4><ul><li>Cada participant disposarà de 7 cartes per completar la construcció.</li><li>Quan soni el xiulet, la prova començarà.</li><li>Els jugadors hauran de construir un castell de dos pisos utilitzant únicament les cartes proporcionades.</li><li>El castell només es considerarà complet quan es mantingui estable sense ajuda del jugador.</li></ul><h4>❌ Eliminacions</h4><p>Els últims 2 jugadors a completar correctament el castell quedaran eliminats de la prova.</p>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward:
+      "La puntuació aumenta 400 MoricheCoins i 7 punts per cada posició que pujis a la clasificación: últim 400, ..., primer máxim premi.",
+    rewardResume: "400🪙 i 7 punts en cua invertida (ultims-primer)",
   },
   limitDisc: {
     title: "🥌 Disc al Límit",
     description:
       "<h3>Camí de la Galaxia</h3><h4>🏁 Objectiu</h4><p>Llançar el disc tan a prop de la línia objectiu com sigui possible, sense sobrepassar-la.</p><h4>📌 Normes</h4><ul><li>Cada participant disposarà d'un llançament.</li><li>L'objectiu és deixar el disc el més a prop possible de la línia marcada.</li><li>Si un jugador sobrepassa la línia, quedarà en risc d'eliminació.</li><li>Un cop tots els participants hagin realitzat el seu llançament, es compararan les distàncies respecte a la línia objectiu.</li></ul><h4>❌ Eliminacions</h4><p>Els 2 jugadors que hagin deixat el disc més lluny de la línia objectiu quedaran eliminats de la prova.</p>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward:
+      "La puntuació aumenta 400 MoricheCoins i 7 punts per cada posició que pujis a la clasificación: últim 400, ..., primer máxim premi.",
+    rewardResume: "400🪙 i 7 punts en cua invertida (ultims-primer)",
   },
   votation2: {
     title: "📊 Votació favorit",
     description:
       "Escull el teu jugador favorit. Clica sobre seu i apreta el boto per votar abans de que s'acabi el temps. (Si algú aconsegueix 10 vots o més obtindrà una carta de aventatge)",
+    rewardResume: "inmunitat en el proxim joc (juga pero no pot ser eliminat)",
     type: "votation",
     duration: 360000, // 6 minuts
   },
-  stagetodo: {
-    title: "🌪️ BladeBlade??",
-    description: "TO DO",
+  badeblade: {
+    title: "🌪️ BladeBlade",
+    description:
+      "<h4>🏁 Objectiu</h4><p>Fer que la teva baldufa sigui l'última a continuar girant dins del ring i derrotar el teu rival.</p><h4>📌 Normes</h4><ul><li>Cada participant disposarà d'una baldufa.</li><li>Quan soni el xiulet, els dos jugadors llançaran la seva baldufa al ring.</li><li>El combat continuarà fins que una de les dues baldufes sigui derrotada.</li><li>Una baldufa quedarà eliminada del combat quan:</li><ul><li>🚫 Deixi de girar</li><li>💥 Surti fora del ring.</li></ul><li>El jugador que aconsegueixi mantenir la seva baldufa activa dins del ring serà el guanyador del combat.</li></ul><h4>🏆 Torneig</h4><ul><li>Els combats es disputaran sempre 1 contra 1.</li><li>Els jugadors s'aniran enfrontant en diferents rondes.</li><li>La classificació final es determinarà segons els resultats obtinguts durant el torneig.</li><li>En aquesta prova hi haurà un torneig invertit: l'objectiu no serà només guanyar, sinó evitar quedar entre els pitjors classificats.</li></ul><h4>❌ Eliminacions</h4><p>Els 3 jugadors amb pitjor classificació al final del torneig quedaran eliminats de la prova.</p>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward: "1000🪙 pels que passen de ronda.",
+    rewardResume: "1000🪙 pels que passen de ronda.",
   },
   roundRepesca: {
     title: "Fase Repesca",
@@ -460,8 +580,8 @@ export const historyStages = {
     description:
       "<h4>🏁 Objectiu</h4><p>Derribar el màxim nombre de bitlles possible per tornar a entrar al joc.</p><h4>📌 Normes</h4><ul><li>Només podran participar en aquesta prova els jugadors eliminats.</li><li>Cada participant disposarà de 2 llançaments.</li><li>La puntuació final serà la suma de totes les bitlles derribades en aquests dos intents.</li><li>En cas d'empat entre els millors participants, es disputarà una ronda de desempat entre els jugadors implicats.</li></ul><h4>🏆 Resultat</h4><p>El jugador que aconsegueixi derribar més bitlles tornarà a entrar al joc com a participant actiu. A més, obtindrà un avantatge especial, que serà revelat per l'organització un cop finalitzat el joc.</p>",
     type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward: "Avantatge especial per al millor jugador de la repesca i 1500🪙",
+    rewardResume: "1500🪙 + Revive friend",
   },
   round3: {
     title: "Fase 3",
@@ -474,32 +594,34 @@ export const historyStages = {
     title: "⛳️ Mini golf",
     description:
       "<h4>🏁 Objectiu</h4><p>Aconseguir introduir la pilota al forat amb el menor nombre de cops possible.</p><h4>📌 Normes</h4><ul><li>Tots els participants completaran el recorregut establert.</li><li>Cada cop realitzat comptarà per a la puntuació final.</li><li>Guanyarà el jugador que necessiti menys cops per completar la prova.</li></ul><h4>❌ Desempat</h4><p>Si hi ha un empat entre els jugadors amb pitjor puntuació, es disputarà una segona ronda de desempat exclusivament entre aquests participants.</p>",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward:
+      "500 MoricheCoins per cada posició que pujis a la clasificación: últim 500, ..., primer máxim premi.",
+    rewardResume: "500🪙 en cua invertida (ultims-primer)",
     type: "text",
   },
   maduixes: {
     title: "🍓 Fresi Fest",
     description:
       "<h4>🏁 Objectiu</h4><p>Aconseguir mantenir el màxim nombre de maduixes dins la boca sense deixar-ne caure cap.</p><h4>📌 Normes</h4><ul><li>Tots els participants jugaran al mateix temps.</li><li>Els jugadors hauran d'anar introduint una maduixa cada vegada dins la boca.</li><li>No estarà permès mastegar ni empassar-se les maduixes durant la prova.</li><li>El repte continuarà fins que un jugador:</li><ul><li>no pugui introduir una nova maduixa a la boca, o bé</li><li>deixi caure a terra alguna de les maduixes que ja tenia dins.</li></ul></ul><h4>❌ Eliminacions</h4><p>Els jugador que no puguin afegir una nova maduixa o a qui li caigui una maduixa a terra quedara eliminat.</p>",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward: "1000 MoricheCoins per tots els participants.",
+    rewardResume: "1000🪙 all players",
     type: "text",
   },
   zombieDice: {
     title: "🧟‍♂️ Zombie Dice",
     description:
       "<h4>🏁 Objectiu</h4><p>Aconseguir el màxim nombre de cervells abans que un jugador arribi als 13 cervells.</p><h4>📌 Normes</h4><ul><li>En el seu torn, cada jugador seleccionarà 3 daus a cegues del recipient.</li><li>Hi ha 3 tipus de daus, amb dificultats diferents:</li><ul><li>🟢 Verd: fàcil.</li><li>🟡 Groc: dificultat intermèdia.</li><li>🔴 Vermell: difícil.</li></ul><li>Els daus poden mostrar tres resultats:</li><ul><li>🧠 Cervell: suma 1 punt.</li><li>Petjades: el supervivent ha escapat. Si el jugador decideix continuar, aquest dau es reservarà i es tornarà a llançar en la següent tirada del mateix torn.</li><li>💥 Explosió: representa un tret rebut.</li></ul><li>Després de cada tirada, el jugador podrà decidir si:</li><ul><li>Plantar-se i conservar tots els cervells aconseguits durant aquell torn.</li><li>Continuar jugant, mantenint els daus amb petjades i completant la resta fins a tenir 3 daus per a la següent tirada.</li></ul><li>Si un jugador acumula 3 explosions en un mateix torn, el seu torn finalitzarà immediatament i perdrà tots els cervells aconseguits durant aquell torn.</li><li>El joc continuarà per torns fins que un jugador aconsegueixi 13 cervells o més.</li></ul><h4>❌ Eliminacions</h4><p>Quan un jugador arribi als 13 cervells, la partida acabarà immediatament. El participant que tingui menys cervells acumulats en aquell moment quedarà eliminat.</p>",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward:
+      "700 MoricheCoins per cada posició que pujis a la clasificación: últim 700, ..., primer máxim premi.",
+    rewardResume: "700🪙 en cua invertida (ultims-primer)",
     type: "text",
   },
   maletines: {
     title: "🧳 Maletins Bomba",
     description:
       "<h4>🏁 Objectiu</h4><p>Evitar escollir un maletí amb bomba i convertir-te en l'últim jugador en peu.</p><h4>📌 Normes</h4><ul><li>Hi haurà un total de 10 maletins.</li><li>En cada ronda, un jugador serà l'encarregat d'escollir un maletí.</li><li>Els altres dos jugadors amagaran una bomba cadascun dins de dos maletins diferents, sense que el jugador que ha d'escollir ho pugui veure.</li><li>Els participants podran fer preguntes entre ells abans de prendre una decisió.</li><li>El jugador que hagi d'escollir disposarà d'un màxim de 2 minuts per triar un maletí.</li><li>Si el jugador escull un maletí buit, aquest es retirarà del joc i la partida continuarà amb els maletins restants.</li><li>Si el jugador escull un maletí amb una bomba, quedarà eliminat immediatament.</li><li>Quan només quedin 2 participants, el jugador que no escull serà l'encarregat d'amagar una única bomba abans de cada ronda.</li></ul><h4>❌ Eliminacions</h4><p>Qualsevol jugador que obri un maletí amb bomba quedarà eliminat de la prova.</p>",
-    reward: "TO DO",
-    rewardResume: "TO DO",
+    reward: "5000 MoricheCoins pel guanyador i 2500 al segon classificat.",
+    rewardResume: "1r - 5000🪙, 2n - 2500🪙",
     type: "text",
   },
   winner: {

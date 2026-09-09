@@ -164,9 +164,11 @@ export const VotationPage = () => {
                 </div>
               ))}
             </div>
-            <button className="vote-button" onClick={() => handleVote()}>
-              Votar
-            </button>
+            {user?.email && (
+              <button className="vote-button" onClick={() => handleVote()}>
+                Votar
+              </button>
+            )}
           </div>
         </>
       )}

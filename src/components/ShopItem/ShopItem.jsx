@@ -47,6 +47,13 @@ export const ShopItem = ({ item, itemId }) => {
     <article className={`shop-item ${stock <= 0 ? "shop-item--soldout" : ""}`}>
       <div className="shop-item__media">
         <img src={`/shop/${img}`} alt={name} className="shop-item__image" />
+        {stock <= 0 && (
+          <img
+            src="/shop/sold-out.png"
+            alt="Agotado"
+            className="shop-item__image--soldout"
+          />
+        )}
       </div>
 
       <div className="shop-item__body">
@@ -69,14 +76,16 @@ export const ShopItem = ({ item, itemId }) => {
         </div>
 
         <div className="shop-item__actions">
-          <button
-            className={`shop-item__buy ${dbUser?.coins < price || (isHappyHour && happyHour && dbUser?.coins < happyHour) ? "shop-item__buy--disabled" : ""}`}
-            onClick={() => handlePurchase()}
-            disabled={stock <= 0}
-            aria-disabled={stock <= 0}
-          >
-            {stock > 0 ? "Comprar" : "No disponible"}
-          </button>
+          {user?.email && (
+            <button
+              className={`shop-item__buy ${dbUser?.coins < price || (isHappyHour && happyHour && dbUser?.coins < happyHour) ? "shop-item__buy--disabled" : ""}`}
+              onClick={() => handlePurchase()}
+              disabled={stock <= 0}
+              aria-disabled={stock <= 0}
+            >
+              {stock > 0 ? "Comprar" : "No disponible"}
+            </button>
+          )}
         </div>
       </div>
     </article>

@@ -193,13 +193,15 @@ export const MemoryPage = () => {
               >
                 Reset
               </button>
-              <button
-                className="btn validate"
-                onClick={validateSelection}
-                type="button"
-              >
-                Validar
-              </button>
+              {user?.email && (
+                <button
+                  className="btn validate"
+                  onClick={validateSelection}
+                  type="button"
+                >
+                  Validar
+                </button>
+              )}
             </div>
           </>
         )

@@ -126,16 +126,22 @@ export const ChoosePage = () => {
                 </span>
               </div>
             </div>
-            <button
-              className="btn exam-button"
-              onClick={() => {
-                console.log("Setting player path choice:", dbUser, pathChoice);
-                setPlayerPathChoice(dbUser, pathChoice);
-              }}
-              type="button"
-            >
-              Escollir
-            </button>
+            {user?.email && (
+              <button
+                className="btn exam-button"
+                onClick={() => {
+                  console.log(
+                    "Setting player path choice:",
+                    dbUser,
+                    pathChoice,
+                  );
+                  setPlayerPathChoice(dbUser, pathChoice);
+                }}
+                type="button"
+              >
+                Escollir
+              </button>
+            )}
           </div>
         </>
       ) : (

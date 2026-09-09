@@ -148,13 +148,15 @@ export const ExamPage = () => {
                 );
               })}
             </div>
-            <button
-              className="btn exam-button"
-              onClick={() => calculateScore()}
-              type="button"
-            >
-              Enviar
-            </button>
+            {user?.email && (
+              <button
+                className="btn exam-button"
+                onClick={() => calculateScore()}
+                type="button"
+              >
+                Enviar
+              </button>
+            )}
           </div>
         </>
       ) : (

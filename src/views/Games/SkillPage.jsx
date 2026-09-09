@@ -333,7 +333,7 @@ export const SkillPage = () => {
 
   return (
     <div className="skill-page">
-      {timeLeft > 0 ? (
+      {timeLeft > 0 && user?.email ? (
         <>
           <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
             Tiempo restante: {formatTime(timeLeft)}

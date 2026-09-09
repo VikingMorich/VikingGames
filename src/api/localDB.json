@@ -123,6 +123,24 @@
       "stock": 4
     },
     "022": {
+      "img": "bade-blade.jpeg",
+      "name": "Bade Blade",
+      "price": 1200,
+      "stock": 3
+    },
+    "023": {
+      "img": "magic-box.jpeg",
+      "name": "Caixa de Magic",
+      "price": 2000,
+      "stock": 4
+    },
+    "024": {
+      "img": "halloween.png",
+      "name": "Carbassa de Halloween",
+      "price": 700,
+      "stock": 1
+    },
+    "040": {
       "img": "advantage.png",
       "name": "Aventatge per algun joc",
       "price": 3000,
