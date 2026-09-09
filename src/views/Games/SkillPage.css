@@ -41,4 +41,8 @@
       font-size: 40px;
     }
   }
+  .skill-page-title-centered,
+  .skill-page-description {
+    text-align: center;
+  }
 }

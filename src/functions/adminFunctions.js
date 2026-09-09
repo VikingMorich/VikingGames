@@ -426,12 +426,15 @@ export const generateBingoCards = async () => {
     const snapshot = await get(child(usersRef, "/"));
     if (snapshot.exists()) {
       const users = snapshot.val();
-      const userIds = Object.keys(users);
+      const adminUserIds = new Set(["000", "001"]);
+      const userIds = Object.keys(users).filter(
+        (userId) => !adminUserIds.has(userId),
+      );
       const bingoCards = [];
-      // actualizar el Users[userId] añadiendo una seccion Bingo. (Generar 1 cartas de bingo [Array de IDs] con 9 IDs aleatorios no incluyendo el id del propio jugador)
+      // actualizar el Users[userId] añadiendo una seccion Bingo. (Generar 1 cartes de bingo [Array de IDs] amb 9 IDs aleatoris no incloent el propi jugador ni els admins)
       for (const userId of userIds) {
         const otherUserIds = userIds.filter((id) => id !== userId);
-        const shuffledIds = otherUserIds.sort(() => 0.5 - Math.random());
+        const shuffledIds = [...otherUserIds].sort(() => 0.5 - Math.random());
         const selectedIds = shuffledIds.slice(0, 9);
         bingoCards.push({ userId, card: selectedIds });
         const userRef = ref(db, `Users/${userId}`);

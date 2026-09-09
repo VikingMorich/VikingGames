@@ -18,7 +18,6 @@ export const SkillPage = () => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [redTimer, setRedTimer] = useState(false);
   const progressIntervalRef = useRef(null);
-  const lvlMax = 10;
   const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
     ([id, u]) => u.email === user?.email,
   );
@@ -155,13 +154,15 @@ export const SkillPage = () => {
         [3, 10],
         [40, 43],
       ],
-      epicwin: [[1, 2]],
       epicfail: [
         [10, 15],
         [43, 50],
       ],
     },
   ]; // Cada nivel tiene su propio conjunto de rangos
+
+  const lvlMax = progressSuccess.length - 1;
+  const maxScoreReached = lvl >= lvlMax && arrRes === "✅";
 
   const getComputedGradient = () => {
     let computedGradientSuccess = "linear-gradient(90deg";
@@ -203,21 +204,23 @@ export const SkillPage = () => {
   };
 
   const checkIfSuccess = (prog) => {
+    const safeLvl = Math.min(lvl, progressSuccess.length - 1);
+    const currentLevel = progressSuccess[safeLvl] || progressSuccess[0];
     let result = "❌"; // Default to fail
 
-    progressSuccess[lvl].success?.forEach((el) => {
+    currentLevel.success?.forEach((el) => {
       if (prog >= el[0] && prog <= el[1]) {
         result = "✅";
       }
     });
 
-    progressSuccess[lvl].epicwin?.forEach((el) => {
+    currentLevel.epicwin?.forEach((el) => {
       if (prog >= el[0] && prog <= el[1]) {
         result = "🎯";
       }
     });
 
-    progressSuccess[lvl].epicfail?.forEach((el) => {
+    currentLevel.epicfail?.forEach((el) => {
       if (prog >= el[0] && prog <= el[1]) {
         result = "☠️";
       }
@@ -225,18 +228,36 @@ export const SkillPage = () => {
 
     setArrRes(result);
 
+    const speedModifier = lvl >= 5 ? 0.5 : 1;
+
     if (result === "✅") {
+      if (lvl >= progressSuccess.length - 1) {
+        setLvl(progressSuccess.length - 1);
+        if (dbUserId && vikingGamesdb.Users?.[dbUserId]?.stageScore == null) {
+          setPlayerLevelScore(dbUserId, lvl + 1);
+        }
+        return;
+      }
+
       setLvl((prevLvl) => Math.min(prevLvl + 1, lvlMax));
-      setDownloadSpeed((prevSpeed) => Math.min(prevSpeed + 0.5, 5)); // Increment speed
+      setDownloadSpeed((prevSpeed) =>
+        Math.min(prevSpeed + 0.5 * speedModifier, 5),
+      );
     } else if (result === "🎯") {
       setLvl((prevLvl) => Math.min(prevLvl + 2, lvlMax));
-      setDownloadSpeed((prevSpeed) => Math.min(prevSpeed + 1, 5)); // Increment speed more
+      setDownloadSpeed((prevSpeed) =>
+        Math.min(prevSpeed + 1 * speedModifier, 5),
+      );
     } else if (result === "❌") {
       setLvl((prevLvl) => Math.max(prevLvl - 1, 0));
-      setDownloadSpeed((prevSpeed) => Math.max(prevSpeed - 0.5, 0.5)); // Decrease speed
+      setDownloadSpeed((prevSpeed) =>
+        Math.max(prevSpeed - 0.5 * speedModifier, 0.5),
+      );
     } else if (result === "☠️") {
       setLvl((prevLvl) => Math.max(prevLvl - 2, 0));
-      setDownloadSpeed((prevSpeed) => Math.max(prevSpeed - 1, 0.5)); // Decrease speed more
+      setDownloadSpeed((prevSpeed) =>
+        Math.max(prevSpeed - 1 * speedModifier, 0.5),
+      );
     }
   };
 
@@ -334,7 +355,18 @@ export const SkillPage = () => {
 
   return (
     <div className="skill-page">
-      {timeLeft > 0 && user?.email ? (
+      {maxScoreReached && timeLeft > 0 && user?.email ? (
+        <div className="skill-page-finished">
+          <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
+            Tiempo restante: {formatTime(timeLeft)}
+          </div>
+          <h1 className="skill-page-title-centered">Prova superada</h1>
+          <p className="skill-page-description">🎉😎 Moltes Felicitats! 😎🎉</p>
+          <p className="skill-page-description">
+            Espera a que acabi el temps i es guardi la teva puntuació.
+          </p>
+        </div>
+      ) : timeLeft > 0 && user?.email ? (
         <>
           <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
             Tiempo restante: {formatTime(timeLeft)}
