@@ -11,10 +11,8 @@ export const MemoryPage = () => {
   const gridVal = historyStages[currentStage]?.grid;
 
   const computeGridSide = (g) => {
-    if (typeof g === "number") {
-      const sqrt = Math.sqrt(g);
-      if (Number.isInteger(sqrt) && sqrt >= 1) return sqrt; // g is total cells (perfect square)
-      if (Number.isInteger(g) && g >= 1) return g; // g is side length
+    if (typeof g === "number" && Number.isInteger(g) && g >= 1) {
+      return g; // The stored `grid` value is the board side length
     }
     return 3; // fallback to 3x3
   };

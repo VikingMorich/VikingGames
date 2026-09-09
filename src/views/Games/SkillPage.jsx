@@ -242,12 +242,13 @@ export const SkillPage = () => {
 
   useEffect(() => {
     // Recuperar el nivel del jugador al cargar el componente
-    if (dbUserId && vikingGamesdb?.Users?.[dbUserId]?.stageScore) {
+    if (dbUserId && vikingGamesdb?.Users?.[dbUserId]?.stageScore != null) {
       setLvl(vikingGamesdb.Users[dbUserId].stageScore);
     }
   }, [dbUserId, vikingGamesdb?.Users]);
 
   useEffect(() => {
+    if (!dbUserId || !user?.email) return;
     if (vikingGamesdb?.Games?.start) {
       const startTime = new Date(vikingGamesdb.Games.start).getTime();
       const endTime = startTime + historyStages[currentStage].duration;
@@ -274,7 +275,7 @@ export const SkillPage = () => {
         }
         if (remainingTime <= 0) {
           // Check if the score already exists before setting it
-          if (!vikingGamesdb.Users?.[dbUserId]?.stageScore) {
+          if (vikingGamesdb.Users?.[dbUserId]?.stageScore == null) {
             console.log("Setting player level score to", lvl);
             setPlayerLevelScore(dbUserId, lvl + 1);
           } else {

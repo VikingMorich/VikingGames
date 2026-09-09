@@ -227,6 +227,11 @@ export const updateUserName = async (userId, newUserName) => {
 };
 
 export const setPlayerLevelScore = async (userId, level) => {
+  if (!userId) {
+    console.warn("setPlayerLevelScore: userId missing");
+    return false;
+  }
+
   try {
     const db = getDatabase(app);
     const nodeRef = ref(db, `Users/${userId}`);

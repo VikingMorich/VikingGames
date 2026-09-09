@@ -189,15 +189,33 @@ export const updateNextGameStage = async (newStage) => {
   const db = getDatabase(app);
   const nodeRef = ref(db, `Games`);
   const start = new Date().toISOString();
-  await updateScoreWithStageScore();
-  await update(nodeRef, { currentPage: newStage, start });
-  toast.success("Stage updated", {
-    autoClose: 1000,
-    theme: "colored",
-  });
+
+  // Determine previous stage to decide coins per point (memory stages award coins)
+  try {
+    const gamesSnapshot = await get(nodeRef);
+    const prevStage = gamesSnapshot.exists()
+      ? gamesSnapshot.val().currentPage
+      : null;
+    const coinsPerPoint =
+      prevStage === "memory1" || prevStage === "memory2"
+        ? 100
+        : prevStage === "skill"
+          ? 300
+          : 0;
+
+    await updateScoreWithStageScore(coinsPerPoint);
+    await update(nodeRef, { currentPage: newStage, start });
+    toast.success("Stage updated", {
+      autoClose: 1000,
+      theme: "colored",
+    });
+  } catch (error) {
+    console.error("updateNextGameStage error:", error);
+    throw error;
+  }
 };
 
-export const updateScoreWithStageScore = async () => {
+export const updateScoreWithStageScore = async (coinsPerPoint = 0) => {
   const db = getDatabase(app);
   const usersRef = ref(db, `Users`);
 
@@ -210,18 +228,40 @@ export const updateScoreWithStageScore = async () => {
       // Iterate through each user and update their score
       for (const userId in users) {
         const user = users[userId];
-        const currentScore = user.score || 0;
-        const stageScore = user.stageScore || 0;
+        const currentScore = Number(user.score || 0);
+        const stageScore = Number(user.stageScore || 0);
 
-        // Update user score and remove stageScore
+        const coinsToAdd = Math.max(0, Number(coinsPerPoint || 0)) * stageScore;
+        const updatedCoins = (user.coins || 0) + coinsToAdd;
+
+        // Prepare updated CoinsHistory if needed
+        const newCoinsHistory =
+          coinsToAdd > 0
+            ? [
+                ...(user.CoinsHistory || []),
+                {
+                  date: new Date().toISOString(),
+                  concept: `Puntuación de stage convertida: (${stageScore} punts)`,
+                  amount: coinsToAdd,
+                  total: updatedCoins,
+                  type: "add",
+                },
+              ]
+            : user.CoinsHistory;
+
+        // Update user score, coins and clear stageScore/vote
         const userRef = ref(db, `Users/${userId}`);
-        await update(userRef, {
+        const dataToUpdate = {
           score: currentScore + stageScore,
-          stageScore: null, // Remove stageScore key
-          vote: null, // Remove vote key
-        });
+          coins: updatedCoins,
+          stageScore: null,
+          vote: null,
+        };
+        if (coinsToAdd > 0) dataToUpdate.CoinsHistory = newCoinsHistory;
+        await update(userRef, dataToUpdate);
       }
-      //si existe la rama VotationScores, eliminarla para resetear los resultados de la votación
+
+      // If exists, remove VotationScores to reset voting results
       const votationScoresRef = ref(db, `VotationScores`);
       const votationSnapshot = await get(child(votationScoresRef, "/"));
       if (votationSnapshot.exists()) {
