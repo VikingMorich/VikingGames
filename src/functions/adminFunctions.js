@@ -426,14 +426,17 @@ export const generateBingoCards = async () => {
     const snapshot = await get(child(usersRef, "/"));
     if (snapshot.exists()) {
       const users = snapshot.val();
-      const adminUserIds = new Set(["000", "001"]);
-      const userIds = Object.keys(users).filter(
-        (userId) => !adminUserIds.has(userId),
-      );
+      // Include all users when generating cards, but exclude admin IDs
+      // from the selectable pool so they never appear as entries inside cards.
+      const adminUserIds = new Set(["000", "999"]);
+      const userIds = Object.keys(users); // all users (admins included)
+      const selectableIds = userIds.filter((id) => !adminUserIds.has(id));
       const bingoCards = [];
-      // actualizar el Users[userId] añadiendo una seccion Bingo. (Generar 1 cartes de bingo [Array de IDs] amb 9 IDs aleatoris no incloent el propi jugador ni els admins)
+      // actualizar el Users[userId] añadiendo una seccion Bingo.
+      // Generar 1 tarjeta de bingo (Array de IDs) con hasta 9 IDs aleatorios
+      // que no incluyan al propio jugador ni a los admins.
       for (const userId of userIds) {
-        const otherUserIds = userIds.filter((id) => id !== userId);
+        const otherUserIds = selectableIds.filter((id) => id !== userId);
         const shuffledIds = [...otherUserIds].sort(() => 0.5 - Math.random());
         const selectedIds = shuffledIds.slice(0, 9);
         bingoCards.push({ userId, card: selectedIds });

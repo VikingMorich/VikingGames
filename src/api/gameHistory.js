@@ -5,26 +5,31 @@ export const historyStages = {
       "Benvinguts als VikingGames! Prepareu-vos per a una aventura èpica plena de diversió i reptes! \n\nDurant els jocs anireu guanyant punts i MoricheCoins que podreu intercanviar per recompenses a la pestanya de 'Botiga', aixo si, l'stock dels productes es limitat. La resta d'usos que pogueu donar a les MoricheCoins el deixo a les vostres mans. (Es poden utilitzar per sobornar a altres jugadors)\n\nDe tots els participants, només un serà declarat campió dels VikingGames i rebrà el trofeu i la fama que li pertoquen.\n\nDins d'aquesta eina podreu anar veient el progres del joc i el desenvolupament d'algunes de les proves. Poseu-vos comodes, agafeu un refrijeri i aneu familiaritzant-vos amb el funcionament de l'eina.",
     type: "text",
   },
+  toolDescription: {
+    title: "⚙️ Explicació eina?",
+    description: "TO DO",
+    type: "text",
+  },
   roundDescription: {
     title: "Explicació fases",
     description:
-      "<p>Els jocs es dividiran en 4 fases. A continuació una breu explicació de les normes especials de cada fase i el seu numero de probes.</p><h3>Fase 0</h3><p>Un únic joc que no otorga punts als participants, pero tindrà MoricheCoins de recompensa.</p><h3>Fase 1</h3><p>En la primera fase es jugaran 7 probes, després de cada repte es repartiran punts als millors jugadors segons la proba. Un cop acabin totes les probes de la fase, s'eliminaran els X jugadors amb pitjor puntuació. (Es classifiquen els 14 millors)</p><h3>Fase 2</h3><p>En aquesta fase, s'eliminarà al jugador amb pitjor puntuació segons la classificació global després de cada proba.</p><h3>Fase 3</h3><p>L'ultima fase eliminarà el pitjor jugador despres de cada proba independentment de la seva puntuació global.</p><h4>Notes especials</h4><p>En algun moment del joc també hi haurà una fase de repesca en la que algun jugador eliminat podrà tornar a entrar al joc.</p>",
+      "<p>Els jocs es dividiran en 3 fases. A continuació una breu explicació de les normes especials de cada fase i el seu numero de probes.</p><h3>Fase 1</h3><p>En la primera fase es jugaran 7 probes, després de cada repte es repartiran punts als millors jugadors segons la proba. Un cop acabin totes les probes de la fase, s'eliminaran els X jugadors amb pitjor puntuació. (Es classifiquen els 14 millors)</p><h3>Fase 2</h3><p>En aquesta fase, s'eliminarà al jugador amb pitjor puntuació segons la classificació global després de cada proba.</p><h3>Fase 3</h3><p>L'ultima fase eliminarà el pitjor jugador despres de cada proba independentment de la seva puntuació global.</p><h4>Notes especials</h4><p>En algun moment del joc també hi haurà una fase de repesca en la que algun jugador eliminat podrà tornar a entrar al joc.</p>",
     type: "text",
   },
-  round0: {
-    title: "Fase 0",
-    number: "0",
-    description: "No s'aconsegueixen punts, només es reparteixen MoricheCoins.",
-    type: "stage",
-  },
-  flagSpeed: {
-    title: "🚩 Carrera de Banderes",
-    description:
-      "<p>En aquesta prova apareixeran un total de 13 banderes repartides per l'espai de joc. Sota cada bandera hi haurà un premi ocult en MoricheCoins, que els jugadors no podran veure abans d'escollir.</p><h4>⚙️ Funcionament del joc</h4><p>Quan soni el senyal d'inici (xiulet), la prova començarà.</p><p>En aquell moment, els jugadors que ho desitgin podran començar a córrer per intentar aconseguir una bandera.</p><p><b>⚠️ Important:</b> un cop un jugador <b>creua la línia de sortida</b> per participar, <b>ja no podrà tornar enrere ni participar en les rondes següents d'aquesta prova.</b></p><h4>🏁 Objectiu</h4><p>Cada jugador haurà d'intentar arribar a una de les banderes abans que la resta de participants.</p><p> La primera persona que arribi a una bandera i la reclami s'endurà el premi ocult que hi ha sota aquella bandera.</p><h4>📌 Normes importants</h4><ul><li>Hi ha un total de 13 banderes, però no estaran disponibles totes al mateix temps.</li><li>Les banderes aniran apareixent al llarg de la prova.</li><li>Un cop una bandera ha estat reclamada, ja no es podrà tornar a agafar.</li><li>Cada jugador només podrà obtenir una única bandera.</li></ul><h4>❌ Eliminacions</h4><p>No hi ha eliminacions en aquesta prova.</p><p>Tots els participants continuaran al joc independentment del resultat obtingut.</p>",
-    type: "text",
-    reward: "TO DO",
-    rewardResume: "TO DO",
-  },
+  // round0: {
+  //   title: "Fase 0",
+  //   number: "0",
+  //   description: "No s'aconsegueixen punts, només es reparteixen MoricheCoins.",
+  //   type: "stage",
+  // },
+  // flagSpeed: {
+  //   title: "🚩 Carrera de Banderes",
+  //   description:
+  //     "<p>En aquesta prova apareixeran un total de 13 banderes repartides per l'espai de joc. Sota cada bandera hi haurà un premi ocult en MoricheCoins, que els jugadors no podran veure abans d'escollir.</p><h4>⚙️ Funcionament del joc</h4><p>Quan soni el senyal d'inici (xiulet), la prova començarà.</p><p>En aquell moment, els jugadors que ho desitgin podran començar a córrer per intentar aconseguir una bandera.</p><p><b>⚠️ Important:</b> un cop un jugador <b>creua la línia de sortida</b> per participar, <b>ja no podrà tornar enrere ni participar en les rondes següents d'aquesta prova.</b></p><h4>🏁 Objectiu</h4><p>Cada jugador haurà d'intentar arribar a una de les banderes abans que la resta de participants.</p><p> La primera persona que arribi a una bandera i la reclami s'endurà el premi ocult que hi ha sota aquella bandera.</p><h4>📌 Normes importants</h4><ul><li>Hi ha un total de 13 banderes, però no estaran disponibles totes al mateix temps.</li><li>Les banderes aniran apareixent al llarg de la prova.</li><li>Un cop una bandera ha estat reclamada, ja no es podrà tornar a agafar.</li><li>Cada jugador només podrà obtenir una única bandera.</li></ul><h4>❌ Eliminacions</h4><p>No hi ha eliminacions en aquesta prova.</p><p>Tots els participants continuaran al joc independentment del resultat obtingut.</p>",
+  //   type: "text",
+  //   reward: "TO DO",
+  //   rewardResume: "TO DO",
+  // },
   round1: {
     title: "Fase 1",
     number: "1",

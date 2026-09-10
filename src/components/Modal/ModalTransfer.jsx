@@ -15,7 +15,7 @@ export const ModalTransfer = ({ closeFunc }) => {
   const dbUser = dbEntry?.[1];
 
   const dbOtherUsers = Object.entries(vikingGamesdb?.Users || {}).filter(
-    ([id, u]) => u.email !== user?.email,
+    ([id, u]) => u.email !== user?.email && !["000", "999"].includes(id),
   );
   //console.log("dbOtherUsers", dbOtherUsers);
 
@@ -71,7 +71,7 @@ export const ModalTransfer = ({ closeFunc }) => {
             </option>
             {dbOtherUsers.map(([id, u]) => (
               <option key={id} value={id}>
-                {u.username}
+                {id} - {u.username}
               </option>
             ))}
           </select>
