@@ -1,22 +1,19 @@
-import { useState, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 import { claimBingo } from "../../functions/gameFunctions";
 import "./ModalBingo.css";
 
 export const ModalBingo = () => {
   const { vikingGamesdb, user } = useGlobalDB();
-  const [isBingoUsed, setIsBingoUsed] = useState(false);
 
   const dbEntry = Object.entries(vikingGamesdb?.Users || {}).find(
     ([id, u]) => u.email === user?.email,
   );
   const dbUserId = dbEntry?.[0]; // "001"
-
-  useEffect(() => {
-    if (vikingGamesdb && vikingGamesdb.Archivements) {
-      setIsBingoUsed(vikingGamesdb.Archivements["003"].used);
-    }
-  }, [vikingGamesdb]);
+  const isBingoUsed = Boolean(vikingGamesdb?.Archivements?.["003"]?.used);
+  const hasWonBingo = (
+    vikingGamesdb?.Users?.[dbUserId]?.archivements || []
+  ).includes("003");
 
   const data = useMemo(() => {
     return vikingGamesdb?.Users?.[dbUserId]?.Bingo || [];
@@ -59,12 +56,17 @@ export const ModalBingo = () => {
           </div>
         ))}
       </div>
-      {isBingoUsed && (
+      {hasWonBingo && (
+        <span className="bingo-waiting-message">
+          Felicitats! Has guanyat el premi de Bingo.
+        </span>
+      )}
+      {!hasWonBingo && isBingoUsed && (
         <span className="bingo-waiting-message">
           Algun jugador ja ha aconseguit cantar Bingo.
         </span>
       )}
-      {!isBingoUsed && allEliminated && (
+      {!isBingoUsed && !hasWonBingo && allEliminated && (
         <button
           className="btn bingo-button"
           onClick={() => claimBingo(dbUserId)}
@@ -72,7 +74,7 @@ export const ModalBingo = () => {
           Bingooo!!!
         </button>
       )}
-      {!isBingoUsed && !allEliminated && (
+      {!isBingoUsed && !hasWonBingo && !allEliminated && (
         <span className="bingo-waiting-message">
           Espera a que tots els jugadors estiguin eliminats.
         </span>

@@ -26,9 +26,29 @@ export const User = () => {
   const [easterEggUsed, setEasterEggUsed] = useState(false);
   const [isClaimedBefore, setIsClaimedBefore] = useState(false);
 
-  window.addEventListener("gesturestart", () => {
-    setZoomOut(true);
-  });
+  useEffect(() => {
+    const triggerZoomOut = () => {
+      setZoomOut(true);
+    };
+
+    const handleTouchZoom = (event) => {
+      if (event?.touches && event.touches.length >= 2) {
+        triggerZoomOut();
+      }
+    };
+
+    window.addEventListener("gesturestart", triggerZoomOut);
+    window.addEventListener("gesturechange", triggerZoomOut);
+    window.addEventListener("touchstart", handleTouchZoom, { passive: true });
+    window.addEventListener("touchmove", handleTouchZoom, { passive: true });
+
+    return () => {
+      window.removeEventListener("gesturestart", triggerZoomOut);
+      window.removeEventListener("gesturechange", triggerZoomOut);
+      window.removeEventListener("touchstart", handleTouchZoom);
+      window.removeEventListener("touchmove", handleTouchZoom);
+    };
+  }, []);
 
   useEffect(() => {
     if (vikingGamesdb?.Games?.currentPage) {

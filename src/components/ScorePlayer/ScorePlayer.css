@@ -1,14 +1,18 @@
-/* Tres columnas por fila */
+/* Mantener siempre 3 items por fila y centrar la última fila */
 .score-player {
-  flex: 1 1 calc((100% - 24px) / 3); /* restamos 2 gaps (16px) */
-  min-width: calc((100% - 24px) / 3);
   box-sizing: border-box;
+  /* Consideramos 2 gaps por fila (ej. 2 * 5px = 10px). Ajusta si cambias el gap en Scores.css */
+  flex: 0 0 calc((100% - 10px) / 3);
+  width: calc((100% - 10px) / 3);
+  max-width: calc((100% - 10px) / 3);
+  min-width: 0;
 }
 
 /* Estilos del propio marcador */
 .score-player {
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 12px;
   align-items: center;
   padding: 12px;
@@ -83,6 +87,7 @@
   align-items: center;
   gap: 2px;
   min-width: 0;
+  width: 100%;
 }
 
 .score-player__title {
@@ -93,6 +98,25 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.score-player__subtitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  text-overflow: ellipsis;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 0 6px rgba(255, 255, 255, 0.9);
 }
 
 .score-player__price {

@@ -143,7 +143,7 @@ export const MemoryPage = () => {
   return (
     <div className="memory-view">
       <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
-        Tiempo restante: {formatTime(timeLeft)}
+        Temps restant: {formatTime(timeLeft)}
       </div>
       {timeLeft > 0 && dbUser?.stageScore == null ? (
         showImage ? (

@@ -83,7 +83,7 @@ export const ChoosePage = () => {
   return (
     <>
       <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
-        Tiempo restante: {formatTime(timeLeft)}
+        Temps restant: {formatTime(timeLeft)}
       </div>
       {vikingGamesdb?.Users?.[dbUser]?.pathChoice == null && timeLeft > 0 ? (
         <>

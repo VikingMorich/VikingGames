@@ -144,7 +144,7 @@ export const VotationPage = () => {
       ) : (
         <>
           <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
-            Tiempo restante: {formatTime(timeLeft)}
+            Temps restant: {formatTime(timeLeft)}
           </div>
           <div className="games-text-wrapper">
             <h1 className="games-text-title">

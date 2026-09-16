@@ -9,7 +9,7 @@
 
 <ul>
   <li>🏆 <strong>Crear eventos</strong> personalizados con edición de jugadores y puntuaciones.</li>
-  <li>⚡ <strong>Visualización en tiempo real</strong> de la evolución del torneo, accesible para todos los usuarios.</li>
+  <li>⚡ <strong>Visualización a tiempo real</strong> de la evolución del torneo, accesible para todos los usuarios.</li>
   <li>💾 <strong>Persistencia de datos</strong> en base de datos, lo que permite consultar el historial de eventos en cualquier momento.</li>
 </ul>
 

@@ -2,12 +2,7 @@ export const historyStages = {
   welcome: {
     title: "Pròleg",
     description:
-      "Benvinguts als VikingGames! Prepareu-vos per a una aventura èpica plena de diversió i reptes! \n\nDurant els jocs anireu guanyant punts i MoricheCoins que podreu intercanviar per recompenses a la pestanya de 'Botiga', aixo si, l'stock dels productes es limitat. La resta d'usos que pogueu donar a les MoricheCoins el deixo a les vostres mans. (Es poden utilitzar per sobornar a altres jugadors)\n\nDe tots els participants, només un serà declarat campió dels VikingGames i rebrà el trofeu i la fama que li pertoquen.\n\nDins d'aquesta eina podreu anar veient el progres del joc i el desenvolupament d'algunes de les proves. Poseu-vos comodes, agafeu un refrijeri i aneu familiaritzant-vos amb el funcionament de l'eina.",
-    type: "text",
-  },
-  toolDescription: {
-    title: "⚙️ Explicació eina?",
-    description: "TO DO",
+      "Benvinguts als VikingGames! Prepareu-vos per a una aventura èpica plena de diversió i reptes! \n\nDurant els jocs anireu guanyant punts i MoricheCoins que podreu intercanviar per recompenses a la pestanya de 'Botiga', aixo si, l'stock dels productes es limitat. La resta d'usos que pogueu donar a les MoricheCoins el deixo a les vostres mans. (Es poden utilitzar per sobornar a altres jugadors)\n\nDe tots els participants, només un serà declarat campió dels VikingGames i rebrà el trofeu i la fama que li pertoquen.<h3>📜 <u>Seccions del web</u> 📜</h3><h4>👤 <u>Usuari</u> 👤</h4><p>En aquesta vista es podrà editar el nom d'usuari, tranferir coins a altres usuaris, jugar a la ruleta de la sort i veure o cantar bingo quan el cartó estigui activat.</p><h4>💰 <u>Botiga</u> 💰</h4><p>Inventari de la botiga online. Les compres es fara mitjançant el sistema web. (Es podràn recollir les compres realitzades en el moment que es desitji, no es necesari fer-ho en el moment de la compra)</p><h4>👾 <u>VikingGames</u> 👾</h4><p>Desenvolupament i explicació de les probes</p><h4>🎯 <u>Puntuacions</u> 🎯</h4><p>Veure el marcador global actualitzat i la finestra de fites i recompenses.</p>\n<p>Poseu-vos comodes, agafeu un refrijeri i aneu familiaritzant-vos amb el funcionament de l'eina.</p>",
     type: "text",
   },
   roundDescription: {

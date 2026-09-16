@@ -11,6 +11,7 @@ import {
 export function useGlobalDB() {
   const [vikingGamesdb, setVikingGamesdb] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [dbVersion, setDbVersion] = useState(0);
   const [user, setUser] = useState(null);
   const auth = getAuth();
 
@@ -20,6 +21,7 @@ export function useGlobalDB() {
     const unsubscribe = onValue(baseDbRef, (snapshot) => {
       const nextData = snapshot.val();
       setVikingGamesdb(nextData ? JSON.parse(JSON.stringify(nextData)) : null);
+      setDbVersion((v) => v + 1);
       setLoading(false);
     });
 
@@ -69,6 +71,7 @@ export function useGlobalDB() {
   return {
     loading,
     vikingGamesdb,
+    vikingGamesdbVersion: dbVersion,
     loginAdmin,
     logoutAdmin,
     user,

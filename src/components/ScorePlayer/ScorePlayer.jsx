@@ -40,9 +40,8 @@ export const ScorePlayer = ({ playerId, player }) => {
       </div>
 
       <div className="score-player__body">
-        <h3 className="score-player__title">
-          {playerId} - {username}
-        </h3>
+        <h3 className="score-player__title">{username}</h3>
+        <h2 className="score-player__subtitle">{playerId}</h2>
         <span className="score-player__price">
           {coins.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} 🪙
         </span>

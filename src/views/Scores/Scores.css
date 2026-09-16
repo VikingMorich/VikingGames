@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
+  gap: 5px; /* usado en el cálculo de cada item */
   background-color: var(--warm-brown);
   padding: 10px;
   border-radius: 5px;

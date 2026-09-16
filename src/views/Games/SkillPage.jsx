@@ -358,7 +358,7 @@ export const SkillPage = () => {
       {maxScoreReached && timeLeft > 0 && user?.email ? (
         <div className="skill-page-finished">
           <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
-            Tiempo restante: {formatTime(timeLeft)}
+            Temps restant: {formatTime(timeLeft)}
           </div>
           <h1 className="skill-page-title-centered">Prova superada</h1>
           <p className="skill-page-description">🎉😎 Moltes Felicitats! 😎🎉</p>
@@ -369,7 +369,7 @@ export const SkillPage = () => {
       ) : timeLeft > 0 && user?.email ? (
         <>
           <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
-            Tiempo restante: {formatTime(timeLeft)}
+            Temps restant: {formatTime(timeLeft)}
           </div>
           <h1 className="skill-page-title">Proba d'habilitat</h1>
           <h3 className="skill-page-level">

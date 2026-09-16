@@ -100,7 +100,7 @@ export const ExamPage = () => {
   return (
     <>
       <div className={"exam-timer " + (redTimer ? "timer-red" : "")}>
-        Tiempo restante: {formatTime(timeLeft)}
+        Temps restant: {formatTime(timeLeft)}
       </div>
       {dbUser?.stageScore == null && timeLeft > 0 ? (
         <>
