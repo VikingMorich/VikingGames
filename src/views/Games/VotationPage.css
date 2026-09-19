@@ -1,11 +1,25 @@
 .vote-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  justify-content: center;
+  gap: 10px;
+  background-color: #b8b8b8;
+  border: 1px solid #4d4d4d;
+  padding: 10px;
+  border-radius: 5px;
+  width: min(100%, 760px);
+  margin: 0 auto;
 
   .vote-option {
+    display: flex;
+    flex: 0 0 calc((100% - 20px) / 3);
+    width: calc((100% - 20px) / 3);
+    max-width: calc((100% - 20px) / 3);
+    min-width: 0;
     border-radius: 12px;
     border: 3px solid transparent; /* Borde transparente por defecto */
+    box-sizing: border-box;
+    cursor: pointer;
     &.selected {
       border: 3px solid #5d3a02;
       box-sizing: border-box; /* Asegura que el borde no cambie el tamaño del elemento */

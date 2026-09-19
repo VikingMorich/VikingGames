@@ -64,6 +64,7 @@ export const historyStages = {
     description:
       "Escull el teu jugador que vols penalitzar. Clica sobre seu i apreta el boto per votar abans de que s'acabi el temps.",
     type: "votation",
+    rewardResume: "Carta de desventaje",
     duration: 60000, // 1 minut
   },
   findClue: {

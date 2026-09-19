@@ -1,13 +1,21 @@
 import "./Login.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import { useGlobalDB } from "../../hooks/useGlobalDB";
 
 export const Login = () => {
-  const { loginAdmin } = useGlobalDB();
+  const navigate = useNavigate();
+  const { loginAdmin, user: loggedUser } = useGlobalDB();
 
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (loggedUser) {
+      navigate("/user", { replace: true });
+    }
+  }, [loggedUser, navigate]);
 
   const loginFunction = async () => {
     try {

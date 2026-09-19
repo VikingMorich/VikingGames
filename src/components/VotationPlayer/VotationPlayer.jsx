@@ -14,9 +14,8 @@ export const VotationPlayer = ({ playerId, player }) => {
       </div>
 
       <div className="votation-player__body">
-        <h3 className="votation-player__title">
-          {playerId} - {username}
-        </h3>
+        <h3 className="votation-player__title">{username}</h3>
+        <h2 className="votation-player__subtitle">{playerId}</h2>
       </div>
     </article>
   );

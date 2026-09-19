@@ -14,16 +14,13 @@ import { WinnerPage } from "./WinnerPage";
 import { useState, useEffect } from "react";
 
 export const Games = () => {
-  const { vikingGamesdb } = useGlobalDB();
-  const [currentStage, setCurrentStage] = useState("loading");
-
-  useEffect(() => {
-    if (vikingGamesdb?.Games?.currentPage) {
-      setCurrentStage(vikingGamesdb.Games.currentPage);
-    }
-  }, [vikingGamesdb]);
+  const { vikingGamesdb, vikingGamesdbVersion } = useGlobalDB();
+  // derive current stage directly from DB so component re-renders on DB updates
+  const currentStage = vikingGamesdb?.Games?.currentPage ?? "loading";
+  // derive currentStage from DB; render will update when vikingGamesdb changes
 
   const renderPage = () => {
+    // rendering page for currentStage
     switch (historyStages[currentStage]?.type) {
       case "text":
         return <TextPage />;
@@ -55,7 +52,9 @@ export const Games = () => {
   return (
     <>
       <BasicMenu />
-      <div className="section-view">{renderPage()}</div>
+      <div className="section-view" key={currentStage}>
+        {renderPage()}
+      </div>
     </>
   );
 };
